@@ -1,4 +1,4 @@
-package semester1.Belajar;
+package Belajar.yongunu;
 
 public class casting {
     public static void main(String[] args) {

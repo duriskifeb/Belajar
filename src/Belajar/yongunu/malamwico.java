@@ -1,4 +1,4 @@
-package semester1.Belajar;
+package Belajar.yongunu;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package semester1.Belajar;
+package Belajar.yongunu;
 
 public class tipedata {
     public static void main(String[] args) {
