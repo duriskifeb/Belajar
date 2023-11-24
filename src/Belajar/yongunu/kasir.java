@@ -134,6 +134,8 @@ public class kasir {
         System.out.println("| TOTAL HARGA     : " + jumlah_semua);
         System.out.println("|=========================================|");
 
+        input.close();
+
 
 
     }

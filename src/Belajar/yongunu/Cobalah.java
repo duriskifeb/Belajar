@@ -48,5 +48,7 @@ public class Cobalah {
             }
             System.out.print("\n");
         }
+        
     }
+    input
 }
