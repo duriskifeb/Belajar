@@ -11,7 +11,7 @@ public class arayan1 {
         // Looping ndeso
         System.out.println("ini loh looping standard");
         for (int i = 0; i < 10; i++){
-            System.out.println("index ke ini loh : " + i + iki =);
+            System.out.println("index ke ini loh : " );
         }
     }
 }

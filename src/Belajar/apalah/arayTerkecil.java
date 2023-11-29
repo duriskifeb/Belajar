@@ -7,7 +7,7 @@ public class arayTerkecil {
         Scanner input = new Scanner(System.in);
 
         System.out.println("============================================");
-        System.out.println("--o0  Program Java Cari Nilai Terbesar  0o--");
+        System.out.println("--o0  Program Java Cari Nilai Terkecil  0o--");
         System.out.println("============================================");
         System.out.println();
 

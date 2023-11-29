@@ -21,7 +21,7 @@ public class Balek {
                 System.out.println(" ");
             }
             while (raww != 2 * i -1) {
-                System.out.println("* ");
+                System.out.print("* ");
                 raww++;
             } 
              System.out.println();  
