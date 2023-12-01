@@ -20,14 +20,21 @@ class prktk2{
     void isiNilai(){
         System.out.println("\n\nPengisian Nilai");
         for (int a=0; a < arrNilai.length; a++){
-            arrNilai[a] = getRandom.nextInt(10);
+            arrNilai[a] = getRandom.nextInt(102);
+            if ((arrNilai[a] < 0 ) || (arrNilai[a] > 100)) {
+                break;
+            }
         }
     }
-
+    
+    
     void tampilArray(){
         System.out.println("\n\nDaftar Nilai");
         for (int a=0; a<arrNilai.length; a++){
-            System.out.print(arrNilai[a]+" ");
+            System.out.println("No" + (a + 1) + ". " + arrNilai[a] );
+            if ((arrNilai[a] < 0 ) || (arrNilai[a] > 100)) {
+                System.out.println("sudah berhenti");
+            }
         }
     }
 }

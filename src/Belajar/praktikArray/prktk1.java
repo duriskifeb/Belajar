@@ -13,25 +13,24 @@ class prktk1 {
     }
 
     public void inputData(){
-        int a=0;
+       
 
         System.out.println();
         System.out.println("---o0 H! 0o---");
         System.out.println("Input Data");
-        while (a<10){
+        for (int a = 0; a < 10; a++){
+            
             System.out.print("Nilai "+(a+1)+" : ");
             arr[a]=sc.nextInt();
-            a++;
         }
         System.out.println();
     }
 
     public void viewData(){
-        int a=0;
+       
         System.out.println("View Data");
-        while (a<10){
+        for (int a = 0; a < 10; a++){
             System.out.println("Nilai "+(a+1)+" : "+arr[a]);
-            a++;
         }
         System.out.println();
         System.out.println("---o0 Thank you 0o---");
