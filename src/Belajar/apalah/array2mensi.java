@@ -1,4 +1,5 @@
 package Belajar.apalah;
+
 import java.util.Arrays;
 
 public class array2mensi {
