@@ -1,0 +1,227 @@
+macam-macam parameter di arraylist di java :
+
+add(String element)
+Menambahkan elemen ke dalam ArrayList.
+
+get(int index)
+Mengambil elemen pada indeks tertentu.
+
+remove(int index)
+Menghapus elemen pada indeks tertentu.
+
+size()
+Mengembalikan jumlah elemen dalam ArrayList.
+
+isEmpty()
+Mengembalikan true jika ArrayList kosong, dan false jika tidak.
+
+contains(Object o)
+Mengembalikan true jika ArrayList mengandung elemen tertentu.
+
+indexOf(Object o)
+Mengembalikan indeks pertama dari elemen tertentu, atau -1 jika tidak ditemukan.
+
+lastIndexOf(Object o)
+Mengembalikan indeks terakhir dari elemen tertentu, atau -1 jika tidak ditemukan.
+
+clear()
+Menghapus semua elemen dari ArrayList.
+
+toArray()
+Mengonversi ArrayList menjadi larik.
+
+addAll(Collection<? extends String> c)
+Menambahkan semua elemen dari koleksi lain ke ArrayList.
+
+remove(Object o)
+Menghapus elemen tertentu dari ArrayList.
+
+removeAll(Collection<?> c)
+Menghapus semua elemen yang terdapat dalam koleksi lain dari ArrayList.
+
+retainAll(Collection<?> c)
+Menyimpan hanya elemen-elemen yang terdapat dalam koleksi lain.
+
+subList(int fromIndex, int toIndex)
+Mengembalikan bagian dari ArrayList antara indeks tertentu.
+
+
+
+collection types pada java :
+----------------------------
+
+ada tiga macam interfaces, implementasion, algorithm. 
+
+interfaces macam-macamnya ada 7 :
+
+1. List antarmuka yang digunakan untuk mengimplementasikan koleksi secara berurutan yang mengizinkan di duplikat atau di double.
+    contohnya :
+    ArrayList = menggunakan array sebagai struktur datanya
+    LinkedList = menggunakan LinkedList sebagai struktur datanya
+    Vector = mirip dengan ArrayList bersifat thread save, 
+        pengertian : Thread save adalah aplikasi berbagi media sosial yang dikembangkan oleh Facebook.
+        kegunaan : hreads memungkinkan Anda untuk dengan mudah berbagi foto, video, pesan teks, dan cerita dengan teman-teman terdekat Anda.
+
+2. Set adalah kebalikan dari List yang mana tidak bisa di duplikasi atau di duplikat 
+    contohnya :
+    HahSet =  Mengimplementasikan set menggunakan hash table sebagai struktur datanya.
+    Linkedhashet = Mirip dengan HashSet, tetapi elemen-elemennya diurutkan berdasarkan urutan penambahan.
+    TreeSet = Mengimplementasikan set menggunakan struktur data pohon (tree) sebagai struktur datanya.
+
+3. Map adalah  Antarmuka ini digunakan untuk mengimplementasikan koleksi berbasis kunci-nilai. 
+    contohnya :
+    HashMap = Mengimplementasikan map menggunakan hash table sebagai struktur datanya.
+    LinkedHashMap =  Mirip dengan HashMap, tetapi elemen-elemennya diurutkan berdasarkan urutan penambahan.
+    TreeMap = Mengimplementasikan map menggunakan struktur data pohon (tree) sebagai struktur datanya.
+
+4. Quee adalah Antarmuka ini digunakan untuk mengimplementasikan koleksi yang mengikuti prinsip First-In-First-Out (FIFO).
+    contohnya :
+    LinkedList = Mengimplementasikan queue menggunakan linked list sebagai struktur datanya.
+    PriorityQueue = Mengimplementasikan queue menggunakan heap (tumpukan) sebagai struktur datanya.
+
+5. Dequee adalah  Antarmuka ini digunakan untuk mengimplementasikan koleksi yang dapat diakses dari kedua ujungnya (depan dan belakang)
+    contohnya :
+    LinkedList = Mengimplementasikan deque menggunakan linked list sebagai struktur datanya.
+    ArrayDeque =  Mengimplementasikan deque menggunakan array sebagai struktur datanya. 
+
+6. Iterator adalah Iterator: Antarmuka ini digunakan untuk melakukan iterasi (perulangan) pada elemen-elemen dalam sebuah koleksi. Setiap implementasi 
+                             dari koleksi dalam Java Collection Framework menyediakan metode iterator() yang mengembalikan objek iterator yang dapat digunakan 
+                             untuk melakukan iterasi pada elemen-elemen koleksi tersebut.
+
+7. collection adalah Antarmuka ini merupakan induk dari semua antarmuka di atas. Ini menyediakan operasi-operasi dasar yang dapat dilakukan pada objek koleksi, seperti penambahan, pencarian dan lain-lain 
+
+
+
+parameter nilai dalam arrayList string di java :
+-----------------------------------------------
+
+List:
+ArrayList = Koleksi yang berbasis pada larik (array) dinamis.
+LinkedList = Koleksi yang berbasis pada linked list.
+
+Set:
+HashSet = Koleksi yang tidak memiliki elemen duplikat dan tidak mempertahankan urutan.
+LinkedHashSet = Mirip dengan HashSet, tetapi mempertahankan urutan elemen.
+TreeSet = Koleksi yang menyimpan elemen dalam urutan alami atau sesuai dengan komparator yang diberikan.
+
+Queue:
+LinkedList = Selain digunakan sebagai list, LinkedList juga dapat digunakan sebagai queue.
+
+Map:
+HashMap = Koleksi yang menyimpan data dalam bentuk pasangan kunci-nilai. Tidak mempertahankan urutan.
+LinkedHashMap = Mirip dengan HashMap, tetapi mempertahankan urutan elemen.
+TreeMap = Koleksi yang menyimpan data dalam urutan berdasarkan kunci.
+
+Stack:
+Stack = Koleksi yang mengikuti prinsip Last In First Out (LIFO).
+
+Vector:
+Vector = Mirip dengan ArrayList, tetapi bersifat thread-safe.
+
+Deque:
+ArrayDeque =  Implementasi deque (double-ended queue) yang berbasis pada larik dinamis.
+
+Collections:
+Kelas utilitas yang menyediakan metode statis untuk mengoperasikan atau memanipulasi objek koleksi.
+Penting untuk memilih tipe koleksi yang sesuai dengan kebutuhan dan karakteristik aplikasi Anda, seperti kebutuhan untuk pencarian cepat, penambahan atau penghapusan elemen, dan apakah duplikat diizinkan atau tidak.
+
+
+
+
+parameter nilai dalam arrayList string di java :
+-----------------------------------------------
+
+add(String element)
+Menambahkan elemen ke dalam ArrayList.
+
+get(int index)
+Mengambil elemen pada indeks tertentu.
+
+remove(int index)
+Menghapus elemen pada indeks tertentu.
+
+size()
+Mengembalikan jumlah elemen dalam ArrayList.
+
+isEmpty()
+Mengembalikan true jika ArrayList kosong, dan false jika tidak.
+
+contains(Object o)
+Mengembalikan true jika ArrayList mengandung elemen tertentu.
+
+indexOf(Object o)
+Mengembalikan indeks pertama dari elemen tertentu, atau -1 jika tidak ditemukan.
+
+lastIndexOf(Object o)
+Mengembalikan indeks terakhir dari elemen tertentu, atau -1 jika tidak ditemukan.
+
+clear()
+Menghapus semua elemen dari ArrayList.
+
+toArray()
+Mengonversi ArrayList menjadi larik.
+
+addAll(Collection<? extends String> c)
+Menambahkan semua elemen dari koleksi lain ke ArrayList.
+
+remove(Object o)
+Menghapus elemen tertentu dari ArrayList.
+
+removeAll(Collection<?> c)
+Menghapus semua elemen yang terdapat dalam koleksi lain dari ArrayList.
+
+retainAll(Collection<?> c)
+Menyimpan hanya elemen-elemen yang terdapat dalam koleksi lain.
+
+subList(int fromIndex, int toIndex)
+Mengembalikan bagian dari ArrayList antara indeks tertentu.
+
+
+parameter nilai dalam arrayList string di java :
+-----------------------------------------------
+
+add(Integer element)
+
+Menambahkan elemen ke dalam ArrayList.
+get(int index)
+
+Mengambil elemen pada indeks tertentu.
+remove(int index)
+
+Menghapus elemen pada indeks tertentu.
+size()
+
+Mengembalikan jumlah elemen dalam ArrayList.
+isEmpty()
+
+Mengembalikan true jika ArrayList kosong, dan false jika tidak.
+contains(Object o)
+
+Mengembalikan true jika ArrayList mengandung elemen tertentu.
+indexOf(Object o)
+
+Mengembalikan indeks pertama dari elemen tertentu, atau -1 jika tidak ditemukan.
+lastIndexOf(Object o)
+
+Mengembalikan indeks terakhir dari elemen tertentu, atau -1 jika tidak ditemukan.
+clear()
+
+Menghapus semua elemen dari ArrayList.
+toArray()
+
+Mengonversi ArrayList menjadi larik.
+addAll(Collection<? extends Integer> c)
+
+Menambahkan semua elemen dari koleksi lain ke ArrayList.
+remove(Object o)
+
+Menghapus elemen tertentu dari ArrayList.
+removeAll(Collection<?> c)
+
+Menghapus semua elemen yang terdapat dalam koleksi lain dari ArrayList.
+retainAll(Collection<?> c)
+
+Menyimpan hanya elemen-elemen yang terdapat dalam koleksi lain.
+subList(int fromIndex, int toIndex)
+
+Mengembalikan bagian dari ArrayList antara indeks tertentu.

@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 //  sedikit catatan 
+// -----------------------
+
 // kegunaan dan manfaat Hahset 
 //   kegunaan : Digunakan untuk menyimpan kumpulan elemen unik tanpa adanya duplikasi.
 //           : Kinerjanya relatif cepat untuk operasi penambahan, penghapusan, dan pengecekan keanggotaan.
@@ -12,6 +14,11 @@ import java.util.Set;
 //            Ideal digunakan ketika kita perlu menyimpan elemen tanpa memerlukan indeks spesifik.
 //            Cocok untuk kebutuhan di mana kecepatan operasi penambahan dan penghapusan lebih penting daripada akses elemen berdasarkan indeks.
 
+// kegunaan dan manfaat Iterator
+//  kegunaan : Digunakan untuk melakukan iterasi (perulangan) melalui elemen-elemen koleksi, seperti Set.
+// manfaat   : Memisahkan antarmuka eksternal dengan implementasi internal suatu koleksi, sehingga kita tidak perlu tahu bagaimana elemen-elemen disimpan atau diakses di dalam koleksi.
+//           : Memungkinkan untuk melakukan iterasi melalui elemen-elemen koleksi dengan cara yang aman dan efisien.
+//           : Mendukung operasi seperti hasNext() untuk mengecek apakah ada elemen berikutnya, dan next() untuk mendapatkan elemen berikutnya.
 public class SetDicod {
 
     public static void main(String[] args) {
