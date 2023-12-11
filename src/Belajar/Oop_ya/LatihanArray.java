@@ -16,6 +16,7 @@ public class LatihanArray {
         }
         printArray(arrayAngka1, "array satu : ");
         printArray(arrayAngka2, "array dua : ");
+        System.out.println();
         printArray(arrayHasil, "hasilnya : ");
 
 
