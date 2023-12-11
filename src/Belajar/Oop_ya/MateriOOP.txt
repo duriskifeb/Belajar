@@ -38,4 +38,8 @@ Acces mdiifier itu meliputi 4 macam :
 Tujuan utama Encapsulation adalah untuk menyembunyikan detail implementasi dari luar dunia objek dan
  membatasi akses langsung ke data internal objek. Dengan menggunakan akses modifier private pada atribut, 
  kita dapat mencegah akses langsung dan modifikasi atribut dari luar kelas. Sebagai gantinya, kita menggunakan metode getter dan setter 
- yang memiliki akses modifier public untuk mengakses dan memodifikasi atribut secara terkontrol.
+ yang memiliki akses modifier public untuk mengakses dan memodifikasi atribut secara terkontrol. 
+
+fungsi konstruktor adalah Memberikan nilai awal terhadap suatu data atau obyek
+                          Mengalokasikan ruang sebuah kelas dalam obyek 
+                          
