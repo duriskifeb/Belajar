@@ -1,4 +1,4 @@
-package Belajar.Project1;
+package Project1;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
