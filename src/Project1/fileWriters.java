@@ -8,7 +8,7 @@ public class fileWriters {
     public static void main(String[] args) {
 
         try {
-            FileReader reader = new FileReader("art.txt");
+            FileReader reader = new FileReader("src\\Project1\\art.txt");
             int data = reader.read();
             while (data != -1) {
                 System.out.print((char) data);

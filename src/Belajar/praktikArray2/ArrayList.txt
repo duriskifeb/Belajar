@@ -1,0 +1,33 @@
+ini adalah beberapa catatan yang ada di array list |
+````````````````````````````````````````````````````
+
+1. add(). 
+    Metode ini digunakan untuk menambahkan elemen ke ArrayList.
+    Contoh: al.add(1); menambahkan elemen 1 ke ArrayList.
+
+2. get(Int index).
+    Metode ini digunakan untuk mengambil elemen dari ArrayList berdasarkan indeks tertentu.
+    Contoh: al.get(1); mengembalikan elemen pada indeks 1 dari ArrayList.
+
+3. add(int index, E element). 
+    Metode ini digunakan untuk menyisipkan elemen pada indeks tertentu dalam ArrayList.
+    Contoh: al.add(1, 50); menyisipkan elemen 50 pada indeks 1 dalam ArrayList.
+
+4. size(). 
+    Metode ini mengembalikan jumlah elemen dalam ArrayList.
+    Contoh: al.size(); mengembalikan jumlah elemen dalam ArrayList.
+
+5. indexOF(object o).
+    Metode ini digunakan untuk mengembalikan indeks dari elemen pertama yang ditemukan dalam ArrayList.
+    Contoh: al.indexOf(11); mengembalikan indeks dari elemen 11 dalam ArrayList.
+
+6. contains(Object o). 
+    Metode ini digunakan untuk memeriksa apakah ArrayList mengandung elemen tertentu atau tidak.
+    Contoh: al.contains(11); mengembalikan true jika ArrayList mengandung elemen 11, dan false sebaliknya.
+
+7. for loop untuk iterasi : 
+    for (apalah = 0; apalah < al.size(); apalah++) {
+        system.out.println("al.get(apalah)")
+    }
+
+    okkey Thanks......:)
