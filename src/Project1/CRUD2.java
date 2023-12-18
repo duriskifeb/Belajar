@@ -62,7 +62,16 @@ public class CRUD2 {
                     System.out.println("____________________");
                     System.out.println("Hapus seluruh buku");
                     System.out.println("____________________");
-                    break;                    
+                    break; 
+                case "0":
+                    System.out.println("____________________");
+                    System.out.println("Menutup aplikasi");
+                    System.out.println("____________________");
+                    CloseAPK();
+                    System.exit(0);
+                    break; 
+                    
+                    
                     default:
                     System.err.println("\nInputan anda tidak di temukan\nsilahkan pilih [1-5] ");
                 }
@@ -74,7 +83,17 @@ public class CRUD2 {
         }
     }
 
-    
+    public static void CloseAPK() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+        } catch (Exception e) {
+            System.err.println("Terjadi kesalahan: " + e);
+        }
+
+    }
+
+
     
     private static void cariData() throws IOException {
 
