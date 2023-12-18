@@ -1,12 +1,14 @@
 package Project1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class CRUD1 {
+public class CRUD2 {
 
     public static void main(String[] args) throws IOException {
 
@@ -44,6 +46,7 @@ public class CRUD1 {
                     System.out.println("____________________");
                     System.out.println("Cari seluruh buku");
                     System.out.println("____________________");
+                    cariData();
                     break;
                 case "3":
                     System.out.println("____________________");
@@ -59,25 +62,63 @@ public class CRUD1 {
                     System.out.println("____________________");
                     System.out.println("Hapus seluruh buku");
                     System.out.println("____________________");
-                    break;
-                case "0":
-                    System.out.println("____________________");
-                    System.out.println("Menutup Aplikasi-nya");
-                    System.out.println("____________________");
-                    
-
-                default:
+                    break;                    
+                    default:
                     System.err.println("\nInputan anda tidak di temukan\nsilahkan pilih [1-5] ");
                 }
                 
                 isiLanjutkan = getYesorNo("Apakah anda ingin melanjutkan");
                 
-            System.out.println();
+                
 
         }
     }
+
     
     
+    private static void cariData() throws IOException {
+
+        //  membaca databese atau tidak 
+        try {
+            File file = new File("src\\Project1\\Database.txt");
+
+        } catch (Exception e) {
+            System.err.println("Database tidak di temukan");
+            System.err.println("Silahkan Tambah data terlebih dahulu");
+            return;
+        }
+        // kita ambil keyword dari user
+        Scanner terminalInput = new Scanner(System.in);
+        System.out.println("masukkan kata kunci nya untuk mencari buku : ");
+        String cariString = terminalInput.nextLine();
+        String[] keywords = cariString.split("\\s");
+
+        // kita cek keyword di database
+        cekBukuDiDatabase(keywords);
+
+    }
+
+    private static void cekBukuDiDatabase(String[] keywords) throws IOException {
+
+        FileReader fileInput = new FileReader("src\\Project1\\Database.txt");
+        BufferedReader bufferInput = new BufferedReader(fileInput);
+
+        String data = bufferInput.readLine();
+
+        int jumlahData = 0;
+        while (data != null) {
+
+            // cek keywords tentang baris
+            System.out.println(data);
+            System.out.println(Arrays.toString(keywords));
+
+
+
+
+            data = bufferInput.readLine();
+        }
+    }
+
     private static void tampilkanData() throws IOException {
         FileReader fileInput;
         BufferedReader bufferInput;
