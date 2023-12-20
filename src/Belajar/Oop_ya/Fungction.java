@@ -1,4 +1,4 @@
-package Belajar.Latihan1;
+package Belajar.Oop_ya;
 
 import Sekedar.coba2.main;
 
