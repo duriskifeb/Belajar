@@ -34,7 +34,7 @@ public class Main {
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
         userDatabase.add(new User("user1", "USR1", "customer"));
-        userDatabase.add(new User("admin1", "ADM1", "admin"));
+        userDatabase.add(new User("admin1", "jancok", "admin"));
 
         System.out.print("Masukkan username: ");
         String inputUsername = input.nextLine();
