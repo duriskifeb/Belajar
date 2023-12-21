@@ -1,73 +1,80 @@
 package Project1.TugasBesar;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Database {
-    public static void showMenu() {
-        Main.displayAdminMenu();
-        Scanner putin = new Scanner(System.in);
-        boolean pilihan = true;
-        
-        while (pilihan) {
-            System.out.println();
-            System.out.println("Pilih Jenis Tiket Konser : ");
-            System.out.println("1. Tiket Reguler");
-            System.out.println("1. Tiket VIP");
-            System.out.println("0. Tiket VVIP");
-        
-            System.out.print("Masukkan pilihan anda [1 - 2] : ");
-            int milih = putin.nextInt();
-        
-            switch (milih) {
-                case 1:
-                    System.out.println("Andah memilih tiket reguler");
-                    break;
-                case 2:
-                    System.out.println("Andah memilih tiket reguler");
-                    break;
-                case 0:
-                    System.out.println("Andah memilih tiket reguler");
-                    break;
-        
-                default:
-                    break;
-            }
-            
-        }
-    }
 
     // ini buat user yaa...
     public static void showMenu2() {
         Main.displayAdminMenu();
-        Scanner putin = new Scanner(System.in);
-        boolean pilihan = true;
-        
-        while (pilihan) {
+        System.out.println("\nAdmin Menu : \n");
+
+        ademin concert = new ademin(50); // Jumlah Tiket Awal
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("1. Tambahkan Tiket");
+            System.out.println("2. Kurangi Tiket");
+            System.out.println("3. Cek Tiket Yang Tersedia");
+            System.out.println("4. Keluar");
+
+            System.out.print("\nPilih Salah Satu Menu : ");
+            int choice = scanner.nextInt();
             System.out.println();
-            System.out.println("Pilih Jenis Tiket Konser : ");
-            System.out.println("1. Tiket Reguler");
-            System.out.println("2. Tiket VIP");
-            System.out.println("3. Tiket VVIP");
-            System.out.println("0. Menutup Aplikasi");
-        
-            System.out.print("Masukkan pilihan anda [1 - 2] : ");
-            int milih = putin.nextInt();
-        
-            switch (milih) {
+
+            int ulangi;
+
+            switch (choice) {
                 case 1:
-                    System.out.println("Andah memilih tiket reguler");
+                    System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket: ");
+                    int addTickets = scanner.nextInt();
+                    concert.increaseTickets(addTickets);
                     break;
+
                 case 2:
-                    System.out.println("Andah memilih tiket reguler");
+                    System.out.print("Masukkan Nomor Untuk Mengurangi Jumlah Tiket: ");
+                    int removeTickets = scanner.nextInt();
+                    concert.decreaseTickets(removeTickets);
                     break;
-                case 0:
-                    System.out.println("Andah memilih tiket reguler");
+
+                case 3:
+                    System.out.println("Tiket Yang Tersedia : " + concert.getAvailableTickets());
+                    System.out.println();
                     break;
-        
+
+                case 4:
+                    System.out.println("Mengeluarkan.....");
+                    
+                    CloseAPK();
+                    try {
+                        // Introduce a delay before exiting (e.g., 3 seconds)
+                        System.out.println("Loading . . .");
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Terimaksih anda telah menggunakan APK kami. :) ");
+                    System.exit(0);
+                    break;
+
                 default:
+                    System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 4] : ");
+                    System.out.println();
                     break;
             }
-            
         }
     }
+
+    public static void CloseAPK() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+        } catch (Exception e) {
+            System.err.println("Terjadi kesalahan: " + e);
+        }
+
+    }
+
 }

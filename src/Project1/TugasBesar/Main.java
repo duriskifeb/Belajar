@@ -31,6 +31,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
+
+        
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
         userDatabase.add(new User("user1", "USR1", "customer"));
@@ -47,7 +49,7 @@ public class Main {
         for (User user : userDatabase) {
             if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
                 if (user.getRole().equals("admin")) {
-                    Database.showMenu();
+                    Database.showMenu2();
                     break;
                 } else {
                     loggedInUser = user;
@@ -69,11 +71,46 @@ public class Main {
         } else {
             System.out.println("Login gagal! Username atau password salah.");
         }
+
+        customer apalah = new costumer();
+        apalah.displayCustomerMenu;
+        
     }
 
     
 
-    private static void displayCustomerMenu() {
+    
+
+    
+
+    
+    
+
+    public static void showJadwalKonser() {
+        Scanner konseran = new Scanner(System.in);
+
+        System.out.println("Jadwal Konser yang akan hadir :");
+        System.out.println("1. Tulus - Album Manusia ");
+        System.out.println("2. Coldplay - cosplay/AldiTaher - ");
+    }
+
+    public static void displayAdminMenu() {
+        // ga ono.?
+    }
+
+    
+
+    private static void showTiketReguler() {
+        System.out.println("Isi tiket reguller : ");
+        System.out.println("1. ");
+        
+    }
+
+    
+}
+
+class costumer {
+     public static void displayCustomerMenu() {
         Scanner input = new Scanner(System.in);
         // int pilihan = 0;
         boolean pilihan = true;
@@ -117,9 +154,9 @@ public class Main {
             }
 
         }
+   
 
-    
-    public static void CloseAPK() {
+        public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 
@@ -129,23 +166,7 @@ public class Main {
 
     }
 
-    public static void showJadwalKonser() {
-        Scanner konseran = new Scanner(System.in);
-
-        System.out.println("Jadwal Konser yang akan hadir :");
-        System.out.println("1. Tulus - Album Manusia ");
-        System.out.println("2. Coldplay - cosplay/AldiTaher - ");
-    }
-
-    public static void displayAdminMenu() {
-        System.out.println("\n[ Login Berhasil ...]");
-        System.out.println("\nMenu Admin :\n");
-        System.out.println("1. Kelola pengguna");
-        System.out.println("2. Kelola tiket");
-        // Tambahkan opsi menu tambahan untuk admin
-    }
-
-    private static void beliTiket() {
+        private static void beliTiket() {
         // Logika untuk membeli tiket
         Scanner putin = new Scanner(System.in);
 
@@ -174,19 +195,45 @@ public class Main {
         }
     }
 
-    private static void showTiketReguler() {
-        System.out.println("Isi tiket reguller : ");
-        System.out.println("1. ");
-        
-    }
-
     private static void lihatRiwayatPembelian() {
         // Logika untuk melihat riwayat pembelian
         System.out.println("Menampilkan riwayat pembelian...");
     }
 }
 
-class Konser {
-    // Kelas Konser di sini
-    // ... (tidak perlu diubah karena tidak ada kesalahan pada bagian ini)
+class ademin {
+    private int availableTickets;
+
+    public ademin(int initialTickets) {
+        this.availableTickets = initialTickets;
+    }
+
+    public int getAvailableTickets() {
+        return availableTickets;
+    }
+
+    public void increaseTickets(int amount) {
+        if (amount > 0) {
+            availableTickets += amount;
+            System.out.println(amount + " tiket ditambahkan. \n\nTotal tiket adalah : "+ " " + availableTickets);
+            System.out.println();
+        } else {
+            System.out.println("Input tidak valid.");
+        }
+    }
+
+    public void decreaseTickets(int amount) {
+        if (amount > 0 && amount <= availableTickets) {
+            availableTickets -= amount;
+            System.out.println(amount + " tiket dihapus. \n\nTotal tiket yang tersedia : "+ " " + availableTickets);
+            System.out.println();
+        } else {
+            System.out.println("\nMaaf . . .");
+            System.out.println("Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.\n");
+        }
+    }
 }
+
+
+//  admin nambah ngurang 
+// 

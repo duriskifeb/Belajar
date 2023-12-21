@@ -16,3 +16,12 @@ macam - macam isi dari format :
 %b: Menggantikan simbol ini dengan representasi boolean dari argumen yang diberikan.
 
 %c: Menggantikan simbol ini dengan representasi karakter dari argumen yang diberikan.
+
+Macam - macam Tipe data : 
+
+Primitive | - Non Primitive| 
+-----------   --------------
+- boolean     - Bolean  
+- char        - Character
+- int         - Integer 
+- double      - Double 
