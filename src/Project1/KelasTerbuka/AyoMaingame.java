@@ -1,4 +1,4 @@
-package Project1;
+package Project1.KelasTerbuka;
 
 import java.util.Scanner;
 

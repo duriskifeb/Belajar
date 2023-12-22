@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import Project1.TugasBesar.Ticket;
-import Project1.TugasBesar.TicketPurchase;
-
 import java.text.SimpleDateFormat;
 
 class Ticket {

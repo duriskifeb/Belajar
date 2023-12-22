@@ -1,4 +1,4 @@
-package Project1;
+package Project1.KelasTerbuka;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
