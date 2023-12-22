@@ -41,6 +41,13 @@ public class Database {
 
                 case 3:
                     System.out.println("Tiket Yang Tersedia : " + concert.getAvailableTickets());
+                    System.out.println("\t| NO |              NAMA KONSER                       | Jumlah Tiket |");
+                    System.out.println("\t______________________________________________________________________");
+                    System.out.println("\t|  1 | Tulus - Album Manusia                          |      10      |");
+                    System.out.println("\t|  2 | Coldplay - Tour in Jakarta / Indonesia         |      10      |");
+                    System.out.println("\t|  3 | Jkt 48 - 12 Tahun Aniversary jkt di Surabaya   |      10      |");
+                    System.out.println("\t|  4 | 30 Tahun Berkarya Tour Concert - Surabaya      |      10      |");
+                    System.out.println("\t|  5 | BTS Live Trilogy III The WINGS Tour in Jakarta |      10      |");
                     System.out.println();
                     break;
 

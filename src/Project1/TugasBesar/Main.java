@@ -189,7 +189,7 @@ public class Main {
         String pilihanU;
         boolean miliho = true;
         
-        while (pilihanmu) {
+        {
             System.out.println("Jadwal Konser yang akan hadir :\n");
         System.out.println("1. Tulus - Album Manusia ");
         System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
@@ -226,7 +226,7 @@ public class Main {
             System.out.println("|jumlah Ticket : 100\t\t\t\t |");
             System.out.println("|________________________________________________|");
             break;
-            case "2": 
+            case "3": 
             System.out.println();
             System.out.println("                  ---o0<o>0o---");
             System.out.println("     |--------------------------------------| ");
@@ -238,7 +238,7 @@ public class Main {
             System.out.println("|jumlah Ticket : 100\t\t\t\t |");
             System.out.println("|________________________________________________|");
             break;
-            case "2": 
+            case "4": 
             System.out.println();
             System.out.println("                  ---o0<o>0o---");
             System.out.println("     |--------------------------------------| ");
