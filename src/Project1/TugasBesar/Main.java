@@ -120,6 +120,7 @@ public class Main {
 
                 yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
             }
+
             
 
         }
@@ -129,13 +130,34 @@ public class Main {
         Scanner terminalInput = new Scanner(System.in);
         System.out.print("\n" + messeage + " [y/n] : ");
         String pilihanUser = terminalInput.next();
-        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n")) {
+        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n") ) {
+            
             System.err.println("Maaf pilihan ana bukan y dan n");
             System.out.print("\n" + messeage + " [y/n] : ");
             pilihanUser = terminalInput.next();
         }
 
         return pilihanUser.equalsIgnoreCase("y");
+    }
+
+    private static boolean pilihYesatauNO(String messeage) {
+
+        Scanner stasiunInput = new Scanner(System.in);
+
+        System.out.print("\n" + messeage + " [y/n] : ");
+        String pilihanUser = stasiunInput.next();
+        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n") ) {
+            System.err.println("Maaf pilihan ana bukan y dan n");
+            System.out.print("\n" + messeage + " [y/n] : ");
+            pilihanUser = stasiunInput.next();
+        }
+
+        if (pilihanUser.equalsIgnoreCase("y")) {
+            return true;
+        }else {
+            displayCustomerMenu();
+            return false;
+        }
     }
    
 
@@ -189,80 +211,97 @@ public class Main {
         String pilihanU;
         boolean miliho = true;
         
-        {
+        while (miliho) {
             System.out.println("Jadwal Konser yang akan hadir :\n");
-        System.out.println("1. Tulus - Album Manusia ");
-        System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
-        System.out.println("3. Jkt 48 - 12 Tahun Aniversary jkt di Surabaya - ");
-        System.out.println("4. 30 Tahun Berkarya Tour Concert - Surabaya ");
-        System.out.println("5. BTS Live Trilogy III The WINGS Tour in Jakarta \n");
-
-        System.out.print("Tiket yang anda pilih : ");
-        pilihanU = konseran.nextLine();
-        System.out.println();
-
-        switch (pilihanU) {
-            case "1":
+            System.out.println("1. Tulus - Album Manusia ");
+            System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
+            System.out.println("3. Jkt 48 - 12 Tahun Aniversary jkt di Surabaya - ");
+            System.out.println("4. 30 Tahun Berkarya Tour Concert - Surabaya ");
+            System.out.println("5. BTS Live Trilogy III The WINGS Tour in Jakarta ");
+            System.out.println("0. Tidak ingin melihat jadwal konser\n");
+    
+            System.out.print("Pilihan anda : ");
+            pilihanU = konseran.nextLine();
             System.out.println();
-            System.out.println("          ---o0<o>0o---");
-            System.out.println("     |---------------------| ");
-            System.out.println("     |Tulus - Album Manusia|");
-            System.out.println("     |---------------------| ");
-            System.out.println("_____|_____________________|_____");
-            System.out.println("|Tempat : Bandung\t\t|");
-            System.out.println("|Waktu  : 7 Januari 2024\t|");
-            System.out.println("|jumlah Ticket : 100\t\t|");
-            System.out.println("|_______________________________|");
-            break;
-            case "2": 
-            System.out.println();
-            System.out.println("                  ---o0<o>0o---");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("_____|______________________________________|_____");
-            System.out.println("|Tempat : Bandung\t\t\t\t |");
-            System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-            System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-            System.out.println("|________________________________________________|");
-            break;
-            case "3": 
-            System.out.println();
-            System.out.println("                  ---o0<o>0o---");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("_____|______________________________________|_____");
-            System.out.println("|Tempat : Bandung\t\t\t\t |");
-            System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-            System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-            System.out.println("|________________________________________________|");
-            break;
-            case "4": 
-            System.out.println();
-            System.out.println("                  ---o0<o>0o---");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-            System.out.println("     |--------------------------------------| ");
-            System.out.println("_____|______________________________________|_____");
-            System.out.println("|Tempat : Bandung\t\t\t\t |");
-            System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-            System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-            System.out.println("|________________________________________________|");
-            break;
-
-        
-            default:
+    
+            switch (pilihanU) {
+                case "1":
+                System.out.println();
+                System.out.println("          ---o0<o>0o---");
+                System.out.println("     |---------------------| ");
+                System.out.println("     |Tulus - Album Manusia|");
+                System.out.println("     |---------------------| ");
+                System.out.println("_____|_____________________|_____");
+                System.out.println("|Tempat : Bandung\t\t|");
+                System.out.println("|Waktu  : 7 Januari 2024\t|");
+                System.out.println("|jumlah Ticket : 100\t\t|");
+                System.out.println("|_______________________________|");
                 break;
+                case "2": 
+                System.out.println();
+                System.out.println("                  ---o0<o>0o---");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("_____|______________________________________|_____");
+                System.out.println("|Tempat : Bandung\t\t\t\t |");
+                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                System.out.println("|________________________________________________|");
+                break;
+                case "3": 
+                System.out.println();
+                System.out.println("                  ---o0<o>0o---");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("_____|______________________________________|_____");
+                System.out.println("|Tempat : Bandung\t\t\t\t |");
+                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                System.out.println("|________________________________________________|");
+                break;
+                case "4": 
+                System.out.println();
+                System.out.println("                  ---o0<o>0o---");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("_____|______________________________________|_____");
+                System.out.println("|Tempat : Bandung\t\t\t\t |");
+                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                System.out.println("|________________________________________________|");
+                break;
+                case "5": 
+                System.out.println();
+                System.out.println("                  ---o0<o>0o---");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                System.out.println("     |--------------------------------------| ");
+                System.out.println("_____|______________________________________|_____");
+                System.out.println("|Tempat : Bandung\t\t\t\t |");
+                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                System.out.println("|________________________________________________|");
+                break;
+                case "0": 
+                System.out.println("gajadi LIhat tiket, karena masih belum punya uang..!!");
+                miliho = pilihYesatauNO("Apakah anda ingin melihat tiket yang lain :");
+                break;
+    
+            
+                default:
+                    System.err.println("Maaf pilihan anda tidak ada.!");
+                    break;
+    
+                }
+                
+                break;    
+            }
         }
+    
 
-        miliho = getYesorNo("Apakah anda ingin melihat tiket yang lain");
-    }
-        
-        
-        
-
-    }
 
     public static void displayAdminMenu() {
         // ga ono.?

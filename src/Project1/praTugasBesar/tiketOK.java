@@ -3,7 +3,7 @@ package Project1.praTugasBesar;
 import java.util.Scanner;
 
 public class tiketOK {
-    private int hargaTiket = 50; // Harga per tiket
+    private int hargaTiket = 50000; // Harga per tiket
 
     // Metode untuk menghitung total harga berdasarkan jumlah tiket yang akan dibeli
     public int hitungTotalHarga(int jumlahTiket) {
