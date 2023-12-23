@@ -31,12 +31,14 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-
+        String choice;
         
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
+        
         userDatabase.add(new User("user1", "USR1", "customer"));
         userDatabase.add(new User("admin1", "jancok", "admin"));
+        clearScreen();
 
         System.out.print("Masukkan username: ");
         String inputUsername = input.nextLine();
@@ -45,85 +47,45 @@ public class Main {
         String inputPassword = input.nextLine();
 
         // Proses login
-        User loggedInUser = null;
-        for (User user : userDatabase) {
-            if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
-                if (user.getRole().equals("admin")) {
-                    Database.showMenu2();
-                    break;
-                } else {
-                    loggedInUser = user;
-                    break;
+        
+            User loggedInUser = null;
+            for (User user : userDatabase) {
+                if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
+                    if (user.getRole().equals("admin")) {
+                        Database.showMenuAdmin();
+                        break;
+                    } else {
+                        loggedInUser = user;
+                        break;
+                    }
                 }
             }
-        }
-
-        if (loggedInUser != null) {
-            System.out.println("\n[Login berhasil..] ");
-            System.out.println("\n--o0 Selamat datag di aplikasi kami 0o--");
-            if (loggedInUser.getRole().equals("customer")) {
-                displayCustomerMenu();
-                // Lakukan aksi untuk customer
-            } else if (loggedInUser.getRole().equals("admin")) {
-                displayAdminMenu();
-                // Lakukan aksi untuk admin
-            }
-        } else {
-            System.out.println("Login gagal! Username atau password salah.");
-        }
-    }
-
     
-
-     public static void displayCustomerMenu() {
-        Scanner input = new Scanner(System.in);
-        // int pilihan = 0;
-        boolean pilihan = true;
-        boolean yakin = true;
-        String pilihanUser;
-
-        while (pilihan) {
-            System.out.println("\nMenu customer : ");
-            System.out.println("1. Lihat jadwal event Konser");
-            System.out.println("2. beli Tiket Konser");
-            System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-            System.out.println("0. Menutup Aplikasi");
-
-            System.out.print("\nPilihan anda :");
-            pilihanUser = input.nextLine();
-
-
-            switch (pilihanUser) {
-                case "1":
-                    System.out.println("1. Lihat jadwal event Konser\n");
-                    showJadwalKonser();
-                    break;
-                case "2":
-                    System.out.println("2. Beli Tiket konser");
-                    beliTiket();
-                    break;
-                case "3":
-                    System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-                    beliTiket();
-                    break;
-                case "0":
-                    System.out.println("0. Menutup Aplikasi");
-                    lihatRiwayatPembelian();
-                    CloseAPK();
-                    System.exit(0);
-                    break;
-            
-                default:
-                    System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2]");
-                    break;
+            if (loggedInUser != null) {
+                System.out.println("\n[Login berhasil..] ");
+                System.out.println("\n--o0 Selamat datag di aplikasi kami 0o--");
+                if (loggedInUser.getRole().equals("customer")) {
+                    displayCustomerMenu();
+                    // Lakukan aksi untuk customer
+                } else if (loggedInUser.getRole().equals("admin")) {
+                    displayAdminMenu();
+                    // Lakukan aksi untuk admin
                 }
-
-                yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
+            } else {
+                System.out.println("Login gagal! Username atau password salah.");
             }
-
-            
-
+        
+    }
+    
+    
+    
+    public static void displayCustomerMenu() {
+            //ga ono.?
         }
+
+     public static void displayAdminMenu() {
+        // ga ono.?
+    }
 
     private static boolean getYesorNo(String messeage) {
 
@@ -139,11 +101,12 @@ public class Main {
 
         return pilihanUser.equalsIgnoreCase("y");
     }
+    
 
     private static boolean pilihYesatauNO(String messeage) {
-
+        
         Scanner stasiunInput = new Scanner(System.in);
-
+        
         System.out.print("\n" + messeage + " [y/n] : ");
         String pilihanUser = stasiunInput.next();
         while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n") ) {
@@ -151,7 +114,7 @@ public class Main {
             System.out.print("\n" + messeage + " [y/n] : ");
             pilihanUser = stasiunInput.next();
         }
-
+        
         if (pilihanUser.equalsIgnoreCase("y")) {
             return true;
         }else {
@@ -159,8 +122,7 @@ public class Main {
             return false;
         }
     }
-   
-
+    
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -168,14 +130,14 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Terjadi kesalahan: " + e);
         }
-
+        
     }
-
+    
     private static void beliTiket() {
         // Logika untuk membeli tiket
         Scanner putin = new Scanner(System.in);
-
-
+        
+        
         System.out.println("Pilih Jenis Tiket Konser : ");
         System.out.println("1. Tiket Reguler");
         System.out.println("1. Tiket VIP");
@@ -183,7 +145,7 @@ public class Main {
 
         System.out.print("Masukkan pilihan anda [1 - 2]");
         int milih = putin.nextInt();
-
+        
         switch (milih) {
             case 1:
                 System.out.println("Andah memilih tiket reguler");
@@ -191,11 +153,11 @@ public class Main {
             case 2:
                 System.out.println("Andah memilih tiket reguler");
                 break;
-            case 0:
+                case 0:
                 System.out.println("Andah memilih tiket reguler");
                 break;
-        
-            default:
+                
+                default:
                 break;
         }
     }
@@ -204,118 +166,26 @@ public class Main {
         // Logika untuk melihat riwayat pembelian
         System.out.println("Menampilkan riwayat pembelian...");
     }
-
-    public static void showJadwalKonser() {
-        Scanner konseran = new Scanner(System.in);
-        boolean pilihanmu = true;
-        String pilihanU;
-        boolean miliho = true;
-        
-        while (miliho) {
-            System.out.println("Jadwal Konser yang akan hadir :\n");
-            System.out.println("1. Tulus - Album Manusia ");
-            System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
-            System.out.println("3. Jkt 48 - 12 Tahun Aniversary jkt di Surabaya - ");
-            System.out.println("4. 30 Tahun Berkarya Tour Concert - Surabaya ");
-            System.out.println("5. BTS Live Trilogy III The WINGS Tour in Jakarta ");
-            System.out.println("0. Tidak ingin melihat jadwal konser\n");
     
-            System.out.print("Pilihan anda : ");
-            pilihanU = konseran.nextLine();
-            System.out.println();
-    
-            switch (pilihanU) {
-                case "1":
-                System.out.println();
-                System.out.println("          ---o0<o>0o---");
-                System.out.println("     |---------------------| ");
-                System.out.println("     |Tulus - Album Manusia|");
-                System.out.println("     |---------------------| ");
-                System.out.println("_____|_____________________|_____");
-                System.out.println("|Tempat : Bandung\t\t|");
-                System.out.println("|Waktu  : 7 Januari 2024\t|");
-                System.out.println("|jumlah Ticket : 100\t\t|");
-                System.out.println("|_______________________________|");
-                break;
-                case "2": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "3": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "4": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "5": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "0": 
-                System.out.println("gajadi LIhat tiket, karena masih belum punya uang..!!");
-                miliho = pilihYesatauNO("Apakah anda ingin melihat tiket yang lain :");
-                break;
-    
-            
-                default:
-                    System.err.println("Maaf pilihan anda tidak ada.!");
-                    break;
-    
-                }
-                
-                break;    
+    private static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
             }
+        } catch (Exception ex) {
+            System.err.println("tidak bisa clear screen");
         }
-    
-
-
-    public static void displayAdminMenu() {
-        // ga ono.?
     }
-
     
-
     private static void showTiketReguler() {
         System.out.println("Isi tiket reguller : ");
         System.out.println("1. ");
         
     }
 
-    
+   
 }
 
 class costumer {

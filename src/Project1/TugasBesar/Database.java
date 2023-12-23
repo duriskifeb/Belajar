@@ -3,10 +3,11 @@ package Project1.TugasBesar;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+
 public class Database {
 
     // ini buat user yaa...
-    public static void showMenu2() {
+    public static void showMenuAdmin() {
         Main.displayAdminMenu();
         System.out.println("\nAdmin Menu : \n");
 
@@ -74,6 +75,149 @@ public class Database {
         }
     }
 
+    public static void showMenuCustomer() {
+        Scanner input = new Scanner(System.in);
+        Main.displayAdminMenu();
+        // int pilihan = 0;
+        boolean pilihan = true;
+        boolean yakin = true;
+        String pilihanUser;
+
+        while (pilihan) {
+            clearScreen();
+            System.out.println("\nMenu customer : ");
+            System.out.println("1. Lihat jadwal event Konser");
+            System.out.println("2. beli Tiket Konser");
+            System.out.println("3. Lihat riwayat pembelian Tiket Konser");
+            System.out.println("0. Menutup Aplikasi");
+
+            System.out.print("\nPilihan anda :");
+            pilihanUser = input.nextLine();
+
+            switch (pilihanUser) {
+                case "1":
+                    System.out.println("1. Lihat jadwal event Konser\n");
+                    showJadwalKonser();
+                    break;
+                case "2":
+                    System.out.println("2. Beli Tiket konser");
+                    //beli tikeet disini dulu 
+                    break;
+                case "3":
+                    System.out.println("3. Lihat riwayat pembelian Tiket Konser");
+                    // riwayat pembelian tiket
+                    break;
+                case "0":
+                    System.out.println("0. Menutup Aplikasi");
+                    CloseAPK();
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2]");
+                    break;
+            }
+
+            yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
+        }
+
+    }
+
+    public static void showJadwalKonser() {
+        Scanner konseran = new Scanner(System.in);
+        boolean pilihanmu = true;
+        String pilihanU;
+        boolean miliho = true;
+
+        while (miliho) {
+            System.out.println("Jadwal Konser yang akan hadir :\n");
+            System.out.println("1. Tulus - Album Manusia ");
+            System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
+            System.out.println("3. Jkt 48 - 12 Tahun Aniversary jkt di Surabaya - ");
+            System.out.println("4. 30 Tahun Berkarya Tour Concert - Surabaya ");
+            System.out.println("5. BTS Live Trilogy III The WINGS Tour in Jakarta ");
+            System.out.println("0. Tidak ingin melihat jadwal konser\n");
+
+            System.out.print("Pilihan anda : ");
+            pilihanU = konseran.nextLine();
+            System.out.println();
+
+            switch (pilihanU) {
+                case "1":
+                    System.out.println();
+                    System.out.println("          ---o0<o>0o---");
+                    System.out.println("     |---------------------| ");
+                    System.out.println("     |Tulus - Album Manusia|");
+                    System.out.println("     |---------------------| ");
+                    System.out.println("_____|_____________________|_____");
+                    System.out.println("|Tempat : Bandung\t\t|");
+                    System.out.println("|Waktu  : 7 Januari 2024\t|");
+                    System.out.println("|jumlah Ticket : 100\t\t|");
+                    System.out.println("|_______________________________|");
+                    break;
+                case "2":
+                    System.out.println();
+                    System.out.println("                  ---o0<o>0o---");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("_____|______________________________________|_____");
+                    System.out.println("|Tempat : Bandung\t\t\t\t |");
+                    System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                    System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                    System.out.println("|________________________________________________|");
+                    break;
+                case "3":
+                    System.out.println();
+                    System.out.println("                  ---o0<o>0o---");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("_____|______________________________________|_____");
+                    System.out.println("|Tempat : Bandung\t\t\t\t |");
+                    System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                    System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                    System.out.println("|________________________________________________|");
+                    break;
+                case "4":
+                    System.out.println();
+                    System.out.println("                  ---o0<o>0o---");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("_____|______________________________________|_____");
+                    System.out.println("|Tempat : Bandung\t\t\t\t |");
+                    System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                    System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                    System.out.println("|________________________________________________|");
+                    break;
+                case "5":
+                    System.out.println();
+                    System.out.println("                  ---o0<o>0o---");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
+                    System.out.println("     |--------------------------------------| ");
+                    System.out.println("_____|______________________________________|_____");
+                    System.out.println("|Tempat : Bandung\t\t\t\t |");
+                    System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
+                    System.out.println("|jumlah Ticket : 100\t\t\t\t |");
+                    System.out.println("|________________________________________________|");
+                    break;
+                case "0":
+                    System.out.println("gajadi LIhat tiket, karena masih belum punya uang..!!");
+                    miliho = getYesorNo("Apakah anda ingin melihat tiket yang lain :");
+                    break;
+
+                default:
+                    System.err.println("Maaf pilihan anda tidak ada.!");
+                    break;
+
+            }
+
+            break;
+        }
+    }
+
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -83,5 +227,36 @@ public class Database {
         }
 
     }
+
+    private static boolean getYesorNo(String messeage) {
+
+        Scanner terminalInput = new Scanner(System.in);
+        System.out.print("\n" + messeage + " [y/n] : ");
+        String pilihanUser = terminalInput.next();
+        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n")) {
+
+            System.err.println("Maaf pilihan ana bukan y dan n");
+            System.out.print("\n" + messeage + " [y/n] : ");
+            pilihanUser = terminalInput.next();
+        }
+
+        return pilihanUser.equalsIgnoreCase("y");
+    }
+
+    private static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (Exception ex) {
+            System.err.println("tidak bisa clear screen");
+        }
+    }
+
+
+
+
 
 }
