@@ -99,7 +99,7 @@ public class JadwalKonser {
         }
 
 
-        System.out.println("\n| No |\tNama Konser                    |\tPenerbit               |\tJudul Buku");
+        System.out.println("\n| No |\t\tNama Konser                 |\t\tTempat             |\t\tWaktu       ");
         System.out.println("----------------------------------------------------------------------------------------------------------");
 
         String data = bufferInput.readLine();
@@ -111,8 +111,8 @@ public class JadwalKonser {
 
             stringToken.nextToken();
             System.out.printf("| %2d ", nomorData);
-            System.out.printf("|\t%s  ", stringToken.nextToken());
-            // System.out.printf("|\t%s   ", stringToken.nextToken());
+            System.out.printf("|\t\t%3s  ", stringToken.nextToken());
+            System.out.printf("\t\t    |\t%s       ", stringToken.nextToken());
             // System.out.printf("|\t%s   ", stringToken.nextToken());
             // System.out.printf("|\t%s   ", stringToken.nextToken());
             System.out.print("\n");
