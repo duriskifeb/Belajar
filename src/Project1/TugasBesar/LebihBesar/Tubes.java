@@ -32,6 +32,39 @@ class User {
     }
 }
 
+
+class Tiket {
+    private String jenis;
+    private int harga;
+    private int jumlah;
+
+    public Tiket(String jenis, int harga, int jumlah) {
+        this.jenis = jenis;
+        this.harga = harga;
+        this.jumlah = jumlah;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public int getHarga() {
+        return harga;
+    }
+
+    public int getJumlah() {
+        return jumlah;
+    }
+
+    public void kurangiJumlah(int jumlah) {
+        if (jumlah <= this.jumlah) {
+            this.jumlah -= jumlah;
+        } else {
+            System.out.println("Stok tidak mencukupi.");
+        }
+    }
+}
+
 public class Tubes {
     public static void main(String[] args) throws IOException {
 
@@ -39,6 +72,7 @@ public class Tubes {
 
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
+
         userDatabase.add(new User("user1", "USR1", "customer"));
         userDatabase.add(new User("admin1", "cok", "admin"));
 
