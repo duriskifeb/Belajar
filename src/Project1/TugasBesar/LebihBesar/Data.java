@@ -1,6 +1,14 @@
 package Project1.TugasBesar.LebihBesar;
 
+import java.io.IOException;
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -75,6 +83,10 @@ public class Data {
         }
     }
 
+    public static void showMenuCustomer() {
+        
+    }
+    
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

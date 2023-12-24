@@ -1,8 +1,12 @@
 package Project1.TugasBesar.LebihBesar;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 class User {
     private String username;
@@ -29,11 +33,10 @@ class User {
 }
 
 public class Tubes {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner input = new Scanner(System.in);
 
-        
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
         userDatabase.add(new User("user1", "USR1", "customer"));
@@ -74,9 +77,7 @@ public class Tubes {
         }
     }
 
-    
-
-     public static void displayCustomerMenu() {
+    public static void displayCustomerMenu() {
         Scanner input = new Scanner(System.in);
         // int pilihan = 0;
         boolean pilihan = true;
@@ -93,13 +94,17 @@ public class Tubes {
             System.out.print("\nPilihan anda :");
             pilihanUser = input.nextLine();
 
-
             switch (pilihanUser) {
                 case "1":
                     System.out.println("1. Lihat jadwal event Konser\n");
-                    showJadwalKonser();
+                    try {
+                        tampilkanData();
+                        
+                    } catch (Exception e) {
+                        System.err.println("Maaf terjadi kesalahan..!!" + e.getMessage());
+                    }
                     break;
-                case "2":
+                    case "2":
                     System.out.println("2. Beli Tiket konser");
                     beliTiket();
                     break;
@@ -113,26 +118,24 @@ public class Tubes {
                     CloseAPK();
                     System.exit(0);
                     break;
-            
+
                 default:
                     System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2]");
                     break;
-                }
-
-                yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
             }
 
-            
-
+            yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
         }
+
+    }
 
     private static boolean getYesorNo(String messeage) {
 
         Scanner terminalInput = new Scanner(System.in);
         System.out.print("\n" + messeage + " [y/n] : ");
         String pilihanUser = terminalInput.next();
-        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n") ) {
-            
+        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n")) {
+
             System.err.println("Maaf pilihan ana bukan y dan n");
             System.out.print("\n" + messeage + " [y/n] : ");
             pilihanUser = terminalInput.next();
@@ -147,7 +150,7 @@ public class Tubes {
 
         System.out.print("\n" + messeage + " [y/n] : ");
         String pilihanUser = stasiunInput.next();
-        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n") ) {
+        while (!pilihanUser.equalsIgnoreCase("y") && !pilihanUser.equalsIgnoreCase("n")) {
             System.err.println("Maaf pilihan ana bukan y dan n");
             System.out.print("\n" + messeage + " [y/n] : ");
             pilihanUser = stasiunInput.next();
@@ -155,12 +158,11 @@ public class Tubes {
 
         if (pilihanUser.equalsIgnoreCase("y")) {
             return true;
-        }else {
+        } else {
             displayCustomerMenu();
             return false;
         }
     }
-   
 
     public static void CloseAPK() {
         try {
@@ -175,7 +177,6 @@ public class Tubes {
     private static void beliTiket() {
         // Logika untuk membeli tiket
         Scanner putin = new Scanner(System.in);
-
 
         System.out.println("Pilih Jenis Tiket Konser : ");
         System.out.println("1. Tiket Reguler");
@@ -195,7 +196,7 @@ public class Tubes {
             case 0:
                 System.out.println("Andah memilih tiket reguler");
                 break;
-        
+
             default:
                 break;
         }
@@ -206,156 +207,95 @@ public class Tubes {
         System.out.println("Menampilkan riwayat pembelian...");
     }
 
-    public static void showJadwalKonser() {
-        Scanner konseran = new Scanner(System.in);
-        boolean pilihanmu = true;
-        String pilihanU;
-        boolean miliho = true;
+    public static void tampilkanData() throws IOException {
+
         
-        while (miliho) {
-            System.out.println("Jadwal Konser yang akan hadir :\n");
-            System.out.println("1. Tulus - Album Manusia ");
-            System.out.println("2. Coldplay - Tour in Jakarta / Indonesia - ");
-            System.out.println("3. Jkt 48 - 12 Tahun Aniversary jkt di Surabaya - ");
-            System.out.println("4. 30 Tahun Berkarya Tour Concert - Surabaya ");
-            System.out.println("5. BTS Live Trilogy III The WINGS Tour in Jakarta ");
-            System.out.println("0. Tidak ingin melihat jadwal konser\n");
-    
-            System.out.print("Pilihan anda : ");
-            pilihanU = konseran.nextLine();
-            System.out.println();
-    
-            switch (pilihanU) {
-                case "1":
-                System.out.println();
-                System.out.println("          ---o0<o>0o---");
-                System.out.println("     |---------------------| ");
-                System.out.println("     |Tulus - Album Manusia|");
-                System.out.println("     |---------------------| ");
-                System.out.println("_____|_____________________|_____");
-                System.out.println("|Tempat : Bandung\t\t|");
-                System.out.println("|Waktu  : 7 Januari 2024\t|");
-                System.out.println("|jumlah Ticket : 100\t\t|");
-                System.out.println("|_______________________________|");
-                break;
-                case "2": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "3": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "4": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "5": 
-                System.out.println();
-                System.out.println("                  ---o0<o>0o---");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("     |Coldplay - Tour in Jakarta / Indonesia|");
-                System.out.println("     |--------------------------------------| ");
-                System.out.println("_____|______________________________________|_____");
-                System.out.println("|Tempat : Bandung\t\t\t\t |");
-                System.out.println("|Waktu  : 7 Januari 2024\t\t         |");
-                System.out.println("|jumlah Ticket : 100\t\t\t\t |");
-                System.out.println("|________________________________________________|");
-                break;
-                case "0": 
-                System.out.println("gajadi LIhat tiket, karena masih belum punya uang..!!");
-                miliho = pilihYesatauNO("Apakah anda ingin melihat tiket yang lain :");
-                break;
-    
-            
-                default:
-                    System.err.println("Maaf pilihan anda tidak ada.!");
-                    break;
-    
-                }
-                
-                break;    
-            }
+
+        FileReader fileInput;
+        BufferedReader bufferInput;
+
+        try {
+            fileInput = new FileReader("src\\Project1\\TugasBesar\\LebihBesar\\Info_Konser.txt");
+            bufferInput = new BufferedReader(fileInput);
+        } catch (Exception e) {
+            System.err.println("Database Tidak ditemukan");
+            System.err.println("Silahkan tambah data terlebih dahoeloe");
+            return;
         }
-    
+
+        System.out.println("\n| No |\t     Nama Konser                 |\tTempat        |\t     Waktu       ");
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------");
+
+        String data = bufferInput.readLine();
+        int nomorData = 0;
+        while (data != null) {
+            nomorData++;
+
+            StringTokenizer stringToken = new StringTokenizer(data, ",");
+
+            stringToken.nextToken();
+            System.out.printf("| %2d ", nomorData);
+            System.out.printf("|\t%3s  ", stringToken.nextToken());
+            System.out.printf("|\t%3s   ", stringToken.nextToken());
+            System.out.printf("|\t%3s    ", stringToken.nextToken());
+            System.out.print("\n");
+
+            data = bufferInput.readLine();
+        }
+
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------");
+    }
+
 
 
     public static void displayAdminMenu() {
         // ga ono.?
     }
 
-    
-
     private static void showTiketReguler() {
         System.out.println("Isi tiket reguller : ");
         System.out.println("1. ");
-        
+
     }
 
-    
-}
+    class costumer {
 
-class costumer {
-    
-}
-
-class ademin {
-    private int availableTickets;
-
-    public ademin(int initialTickets) {
-        this.availableTickets = initialTickets;
     }
 
-    public int getAvailableTickets() {
-        return availableTickets;
-    }
+    class ademin {
+        private int availableTickets;
 
-    public void increaseTickets(int amount) {
-        if (amount > 0) {
-            availableTickets += amount;
-            System.out.println(amount + " tiket ditambahkan. \n\nTotal tiket adalah : "+ " " + availableTickets);
-            System.out.println();
-        } else {
-            System.out.println("Input tidak valid.");
+        public ademin(int initialTickets) {
+            this.availableTickets = initialTickets;
+        }
+
+        public int getAvailableTickets() {
+            return availableTickets;
+        }
+
+        public void increaseTickets(int amount) {
+            if (amount > 0) {
+                availableTickets += amount;
+                System.out.println(amount + " tiket ditambahkan. \n\nTotal tiket adalah : " + " " + availableTickets);
+                System.out.println();
+            } else {
+                System.out.println("Input tidak valid.");
+            }
+        }
+
+        public void decreaseTickets(int amount) {
+            if (amount > 0 && amount <= availableTickets) {
+                availableTickets -= amount;
+                System.out
+                        .println(amount + " tiket dihapus. \n\nTotal tiket yang tersedia : " + " " + availableTickets);
+                System.out.println();
+            } else {
+                System.out.println("\nMaaf . . .");
+                System.out.println(
+                        "Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.\n");
+            }
         }
     }
-
-    public void decreaseTickets(int amount) {
-        if (amount > 0 && amount <= availableTickets) {
-            availableTickets -= amount;
-            System.out.println(amount + " tiket dihapus. \n\nTotal tiket yang tersedia : "+ " " + availableTickets);
-            System.out.println();
-        } else {
-            System.out.println("\nMaaf . . .");
-            System.out.println("Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.\n");
-        }
-    }
 }
-
-
-//  admin nambah ngurang 
-// 

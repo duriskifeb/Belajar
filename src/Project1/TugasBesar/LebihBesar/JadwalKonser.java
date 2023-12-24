@@ -40,7 +40,7 @@ public class JadwalKonser {
         }
     }
 
-    private static void cekBukuDiDatabase(String[] keywords) throws IOException {
+    public static void cekBukuDiDatabase(String[] keywords) throws IOException {
 
         FileReader fileInput = new FileReader(" src\\Project1\\KelasTerbuka\\Database.txt");
         BufferedReader bufferInput = new BufferedReader(fileInput);
@@ -84,7 +84,7 @@ public class JadwalKonser {
     }
 
     
-    private static void tampilkanData() throws IOException{
+    public static void tampilkanData() throws IOException{
 
         FileReader fileInput;
         BufferedReader bufferInput;
@@ -99,7 +99,7 @@ public class JadwalKonser {
         }
 
 
-        System.out.println("\n| No |\t\tNama Konser                 |\t\tTempat             |\t\tWaktu       ");
+        System.out.println("\n| No |\t     Nama Konser                 |\tTempat        |\t     Waktu       ");
         System.out.println("----------------------------------------------------------------------------------------------------------");
 
         String data = bufferInput.readLine();
@@ -111,10 +111,9 @@ public class JadwalKonser {
 
             stringToken.nextToken();
             System.out.printf("| %2d ", nomorData);
-            System.out.printf("|\t\t%3s  ", stringToken.nextToken());
-            System.out.printf("\t\t    |\t%s       ", stringToken.nextToken());
-            // System.out.printf("|\t%s   ", stringToken.nextToken());
-            // System.out.printf("|\t%s   ", stringToken.nextToken());
+            System.out.printf("|\t%3s  ", stringToken.nextToken());
+            System.out.printf("|\t%3s   ", stringToken.nextToken());
+            System.out.printf("|\t%3s    ", stringToken.nextToken());
             System.out.print("\n");
 
             data = bufferInput.readLine();

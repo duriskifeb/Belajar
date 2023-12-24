@@ -1,10 +1,5 @@
-fiersabesari_1,fiersa besari,media kita,jejak langkah
-PramoedyaAnantatoer_1,Pramoedya Anantatoer,Gramedia,Bumi Manusia
-purcell_1,purcell,wiley,calculus
-faqihza_1,faqihza,gramedia,belajar C++
-faqihza_2,faqihza,gramedia,belajar python
-faqihza_3,faqihza,gramedia,belajar Java
-ucup_1,Ucup Surucup,kompas,Cara sukses mencari belut di sawah
-riski_1,riski,mojokdotco,apalah arti hidup
-ahmadfahri_1,ahmad fahri ,gramedia,dikala senja memanggil
-RizkyFebriyanto_1,Rizky Febriyanto,gramedia pasuruan,Kenapa aku harus semangat
+Coldplay - Tour in Jakarta    ,Coldplay - Tour in Jakarta     ,Stadion JIS,     15.00
+Tulus - Album Manusia         ,Tulus - Album Manusia          ,Bandung    ,     17.00
+Jkt 48 - 12 Tahun Aniversary  ,Jkt 48 - 12 Tahun Aniversary   ,Surabaya   ,     21.00
+30 Tahun Berkarya Tour Concert,30 Tahun Berkarya Tour Concert ,Bekasi     ,     19.00
+BTS Live Trilogy III The WINGS,BTS Live Trilogy III The WINGS ,Bekasi     ,     20.00
