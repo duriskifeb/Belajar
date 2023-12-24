@@ -5,17 +5,23 @@ import java.util.Scanner;
 
 class Tiket {
     private String jenis;
+    private String namaKonser;
     private int harga;
     private int jumlah;
 
-    public Tiket(String jenis, int harga, int jumlah) {
+    public Tiket(String jenis, String namaKonser, int harga, int jumlah) {
         this.jenis = jenis;
+        this.namaKonser = namaKonser;
         this.harga = harga;
         this.jumlah = jumlah;
     }
 
     public String getJenis() {
         return jenis;
+    }
+
+    public String getNamaKonser() {
+        return namaKonser;
     }
 
     public int getHarga() {
@@ -39,16 +45,16 @@ public class TiketKonseran {
     public static void main(String[] args) {
         // Inisialisasi data tiket
         ArrayList<Tiket> daftarTiket = new ArrayList<>();
-        daftarTiket.add(new Tiket("Reguler", 50000, 50));
-        daftarTiket.add(new Tiket("VIP", 100000, 30));
-        daftarTiket.add(new Tiket("VVIP", 150000, 20));
+        daftarTiket.add(new Tiket("Reguler", "Konser A", 50000, 50));
+        daftarTiket.add(new Tiket("VIP", "Konser B", 100000, 30));
+        daftarTiket.add(new Tiket("VVIP", "Konser C", 150000, 20));
 
         // Input pilihan tiket
         Scanner input = new Scanner(System.in);
         System.out.println("Daftar Tiket:");
         for (int i = 0; i < daftarTiket.size(); i++) {
             Tiket tiket = daftarTiket.get(i);
-            System.out.println((i + 1) + ". " + tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
+            System.out.println((i + 1) + ". " + tiket.getNamaKonser() + " - " + tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
         }
 
         System.out.print("Pilih jenis tiket (1-3): ");
@@ -81,9 +87,9 @@ public class TiketKonseran {
                     System.out.println("Transaksi Berhasil!");
                     System.out.println("Terima kasih telah berbelanja.");
                     System.out.println("Kembalian: Rp " + kembalian);
-                    
+
                     // Tampilkan stok tiket setelah transaksi
-                    System.out.println("Stok Tiket " + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
+                    System.out.println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - " + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
                 } else {
                     System.out.println("Pembayaran tidak mencukupi.");
                 }

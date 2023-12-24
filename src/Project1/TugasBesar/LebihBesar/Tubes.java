@@ -1,10 +1,15 @@
 package Project1.TugasBesar.LebihBesar;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -31,7 +36,6 @@ class User {
         return role;
     }
 }
-
 
 class Tiket {
     private String jenis;
@@ -73,6 +77,12 @@ public class Tubes {
         // Inisialisasi ArrayList untuk menyimpan data user
         ArrayList<User> userDatabase = new ArrayList<>();
 
+        clearScreen();
+        System.out.println("\t---------------------------------------------------------");
+        System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
+        System.out.println("\t---------------------------------------------------------");
+        Pembuka.tampilkanIsiFile("D:\\My Repo\\Belajar\\src\\Project1\\TugasBesar\\LebihBesar\\Muqodimah.txt");
+
         userDatabase.add(new User("user1", "USR1", "customer"));
         userDatabase.add(new User("admin1", "cok", "admin"));
 
@@ -87,7 +97,7 @@ public class Tubes {
         for (User user : userDatabase) {
             if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
                 if (user.getRole().equals("admin")) {
-                    Data.showMenu2();
+                    Data.showMenuAdmin();
                     break;
                 } else {
                     loggedInUser = user;
@@ -133,18 +143,18 @@ public class Tubes {
                     System.out.println("1. Lihat jadwal event Konser\n");
                     try {
                         tampilkanData();
-                        
+
                     } catch (Exception e) {
                         System.err.println("Maaf terjadi kesalahan..!!" + e.getMessage());
                     }
                     break;
-                    case "2":
+                case "2":
                     System.out.println("2. Beli Tiket konser");
                     beliTiket();
                     break;
                 case "3":
                     System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-                    beliTiket();
+                    // riwayat pembelian tiket konser
                     break;
                 case "0":
                     System.out.println("0. Menutup Aplikasi");
@@ -210,29 +220,62 @@ public class Tubes {
 
     private static void beliTiket() {
         // Logika untuk membeli tiket
-        Scanner putin = new Scanner(System.in);
+        ArrayList<Tiket> daftarTiket = new ArrayList<>();
+        daftarTiket.add(new Tiket("Reguler", 50000, 50));
+        daftarTiket.add(new Tiket("VIP", 100000, 30));
+        daftarTiket.add(new Tiket("VVIP", 150000, 20));
 
-        System.out.println("Pilih Jenis Tiket Konser : ");
-        System.out.println("1. Tiket Reguler");
-        System.out.println("1. Tiket VIP");
-        System.out.println("0. Tiket VVIP");
+        // Input pilihan tiket
+        Scanner input = new Scanner(System.in);
+        System.out.println("Daftar Tiket:");
+        for (int i = 0; i < daftarTiket.size(); i++) {
+            Tiket tiket = daftarTiket.get(i);
+            System.out.println((i + 1) + ". " + tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
+                    + tiket.getJumlah() + ")");
+        }
 
-        System.out.print("Masukkan pilihan anda [1 - 2]");
-        int milih = putin.nextInt();
+        System.out.print("Pilih jenis tiket (1-3): ");
+        int pilihanTiket = input.nextInt();
 
-        switch (milih) {
-            case 1:
-                System.out.println("Andah memilih tiket reguler");
-                break;
-            case 2:
-                System.out.println("Andah memilih tiket reguler");
-                break;
-            case 0:
-                System.out.println("Andah memilih tiket reguler");
-                break;
+        // Input jumlah tiket yang akan dibeli
+        System.out.print("Masukkan jumlah tiket yang akan dibeli: ");
+        int jumlahBeli = input.nextInt();
 
-            default:
-                break;
+        // Validasi pilihan tiket
+        if (pilihanTiket >= 1 && pilihanTiket <= daftarTiket.size()) {
+            Tiket tiketPilihan = daftarTiket.get(pilihanTiket - 1);
+
+            // Validasi jumlah tiket yang akan dibeli
+            if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
+                // Hitung total harga
+                int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
+                System.out.println("Total Harga: Rp " + totalHarga);
+
+                // Input pembayaran
+                System.out.print("Masukkan jumlah uang yang dibayarkan: Rp ");
+                int jumlahBayar = input.nextInt();
+
+                // Validasi pembayaran
+                if (jumlahBayar >= totalHarga) {
+                    // Proses transaksi
+                    int kembalian = jumlahBayar - totalHarga;
+                    tiketPilihan.kurangiJumlah(jumlahBeli);
+
+                    System.out.println("Transaksi Berhasil!");
+                    System.out.println("Terima kasih telah berbelanja.");
+                    System.out.println("Kembalian: Rp " + kembalian);
+
+                    // Tampilkan stok tiket setelah transaksi
+                    System.out
+                            .println("Stok Tiket " + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
+                } else {
+                    System.out.println("Pembayaran tidak mencukupi.");
+                }
+            } else {
+                System.out.println("Jumlah tiket yang dibeli tidak valid.");
+            }
+        } else {
+            System.out.println("Pilihan tiket tidak valid.");
         }
     }
 
@@ -242,8 +285,6 @@ public class Tubes {
     }
 
     public static void tampilkanData() throws IOException {
-
-        
 
         FileReader fileInput;
         BufferedReader bufferInput;
@@ -282,16 +323,35 @@ public class Tubes {
                 "----------------------------------------------------------------------------------------------------------");
     }
 
+    public static void tampilkanIsiFile(String filePath) throws IOException {
+        // Gunakan Paths.get() untuk membuat objek Path dari path file
+        Path path = Paths.get(filePath);
 
+        // Gunakan Files.readAllLines() untuk membaca semua baris dari file ke dalam
+        // List
+        List<String> baris = Files.readAllLines(path);
+
+        // Tampilkan setiap baris di konsol
+        for (String line : baris) {
+            System.out.println(line);
+        }
+    }
 
     public static void displayAdminMenu() {
         // ga ono.?
     }
 
-    private static void showTiketReguler() {
-        System.out.println("Isi tiket reguller : ");
-        System.out.println("1. ");
-
+    
+    public static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (Exception ex) {
+            System.err.println("tidak bisa clear screen");
+        }
     }
 
     class costumer {

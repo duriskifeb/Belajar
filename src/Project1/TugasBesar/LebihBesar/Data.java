@@ -1,24 +1,16 @@
 package Project1.TugasBesar.LebihBesar;
 
 import java.io.IOException;
-
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Data {
 
     // ini buat user yaa...
-    public static void showMenu2() {
+    public static void showMenuAdmin() {
         Tubes.displayAdminMenu();
         System.out.println("\nAdmin Menu : \n");
-
+        
         ademin concert = new ademin(50); // Jumlah Tiket Awal
 
         Scanner scanner = new Scanner(System.in);
