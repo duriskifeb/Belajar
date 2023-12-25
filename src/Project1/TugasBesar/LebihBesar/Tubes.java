@@ -69,6 +69,37 @@ class Tiket {
     }
 }
 
+class Concert {
+    private int availableTickets;
+
+    public Concert(int initialTickets) {
+        this.availableTickets = initialTickets;
+    }
+
+    public int getAvailableTickets() {
+        return availableTickets;
+    }
+
+    public void increaseTickets(int amount) {
+        if (amount > 0) {
+            availableTickets += amount;
+            System.out.println(amount + " tiket ditambahkan. Total tiket adalah: " + availableTickets);
+        } else {
+            System.out.println("Input tidak valid.");
+        }
+    }
+
+    public void decreaseTickets(int amount) {
+        if (amount > 0 && amount <= availableTickets) {
+            availableTickets -= amount;
+            System.out.println(amount + " tiket dihapus. Total tiket yang tersedia: " + availableTickets);
+        } else {
+            System.out.println("Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.");
+        }
+    }
+}
+
+
 public class Tubes {
     public static void main(String[] args) throws IOException {
 
@@ -354,42 +385,34 @@ public class Tubes {
         }
     }
 
-    class costumer {
+    class Concert {
+    private int availableTickets;
 
+    public Concert(int initialTickets) {
+        this.availableTickets = initialTickets;
     }
 
-    class ademin {
-        private int availableTickets;
+    public int getAvailableTickets() {
+        return availableTickets;
+    }
 
-        public ademin(int initialTickets) {
-            this.availableTickets = initialTickets;
-        }
-
-        public int getAvailableTickets() {
-            return availableTickets;
-        }
-
-        public void increaseTickets(int amount) {
-            if (amount > 0) {
-                availableTickets += amount;
-                System.out.println(amount + " tiket ditambahkan. \n\nTotal tiket adalah : " + " " + availableTickets);
-                System.out.println();
-            } else {
-                System.out.println("Input tidak valid.");
-            }
-        }
-
-        public void decreaseTickets(int amount) {
-            if (amount > 0 && amount <= availableTickets) {
-                availableTickets -= amount;
-                System.out
-                        .println(amount + " tiket dihapus. \n\nTotal tiket yang tersedia : " + " " + availableTickets);
-                System.out.println();
-            } else {
-                System.out.println("\nMaaf . . .");
-                System.out.println(
-                        "Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.\n");
-            }
+    public void increaseTickets(int amount) {
+        if (amount > 0) {
+            availableTickets += amount;
+            System.out.println(amount + " tiket ditambahkan. Total tiket adalah: " + availableTickets);
+        } else {
+            System.out.println("Input tidak valid.");
         }
     }
+
+    public void decreaseTickets(int amount) {
+        if (amount > 0 && amount <= availableTickets) {
+            availableTickets -= amount;
+            System.out.println(amount + " tiket dihapus. Total tiket yang tersedia: " + availableTickets);
+        } else {
+            System.out.println("Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.");
+        }
+    }
+}
+
 }
