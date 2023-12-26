@@ -191,22 +191,23 @@ public class Tubes {
         // Opsi "0" sebagai keluar dari loop
         
         Konser Tulus_Album_Manusia = new Konser("1. Tulus - Album Manusia");
-        Tulus_Album_Manusia.tambahTiket("Reguler", 50000, 50);
-        Tulus_Album_Manusia.tambahTiket("VIP", 100000, 30);
-        Tulus_Album_Manusia.tambahTiket("VVIP", 150000, 20);
+        Tulus_Album_Manusia.tambahTiket("1.Reguler", 50000, 50);
+        Tulus_Album_Manusia.tambahTiket("2.VIP", 100000, 30);
+        Tulus_Album_Manusia.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Tulus_Album_Manusia);
 
         Konser Coldplay_Tour_Indonesia = new Konser("2. Coldplay - Tour in Indonesia");
-        Coldplay_Tour_Indonesia.tambahTiket("Reguler", 50000, 50);
-        Coldplay_Tour_Indonesia.tambahTiket("VIP", 100000, 30);
-        Coldplay_Tour_Indonesia.tambahTiket("VVIP", 150000, 20);
+        Coldplay_Tour_Indonesia.tambahTiket("1.Reguler", 50000, 50);
+        Coldplay_Tour_Indonesia.tambahTiket("2.VIP", 100000, 30);
+        Coldplay_Tour_Indonesia.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Coldplay_Tour_Indonesia);
         
         Konser JKT_48_12_Tahun_Aniversary = new Konser("3. JKT 48 - 12 Tahun Aniveersary");
-        JKT_48_12_Tahun_Aniversary.tambahTiket("Reguler", 50000, 50);
-        JKT_48_12_Tahun_Aniversary.tambahTiket("VIP", 100000, 30);
-        JKT_48_12_Tahun_Aniversary.tambahTiket("VVIP", 150000, 20);
+        JKT_48_12_Tahun_Aniversary.tambahTiket("1.Reguler", 50000, 50);
+        JKT_48_12_Tahun_Aniversary.tambahTiket("2.VIP", 100000, 30);
+        JKT_48_12_Tahun_Aniversary.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(JKT_48_12_Tahun_Aniversary);
+        //opsi untuk keluar
         daftarKonser.add(new Konser("0. Keluar"));
         // Tambahkan konser lain jika diperlukan
         
@@ -215,8 +216,8 @@ public class Tubes {
 
         do {
             System.out.println("Beli Tiket Konser:");
-            for (Konser konser : daftarKonser) {
-                System.out.println(konser.getNamaKonser());
+            for (int i = 0; i < daftarKonser.size(); i++) {
+                System.out.println(daftarKonser.get(i).getNamaKonser());
             }
 
             System.out.println();
@@ -228,57 +229,80 @@ public class Tubes {
                 break; // Keluar dari loop jika pilihan 0
             }
 
-            if (pilihanKonser >= 1 && pilihanKonser < daftarKonser.size()) {
-                Konser konserPilihan = daftarKonser.get(pilihanKonser);
+            if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
+                Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
                 ArrayList<Tiket> daftarTiketKonser = konserPilihan.getDaftarTiket();
 
-                System.out.println("Daftar Tiket untuk " + konserPilihan.getNamaKonser() + ":");
+                System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
                 for (int i = 0; i < daftarTiketKonser.size(); i++) {
                     Tiket tiket = daftarTiketKonser.get(i);
-                    System.out.println((i + 1) + ". " + tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
+                    System.out.println( tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
                             + tiket.getJumlah() + ")");
                 }
 
+                System.out.println("0. Tidak beli tiket");
                 System.out.println();
-                System.out.print("Pilih jenis tiket (1-" + daftarTiketKonser.size() + "): ");
+                System.out.print("Pilih jenis tiket (0-" + daftarTiketKonser.size() + ") : ");
+                int pilihanTiketU = input.nextInt();
+                System.out.println();
+
+                if (pilihanTiketU == 0) {
+                    System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                    break; // Keluar dari loop jika pilihan 0
+                }
+
+                System.out.println();
+                System.out.print("Pilih jenis tiket (1-" + daftarTiketKonser.size() + ") : "  );
                 int pilihanTiket = input.nextInt();
-
-                // Input jumlah tiket yang akan dibeli
                 System.out.println();
-                System.out.print("Masukkan jumlah tiket yang akan dibeli: ");
-                int jumlahBeli = input.nextInt();
 
-                // Validasi pilihan tiket
                 if (pilihanTiket >= 1 && pilihanTiket <= daftarTiketKonser.size()) {
                     Tiket tiketPilihan = daftarTiketKonser.get(pilihanTiket - 1);
 
-                    // Validasi jumlah tiket yang akan dibeli
-                    if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
-                        // Hitung total harga
-                        int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
-                        System.out.println("Total Harga: Rp " + totalHarga);
+                    System.out.println("Stok Tiket    :" +"      o=> " + tiketPilihan.getNamaKonser() + " <=o\n"
+                            + tiketPilihan.getJenis() + " tersisa : " + tiketPilihan.getJumlah());
 
-                        // Input pembayaran
-                        System.out.print("Masukkan jumlah uang yang dibayarkan: Rp ");
+                    System.out.println();
+                    System.out.print("Masukkan jumlah tiket yang akan dibeli : ");
+                    int jumlahBeli = input.nextInt();
+                    System.out.println();
+
+                    if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
+                        int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
+                        System.out.println("Total Harga untuk " + jumlahBeli + " tiket : \n"
+                                + tiketPilihan.getJenis() + ": Rp " + totalHarga);
+
+                        System.out.println();
+                        System.out.print("Masukkan jumlah uang yang dibayarkan : Rp ");
                         int jumlahBayar = input.nextInt();
 
-                        // Validasi pembayaran
                         if (jumlahBayar >= totalHarga) {
-                            // Proses transaksi
                             int kembalian = jumlahBayar - totalHarga;
                             tiketPilihan.kurangiJumlah(jumlahBeli);
 
-                            // pengkondisian setelah beli tiket apa mau beli lagi.?
                             System.out.println("Kembalian: Rp " + kembalian);
                             System.out.println("\n[ Transaksi Berhasil ]\n");
-                            System.out.println("Terima kasih telah berbelanja.");
-
+                           
                             // Tampilkan stok tiket setelah transaksi
                             System.out.println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - "
                                     + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
+
+                            System.out.print("\nApakah Anda ingin membeli tiket konser lain? (ya/tidak) : ");
+                            String lanjutBeli = input.next().toLowerCase();
+                            System.out.println();
+
+                            if (lanjutBeli.equals("ya")) {
+                                continue;
+                            } else {
+                                System.out.println("\nTerima kasih, Anda telah berbelanja.\n");
+                                displayCustomerMenu(); // Tambahkan ini untuk kembali ke menu customer
+                                break; // Tambahkan ini agar keluar dari loop setelah kembali ke menu customer
+                            }
+                            
                         } else {
                             System.out.println("Pembayaran tidak mencukupi.");
                         }
+                        System.out.println("\nTerimakasih anda telah beli tiket\n");
                     } else {
                         System.out.println("Jumlah tiket yang dibeli tidak valid.");
                     }
@@ -289,6 +313,7 @@ public class Tubes {
                 System.out.println("Pilihan konser tidak valid.");
             }
         } while (true);
+        displayCustomerMenu();
     }
     
 
@@ -407,100 +432,6 @@ public class Tubes {
         }
 
     }
-
-    // private static void beliTiket() {
-    //     // Inisialisasi data tiket
-    //     boolean dipilih = true;
-    //     Scanner input = new Scanner(System.in);
-
-    //     do {
-    //         ArrayList<Tiket> daftarTiket = new ArrayList<>();
-    //         daftarTiket.add(new Tiket("Reguler", "Tulus Album Manusia", 50000, 50));
-    //         daftarTiket.add(new Tiket("VIP", "Coldplay Tour in jakarta", 100000, 30));
-    //         daftarTiket.add(new Tiket("VVIP", "Dewa-19 mendekati keabadian", 150000, 20));
-
-    //         // Input pilihan tiket
-
-    //         System.out.println();
-    //         System.out.println("Daftar Tiket:");
-    //         for (int i = 0; i < daftarTiket.size(); i++) {
-    //             Tiket tiket = daftarTiket.get(i);
-    //             System.out.println((i + 1) + ". " + tiket.getNamaKonser() + " - " + tiket.getJenis() + " - Rp "
-    //                     + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
-    //         }
-
-    //         // menampilkan opsi untuk tidak membeli tiket di menu daftar beli tiket.?
-    //         System.out.println("0. Tidak jadi beli tiket");
-            
-    //         System.out.println();
-    //         System.out.print("Pilih jenis tiket (1- " +  + (daftarTiket.size()) + ") : ");
-    //         int pilihanTiket = input.nextInt();
-    //         System.out.println();
-            
-            
-            
-    //         // System.out.print("Pilih jenis tiket (1-3): ");
-    //         // System.out.println();
-
-    //         //user gajadi beli, hehehe.. :)
-    //         if (pilihanTiket == 0 ) {
-    //             System.out.println("[ Pembelian tiket Dibatalkan ]");
-    //             break;
-    //         }
-
-    //         // Input jumlah tiket yang akan dibeli
-    //         System.out.print("Masukkan jumlah tiket yang akan dibeli: ");
-    //         int jumlahBeli = input.nextInt();
-
-    //         // Validasi pilihan tiket
-    //         if (pilihanTiket >= 1 && pilihanTiket <= daftarTiket.size()) {
-    //             Tiket tiketPilihan = daftarTiket.get(pilihanTiket - 1);
-
-    //             // Validasi jumlah tiket yang akan dibeli
-    //             if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
-    //                 // Hitung total harga
-    //                 int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
-    //                 System.out.println("Total Harga: Rp " + totalHarga);
-    //                 System.out.println();
-
-    //                 // Input pembayaran
-    //                 System.out.print("Masukkan jumlah uang yang dibayarkan: Rp ");
-    //                 int jumlahBayar = input.nextInt();
-
-    //                 // Validasi pembayaran
-    //                 if (jumlahBayar >= totalHarga) {
-    //                     // Proses transaksi
-    //                     int kembalian = jumlahBayar - totalHarga;
-    //                     tiketPilihan.kurangiJumlah(jumlahBeli);
-
-    //                     System.out.println("Kembalian: Rp " + kembalian);
-    //                     System.out.println();
-    //                     System.out.println("[ Selamat Transaksi anda Berhasil ]");
-    //                     System.out.println();
-
-    //                     // disini untuk looping apakah ingin membeli tiket yang lain.?
-
-    //                     dipilih = pilihYesatauNO("apa mau masih membeli tiket yang lain lagi.?");
-    //                     System.out.println();
-    //                     System.out.println("Terima kasih telah berbelanja.");
-
-    //                     // Tampilkan stok tiket setelah transaksi
-    //                     System.out
-    //                             .println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - " + tiketPilihan.getJenis()
-    //                                     + " tersisa: " + tiketPilihan.getJumlah());
-    //                 } else {
-    //                     System.out.println("Pembayaran tidak mencukupi.");
-    //                 }
-    //             } else {
-    //                 System.out.println("Jumlah tiket yang dibeli tidak valid.");
-    //             }
-    //         } else {
-    //             System.out.println("Pilihan tiket tidak valid.");
-    //         }
-
-    //     } while (dipilih);
-    //     System.out.println("      [ Terimakasih ]");
-    // }
 
     private static boolean pilihYesatauNO(String pertanyaan) {
         Scanner input = new Scanner(System.in);
