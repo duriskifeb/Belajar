@@ -114,7 +114,8 @@ class Concert {
     public void increaseTickets(int amount) {
         if (amount > 0) {
             availableTickets += amount;
-            System.out.println(amount + " tiket ditambahkan. Total tiket adalah: " + availableTickets);
+            System.out.println(amount + " tiket telah ditambahkan. \nTotal tiket adalah: " + availableTickets);
+            System.out.println();
         } else {
             System.out.println("Input tidak valid.");
         }
@@ -147,43 +148,77 @@ public class Tubes {
         userDatabase.add(new User("user1", "USR1", "customer"));
         userDatabase.add(new User("admin1", "cok", "admin"));
 
-        System.out.print("Masukkan username: ");
-        String inputUsername = input.nextLine();
+        boolean loginBerhasil = false;
 
-        System.out.print("Masukkan password: ");
-        String inputPassword = input.nextLine();
+// Loop untuk meminta ulang input username dan password jika login gagal
 
-        // Proses login
-        User loggedInUser = null;
-        for (User user : userDatabase) {
-            if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
-                if (user.getRole().equals("admin")) {
-                    Data.showMenuAdmin();
-                    break;
-                } else {
-                    loggedInUser = user;
-                    break;
-                }
+// Loop untuk meminta ulang input username dan password jika login gagal
+while (!loginBerhasil) {
+    System.out.print("Masukkan username: ");
+    String inputUsername = input.nextLine();
+
+    System.out.print("Masukkan password: ");
+    String inputPassword = input.nextLine();
+
+    // Proses login
+    User loggedInUser = null;
+    for (User user : userDatabase) {
+        if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
+            if (user.getRole().equals("admin")) {
+                Data.showMenuAdmin();
+                loginBerhasil = true;
+                break;
+            } else {
+                loggedInUser = user;
+                loginBerhasil = true;
+                break;
             }
-        }
-
-        if (loggedInUser != null) {
-            System.out.println("\n[Login berhasil..] ");
-            System.out.println("\n--o0 Selamat datag di aplikasi kami 0o--");
-            if (loggedInUser.getRole().equals("customer")) {
-                displayCustomerMenu();
-                // Lakukan aksi untuk customer
-            } else if (loggedInUser.getRole().equals("admin")) {
-                displayAdminMenu();
-                // Lakukan aksi untuk admin
-            }
-        } else {
-            System.out.println("Login gagal! Username atau password salah.");
         }
     }
 
-    //ini buat list konser.?
-    
+    if (loginBerhasil) {
+        System.out.println("\n[Login berhasil..] ");
+        System.out.println("\n--o0 Selamat datang di aplikasi kami 0o--");
+        if (loggedInUser.getRole().equals("customer")) {
+            displayCustomerMenu();
+            // Lakukan aksi untuk customer
+        } else if (loggedInUser.getRole().equals("admin")) {
+            displayAdminMenu();
+            // Lakukan aksi untuk admin
+        }
+    } else {
+        System.out.println("\n[ Login gagal ]\n");
+        System.out.println("Masukkan username dan pasword dengan benar.! \n");
+        System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
+        String cobaLagi = input.nextLine().toLowerCase();
+        System.out.println();
+
+        if (!cobaLagi.equals("ya")) {
+            System.out.println("Terima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+            System.out.print("Sedang keluar...");
+
+                    // Implementasi loading sebelum keluar
+                    for (int i = 0; i < 5; i++) {
+                        try {
+                            Thread.sleep(1000); // Menunggu 0.5 detik
+                            System.out.print(".");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    // Menampilkan pesan selesai keluar
+                    System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                    lihatRiwayatPembelian();
+                    CloseAPK();
+                    System.exit(0);
+                    break;
+            }
+        }
+    }
+}
+
+
     public static void konseran() {
         // Inisialisasi data konser
         ArrayList<Konser> daftarKonser = new ArrayList<>();
@@ -333,6 +368,7 @@ public class Tubes {
 
             System.out.print("\nPilihan anda :");
             pilihanUser = input.nextLine();
+            System.out.println();
 
             switch (pilihanUser) {
                 case "1":
@@ -354,6 +390,24 @@ public class Tubes {
                     break;
                 case "0":
                     System.out.println("0. Menutup Aplikasi");
+                    System.out.println();
+
+                    // Tampilkan pesan sebelum keluar
+                    System.out.println("Terimkasih, Sampai jumpa kembali :) \n");
+                    System.out.print("Sedang keluar...");
+
+                    // Implementasi loading sebelum keluar
+                    for (int i = 0; i < 5; i++) {
+                        try {
+                            Thread.sleep(1000); // Menunggu 0.5 detik
+                            System.out.print(".");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    // Menampilkan pesan selesai keluar
+                    System.out.println("\nTerima kasih. Selamat tinggal!");
                     lihatRiwayatPembelian();
                     CloseAPK();
                     System.exit(0);
