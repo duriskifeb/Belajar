@@ -1,5 +1,8 @@
-package LebihBesar;
+package Project1.RevisiProject.JanganBesar;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,125 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.io.FileReader;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
-class Pembuka {
-    public static void main(String[] args) {
-        // Tentukan path ke file TXT Anda
-        String filePath = "src\\Project1\\TugasBesar\\LebihBesar\\Muqodimah.txt";
-
-        // Panggil metode untuk membaca dan menampilkan kontennya
-        try {
-            tampilkanIsiFile(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void tampilkanIsiFile(String filePath) throws IOException {
-        // Gunakan Paths.get() untuk membuat objek Path dari path file
-        Path path = Paths.get(filePath);
-
-        // Gunakan Files.readAllLines() untuk membaca semua baris dari file ke dalam
-        // List
-        List<String> baris = Files.readAllLines(path);
-
-        // Tampilkan setiap baris di konsol
-        for (String line : baris) {
-            System.out.println(line);
-        }
-    }
-}
-
-class Data {
-
-    // ini buat user yaa...
-    public static void showMenuAdmin() {
-        Tubes.displayAdminMenu();
-        System.out.println("\n[ Login Berhasil. . .]\n");
-        System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
-
-        Concert concert = new Concert(50); // Jumlah Tiket Awal
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("1. Tambahkan Tiket");
-            System.out.println("2. Kurangi Tiket");
-            System.out.println("3. Cek Tiket Yang Tersedia");
-            System.out.println("4. Keluar\n");
-            System.out.print("Pilih Salah Satu Menu: ");
-            int choice = scanner.nextInt();
-            System.out.println();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket : ");
-                    int addTickets = scanner.nextInt();
-                    concert.increaseTickets(addTickets);
-                    System.out.println();
-                    break;
-
-                case 2:
-                    System.out.print("Masukkan Nomor Untuk Mengurangi Jumlah Tiket: ");
-                    int removeTickets = scanner.nextInt();
-                    concert.decreaseTickets(removeTickets);
-                    break;
-
-                case 3:
-                    System.out.println("\nTiket Yang Tersedia : " + concert.getAvailableTickets());
-                    break;
-
-                case 4:
-                    System.out.print("Sedang keluar...");
-
-                    // Implementasi loading sebelum keluar
-                    for (int i = 0; i < 5; i++) {
-                        try {
-                            Thread.sleep(1000); // Menunggu 0.5 detik
-                            System.out.print(".");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    // Menampilkan pesan selesai keluar
-                    System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
-                    CloseAPK();
-                    System.exit(0);
-                    break;
-
-                default:
-                    System.out.println("Pilihan Invalid, Silahkan Pilih Option Yang Ada.");
-                    scanner.close();
-            }
-        }
-    }
-
-    public static void showMenuCustomer() {
-
-    }
-
-    public static void CloseAPK() {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-        } catch (Exception e) {
-            System.err.println("Terjadi kesalahan: " + e);
-        }
-
-    }
-
-}
 
 class User {
     private String username;
@@ -165,7 +50,6 @@ class Tiket {
         this.namaKonser = namaKonser;
         this.harga = harga;
         this.jumlah = jumlah;
-
     }
 
     public String getJenis() {
@@ -191,8 +75,8 @@ class Tiket {
             System.out.println("Stok tidak mencukupi.");
         }
     }
-
 }
+
 
 class Konser {
     private String namaKonser;
@@ -217,6 +101,7 @@ class Konser {
     }
 }
 
+
 class Concert {
     private int availableTickets;
 
@@ -231,8 +116,7 @@ class Concert {
     public void increaseTickets(int amount) {
         if (amount > 0) {
             availableTickets += amount;
-            System.out.println(amount + " tiket telah ditambahkan. \nTotal tiket adalah: " + availableTickets);
-            System.out.println();
+            System.out.println(amount + " tiket ditambahkan. Total tiket adalah: " + availableTickets);
         } else {
             System.out.println("Input tidak valid.");
         }
@@ -248,8 +132,9 @@ class Concert {
     }
 }
 
-public class Tubes {
+public class Jalankan {
     public static void main(String[] args) throws IOException {
+
         Scanner input = new Scanner(System.in);
 
         // Inisialisasi ArrayList untuk menyimpan data user
@@ -259,7 +144,7 @@ public class Tubes {
         System.out.println("\t---------------------------------------------------------");
         System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
         System.out.println("\t---------------------------------------------------------");
-        Pembuka.tampilkanIsiFile("C:\\Users\\zzida\\Downloads\\LebihBesar\\LebihBesar\\Muqodimah.txt");
+        Pembuka.tampilkanIsiFile("src\\Project1\\RevisiProject\\JanganBesar\\Muqodimah.txt");
 
         userDatabase.add(new User("user1", "USR1", "customer"));
         userDatabase.add(new User("admin1", "cok", "admin"));
@@ -296,7 +181,7 @@ public class Tubes {
                 System.out.println("\n[Login berhasil..] ");
                 System.out.println("\n--o0 Selamat datang di aplikasi kami 0o--");
                 if (loggedInUser.getRole().equals("customer")) {
-                    Tubes tbs = new Tubes();
+                    Jalankan tbs = new Jalankan();
                     tbs.displayCustomerMenu();
                     // konseran();
                     // Lakukan aksi untuk customer
@@ -458,7 +343,7 @@ public class Tubes {
                             if (lanjutBeli.equals("ya")) {
                                 continue;
                             } else {
-                                System.out.println("\nTerima kasih, Anda telah berbelanja.\n");
+                                System.out.println("\nTerima kasih, Sampai jumpa kembali.\n");
                                 displayCustomerMenu(); // Tambahkan ini untuk kembali ke menu customer
                                 break; // Tambahkan ini agar keluar dari loop setelah kembali ke menu customer
                             }
@@ -469,6 +354,20 @@ public class Tubes {
                         System.out.println("\nTerimakasih anda telah beli tiket\n");
                     } else {
                         System.out.println("Jumlah tiket yang dibeli tidak valid.");
+                        System.out.println();
+                        System.out.print("Apakah Anda ingin mencoba membeli tiket lagi? (ya/tidak) : ");
+                        String cobaLagi = input.next().toLowerCase();
+                        System.out.println();
+
+                        if (cobaLagi.equals("ya")) {
+                            // Continue the loop to let the user try again
+                            continue;
+                        } else {
+                            // Exit the loop and return to the customer menu
+                            System.out.println("\nTerima kasih, Sampai jumpa kembali.\n");
+                            displayCustomerMenu();
+                            break;
+                        }
                     }
                 } else {
                     System.out.println("Pilihan tiket tidak valid.");
@@ -480,7 +379,9 @@ public class Tubes {
         displayCustomerMenu();
     }
 
-    public void displayCustomerMenu() {
+    
+
+    public  void displayCustomerMenu() {
         Scanner input = new Scanner(System.in);
         // int pilihan = 0;
         boolean pilihan = true;
@@ -496,7 +397,6 @@ public class Tubes {
 
             System.out.print("\nPilihan anda :");
             pilihanUser = input.nextLine();
-            System.out.println();
 
             switch (pilihanUser) {
                 case "1":
@@ -514,29 +414,13 @@ public class Tubes {
                     break;
                 case "3":
                     System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-                    riwayat();
                     // riwayat pembelian tiket konser
                     break;
                 case "0":
                     System.out.println("0. Menutup Aplikasi");
                     System.out.println();
-
-                    // Tampilkan pesan sebelum keluar
-                    System.out.println("Terimkasih, Sampai jumpa kembali :) \n");
-                    System.out.print("Sedang keluar...");
-
-                    // Implementasi loading sebelum keluar
-                    for (int i = 0; i < 5; i++) {
-                        try {
-                            Thread.sleep(1000); // Menunggu 0.5 detik
-                            System.out.print(".");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    // Menampilkan pesan selesai keluar
-                    System.out.println("\nTerima kasih. Selamat tinggal!");
+                    System.out.print("Menutup aplikasi");
+                    loadingMessage();
                     lihatRiwayatPembelian();
                     CloseAPK();
                     System.exit(0);
@@ -548,8 +432,26 @@ public class Tubes {
             }
 
             yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
+            if (!yakin) {
+                System.out.println("Menutup aplikasi");
+                loadingMessage();
+                pilihan = false;
+            }
         }
 
+    }
+
+    private void loadingMessage() {
+        try {
+            // Simulate loading by printing dots with a delay
+            for (int i = 0; i < 3; i++) {
+                System.out.print(".");
+                Thread.sleep(1000); // Sleep for 1 second
+            }
+            System.out.println();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static boolean getYesorNo(String messeage) {
@@ -586,7 +488,7 @@ public class Tubes {
         }
     }
 
-    public static boolean pilihYesatauNO1(String messeage) {
+    public  boolean pilihYesatauNO1(String messeage) {
 
         Scanner stasiunInput = new Scanner(System.in);
 
@@ -644,7 +546,7 @@ public class Tubes {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("src\\Project1\\TugasBesar\\LebihBesar\\Info_Konser.txt");
+            fileInput = new FileReader("src\\Project1\\RevisiProject\\JanganBesar\\Info_Konser.txt");
             bufferInput = new BufferedReader(fileInput);
         } catch (Exception e) {
             System.err.println("Database Tidak ditemukan");
@@ -652,8 +554,7 @@ public class Tubes {
             return;
         }
 
-        System.out.println(
-                "\n| No |\t     Nama Konser                \t\t\t       |\tTempat        |\t     Waktu       ");
+        System.out.println("\n| No |\t     Nama Konser                 |\tTempat        |\t     Waktu       ");
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
 

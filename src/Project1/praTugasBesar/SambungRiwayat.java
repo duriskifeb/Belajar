@@ -1,4 +1,5 @@
 package Project1.praTugasBesar;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,7 +59,7 @@ class Konser {
     }
 }
 
-public class Main {
+public class SambungRiwayat {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 

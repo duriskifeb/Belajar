@@ -1,7 +1,8 @@
-package Project1.TugasBesar.LebihBesar;
+package Project1.RevisiProject.JanganBesar;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Tiketnya {
     public static void main(String[] args) {

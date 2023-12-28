@@ -1,4 +1,4 @@
-package Project1.TugasBesar.LebihBesar;
+package Project1.RevisiProject.JanganBesar;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +12,7 @@ import java.util.List;
 public class Pembuka {
     public static void main(String[] args) {
         // Tentukan path ke file TXT Anda
-        String filePath = "src\\Project1\\TugasBesar\\LebihBesar\\Muqodimah.txt";
+        String filePath = "src\\Project1\\TugasBesar\\JanganBesar\\Muqodimah.txt";
 
         // Panggil metode untuk membaca dan menampilkan kontennya
         try {

@@ -1,4 +1,4 @@
-package Project1.TugasBesar.LebihBesar;
+package Project1.RevisiProject.JanganBesar;
 
 
 import java.io.BufferedReader;
@@ -42,7 +42,7 @@ public class JadwalKonser {
 
     public static void cekBukuDiDatabase(String[] keywords) throws IOException {
 
-        FileReader fileInput = new FileReader(" src\\Project1\\KelasTerbuka\\Database.txt");
+        FileReader fileInput = new FileReader("src\\Project1\\TugasBesar\\JanganBesar\\Info_Konser.txt");
         BufferedReader bufferInput = new BufferedReader(fileInput);
 
         String data = bufferInput.readLine();
