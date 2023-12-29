@@ -10,7 +10,7 @@ public class Data {
 
     // ini buat user yaa...
     public static void showMenuAdmin() {
-        Tubes.displayAdminMenu();
+        Jalankan.displayAdminMenu();
         System.out.println("\n[ Login Berhasil. . .]\n");
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
 
