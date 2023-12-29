@@ -224,9 +224,22 @@ public class Jalankan {
     ArrayList<Tiket> riwayatTiket = new ArrayList<>();
 
     public void riwayat() {
-        for (int i = 0; i < riwayatTiket.size(); i++) {
-                    System.out.println("TEST");
-                }
+        if (riwayatTiket.isEmpty()) {
+            System.out.println("Riwayat pembelian tiket kosong.");
+        } else {
+            System.out.println("Riwayat Pembelian Tiket:");
+            System.out.println();
+            for (int i = 0; i < riwayatTiket.size(); i++) {
+                Tiket tiket = riwayatTiket.get(i);
+                System.out.println("Konser: " + tiket.getNamaKonser());
+                System.out.println("Jenis Tiket: " + tiket.getJenis());
+                System.out.println("Harga Tiket: Rp " + tiket.getHarga());
+                System.out.println("Jumlah Tiket: " + tiket.getJumlah());
+                System.out.println("Total Harga: Rp " + (tiket.getHarga() * tiket.getJumlah()));
+                System.out.println("------------------------------");
+                
+            }
+        }
     }
 
     public void konseran() {
@@ -252,6 +265,19 @@ public class Jalankan {
         JKT_48_12_Tahun_Aniversary.tambahTiket("2.VIP", 100000, 30);
         JKT_48_12_Tahun_Aniversary.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(JKT_48_12_Tahun_Aniversary);
+        
+        Konser Opick = new Konser("3. Opick - Bagaimana Meningkatkan iman agar dekat dengan tuhan");
+        Opick.tambahTiket("1.Reguler", 50000, 50);
+        Opick.tambahTiket("2.VIP", 100000, 30);
+        Opick.tambahTiket("3.VVIP", 150000, 20);
+        daftarKonser.add(Opick);
+        
+        Konser Habib_Syech = new Konser("3. Habib Syech - berkah sholawat tahun baru cerah");
+        Habib_Syech.tambahTiket("1.Reguler", 50000, 50);
+        Habib_Syech.tambahTiket("2.VIP", 100000, 30);
+        Habib_Syech.tambahTiket("3.VVIP", 150000, 20);
+        daftarKonser.add(Habib_Syech);
+        
         // opsi untuk keluar
         daftarKonser.add(new Konser("0. Keluar"));
         // Tambahkan konser lain jika diperlukan
@@ -285,21 +311,23 @@ public class Jalankan {
                             + tiket.getJumlah() + ")");
                 }
 
+                // System.out.println();
+                // System.out.print("Pilih jenis tiket (0-" + daftarTiketKonser.size() + ") : ");
+                // System.out.println();
+                
+                
                 System.out.println("0. Tidak beli tiket");
                 System.out.println();
-                System.out.print("Pilih jenis tiket (0-" + daftarTiketKonser.size() + ") : ");
-                int pilihanTiketU = input.nextInt();
+                System.out.print("Pilih jenis tiket (1-" + daftarTiketKonser.size() + ") : ");
+                int pilihanTiket = input.nextInt();
                 System.out.println();
 
+                int pilihanTiketU = input.nextInt();
                 if (pilihanTiketU == 0) {
                     System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
                     break; // Keluar dari loop jika pilihan 0
                 }
 
-                System.out.println();
-                System.out.print("Pilih jenis tiket (1-" + daftarTiketKonser.size() + ") : ");
-                int pilihanTiket = input.nextInt();
-                System.out.println();
 
                 if (pilihanTiket >= 1 && pilihanTiket <= daftarTiketKonser.size()) {
                     Tiket tiketPilihan = daftarTiketKonser.get(pilihanTiket - 1);
@@ -397,6 +425,7 @@ public class Jalankan {
 
             System.out.print("\nPilihan anda :");
             pilihanUser = input.nextLine();
+            System.out.println();
 
             switch (pilihanUser) {
                 case "1":
@@ -414,7 +443,7 @@ public class Jalankan {
                     break;
                 case "3":
                     System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-                    // riwayat pembelian tiket konser
+                    riwayat();
                     break;
                 case "0":
                     System.out.println("0. Menutup Aplikasi");
@@ -433,7 +462,8 @@ public class Jalankan {
 
             yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
             if (!yakin) {
-                System.out.println("Menutup aplikasi");
+                System.out.println("\nTerimakasih atas Kunjungan anda. :) \n");
+                System.out.print("Menutup aplikasi");
                 loadingMessage();
                 pilihan = false;
             }
