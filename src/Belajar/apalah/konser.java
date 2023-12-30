@@ -130,3 +130,91 @@ class User {
         return username;
     }
 }
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class NamaKelasAnda {
+    // Metode dan atribut yang sudah ada di sini...
+
+    public void login() throws IOException {
+        Scanner input = new Scanner(System.in);
+
+        // Inisialisasi ArrayList untuk menyimpan data pengguna
+        ArrayList<User> userDatabase = new ArrayList<>();
+        userDatabase.add(new User("user1", "USR1", "customer"));
+        userDatabase.add(new User("admin1", "cok", "admin"));
+
+        boolean loginBerhasil = false;
+        int percobaanLogin = 0;
+
+        while (!loginBerhasil) {
+            clearScreen();
+            System.out.println("\t---------------------------------------------------------");
+            System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER KELOMPOK 4 <---<");
+            System.out.println("\t---------------------------------------------------------");
+            Pembuka.tampilkanIsiFile("src\\Project1\\RevisiProject\\JanganBesar\\Muqodimah.txt");
+
+            // Loop untuk meminta ulang input username dan password jika login gagal
+            System.out.print("Masukkan username: ");
+            String inputUsername = input.nextLine();
+
+            System.out.print("Masukkan password: ");
+            String inputPassword = input.nextLine();
+
+            // Proses login
+            for (User user : userDatabase) {
+                if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
+                    System.out.println("\n[ Login berhasil ]");
+                    if (user.getRole().equals("admin")) {
+                        Data.showMenuAdmin();
+                    } else if (user.getRole().equals("customer")) {
+                        displayCustomerMenu();
+                    }
+
+                    loginBerhasil = true;
+                }
+            }
+
+            if (!loginBerhasil) {
+                percobaanLogin++;
+                System.out.println("\n[ Login gagal ]\n");
+                System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
+
+                if (percobaanLogin < 3) {
+                    System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
+                    String cobaLagi = input.nextLine().toLowerCase();
+                    System.out.println();
+
+                    if (!cobaLagi.equals("ya")) {
+                        System.out.println("Terima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                        System.out.print("Sedang keluar...");
+
+                        // Implementasi loading sebelum keluar
+                        for (int i = 0; i < 5; i++) {
+                            try {
+                                Thread.sleep(1000); // Menunggu 0.5 detik
+                                System.out.print(".");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        // Menampilkan pesan selesai keluar
+                        System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                        lihatRiwayatPembelian();
+                        CloseAPK();
+                        System.exit(0);
+                    }
+                } else {
+                    System.out.println("Terlalu banyak percobaan login. Keluar...");
+                    System.exit(0);
+                }
+            }
+        }
+    }
+
+    // Metode-metode lainnya di sini...
+}

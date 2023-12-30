@@ -44,7 +44,6 @@ public class Data {
     // ini buat user yaa...
     public static void showMenuAdmin() {
         Jalankan.displayAdminMenu();
-        System.out.println("\n[ Login Berhasil. . .]\n");
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
 
         Concert concert = new Concert(50); // Jumlah Tiket Awal
@@ -56,7 +55,8 @@ public class Data {
             System.out.println("1. Tambahkan Tiket");
             System.out.println("2. Kurangi Tiket");
             System.out.println("3. Cek Tiket Yang Tersedia");
-            System.out.println("4. Keluar\n");
+            System.out.println("4. Logout");
+            System.out.println("0. Keluar dari aplikasi\n");
             System.out.print("Pilih Salah Satu Menu: ");
             int choice = scanner.nextInt();
             System.out.println();
@@ -96,9 +96,13 @@ public class Data {
 
                     // // Menampilkan pesan selesai keluar
                     // System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
-                    // CloseAPK();
-                    // System.exit(0);
                     break;
+                    case 0 :
+                    System.out.println("0. Menutup Apliksai\n");
+                    System.out.print("sedang menutup aplikasi . . .");
+                    loadingMessage();
+                    CloseAPK();
+                    System.exit(0);
 
                 default:
                     System.out.println("Pilihan Invalid, Silahkan Pilih Option Yang Ada.");
@@ -121,4 +125,17 @@ public class Data {
 
     }
 
+    public static void loadingMessage() {
+        try {
+            // Simulate loading by printing dots with a delay
+            for (int i = 0; i < 3; i++) {
+                System.out.print(".");
+                Thread.sleep(1000); // Sleep for 1 second
+            }
+            System.out.println();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

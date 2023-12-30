@@ -120,16 +120,13 @@ public class Jalankan {
         userDatabase.add(new User("admin1", "cok", "admin"));
         
         boolean loginBerhasil = false;
+        int percobaanLogin = 0;
         while (!loginBerhasil) {
         clearScreen();
         System.out.println("\t---------------------------------------------------------");
         System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
         System.out.println("\t---------------------------------------------------------");
         Pembuka.tampilkanIsiFile("src\\Project1\\RevisiProject\\JanganBesar\\Muqodimah.txt");
-
-
-
-        // Loop untuk meminta ulang input username dan password jika login gagal
 
         // Loop untuk meminta ulang input username dan password jika login gagal
             System.out.print("Masukkan username: ");
@@ -141,45 +138,56 @@ public class Jalankan {
             // Proses login
             for (User user : userDatabase) {
                 if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
+                    System.out.println("\n[ Login berhasil ]");
                     if (user.getRole().equals("admin")) {
                         Data.showMenuAdmin();
                     } else if (user.getRole().equals("customer")) {
                         displayCustomerMenu();
-        
-                    } else {
-                        System.out.println("\n[ Login gagal ]\n");
-                        System.out.println("Masukkan username dan pasword dengan benar.! \n");
-                        System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
-                        String cobaLagi = input.nextLine().toLowerCase();
-                        System.out.println();
-        
-                        if (!cobaLagi.equals("ya")) {
-                            System.out.println("Terima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
-                            System.out.print("Sedang keluar...");
-        
-                            // Implementasi loading sebelum keluar
-                            for (int i = 0; i < 5; i++) {
-                                try {
-                                    Thread.sleep(1000); // Menunggu 0.5 detik
-                                    System.out.print(".");
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-        
-                            // Menampilkan pesan selesai keluar
-                            System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
-                            lihatRiwayatPembelian();
-                            CloseAPK();
-                            System.exit(0);
-                            break;
-                        }
                     }
+
+                    loginBerhasil = true;
+                }
+            }
+                    
+             if (!loginBerhasil) {
+                percobaanLogin++;
+                System.out.println("\n[ Login gagal ]\n");
+                System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
+
+                if (percobaanLogin < 3) {
+                    System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
+                    String cobaLagi = input.nextLine().toLowerCase();
+                    System.out.println();
+
+                    if (!cobaLagi.equals("ya")) {
+                        System.out.println("Terima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                        System.out.print("Sedang keluar...");
+
+                        // Implementasi loading sebelum keluar
+                        for (int i = 0; i < 5; i++) {
+                            try {
+                                Thread.sleep(1000); // Menunggu 0.5 detik
+                                System.out.print(".");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        // Menampilkan pesan selesai keluar
+                        System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                        lihatRiwayatPembelian();
+                        CloseAPK();
+                        System.exit(0);
+                    }
+                } else {
+                    System.out.println("Terlalu banyak percobaan login. Keluar...");
+                    System.exit(0);
+                }
                 }
             }
 
         }
-    }
+    
 
     ArrayList<Tiket> riwayatTiket = new ArrayList<>();
 
@@ -376,7 +384,8 @@ public class Jalankan {
             System.out.println("1. Lihat jadwal event Konser");
             System.out.println("2. beli Tiket Konser");
             System.out.println("3. Lihat riwayat pembelian Tiket Konser");
-            System.out.println("0. Logout");
+            System.out.println("4. Logout");
+            System.out.println("0. Keluar aplikasi");
 
             System.out.print("\nPilihan anda :");
             pilihanUser = input.nextLine();
@@ -400,7 +409,7 @@ public class Jalankan {
                     System.out.println("3. Lihat riwayat pembelian Tiket Konser");
                     riwayat();
                     break;
-                case "0":
+                case "4":
                     pilihan = false;
                     // System.out.println("0. Menutup Aplikasi");
                     // System.out.println();
@@ -410,6 +419,12 @@ public class Jalankan {
                     // CloseAPK();
                     // System.exit(0);
                     break;
+                case "0":
+                    System.out.println("0. Menutup Apliksai\n");
+                    System.out.print("sedang menutup aplikasi . . .");
+                    loadingMessage();
+                    CloseAPK();
+                    System.exit(0);
 
                 default:
                     System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2] : ");
