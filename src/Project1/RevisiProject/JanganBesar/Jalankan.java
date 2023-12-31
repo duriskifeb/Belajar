@@ -138,7 +138,7 @@ public class Jalankan {
             // Proses login
             for (User user : userDatabase) {
                 if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
-                    System.out.println("\n[ Login berhasil ]");
+                    System.out.println("\n[ Login berhasil ]\n");
                     if (user.getRole().equals("admin")) {
                         Data.showMenuAdmin();
                     } else if (user.getRole().equals("customer")) {
@@ -379,6 +379,8 @@ public class Jalankan {
         boolean yakin = true;
         String pilihanUser;
 
+        System.out.println("---o0 Selamat datang di menu admin 0o--- ");
+
         while (pilihan) {
             System.out.println("\nMenu customer : ");
             System.out.println("1. Lihat jadwal event Konser");
@@ -421,7 +423,7 @@ public class Jalankan {
                     break;
                 case "0":
                     System.out.println("0. Menutup Apliksai\n");
-                    System.out.print("sedang menutup aplikasi . . .");
+                    System.out.print("sedang menutup aplikasi ");
                     loadingMessage();
                     CloseAPK();
                     System.exit(0);
@@ -447,7 +449,7 @@ public class Jalankan {
             // Simulate loading by printing dots with a delay
             for (int i = 0; i < 3; i++) {
                 System.out.print(".");
-                Thread.sleep(1000); // Sleep for 1 second
+                Thread.sleep(500); // Sleep for 1 second
             }
             System.out.println();
         } catch (InterruptedException e) {
@@ -609,35 +611,5 @@ public class Jalankan {
             System.err.println("tidak bisa clear screen");
         }
     }
-
-    class Concert {
-        private int availableTickets;
-
-        public Concert(int initialTickets) {
-            this.availableTickets = initialTickets;
-        }
-
-        public int getAvailableTickets() {
-            return availableTickets;
-        }
-
-        public void increaseTickets(int amount) {
-            if (amount > 0) {
-                availableTickets += amount;
-                System.out.println(amount + " tiket ditambahkan. Total tiket adalah: " + availableTickets);
-            } else {
-                System.out.println("Input tidak valid.");
-            }
-        }
-
-        public void decreaseTickets(int amount) {
-            if (amount > 0 && amount <= availableTickets) {
-                availableTickets -= amount;
-                System.out.println(amount + " tiket dihapus. Total tiket yang tersedia: " + availableTickets);
-            } else {
-                System.out.println(
-                        "Jumlah tiket yang akan dihapus tidak valid atau tiket yang tersedia tidak mencukupi.");
-            }
-        }
-    }
 }
+

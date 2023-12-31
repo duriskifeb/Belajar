@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import Belajar.apalah.konser;
 import Project1.TugasBesar.LebihBesar.Tubes;
 
 import Project1.RevisiProject.JanganBesar.*;
@@ -63,9 +62,9 @@ public class Data {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Nama - nama konser : ");
                     System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket : ");
                     int addTickets = scanner.nextInt();
+                    System.out.println();
                     concert.increaseTickets(addTickets);
                     System.out.println();
                     break;
@@ -99,7 +98,7 @@ public class Data {
                     break;
                     case 0 :
                     System.out.println("0. Menutup Apliksai\n");
-                    System.out.print("sedang menutup aplikasi . . .");
+                    System.out.print("sedang menutup aplikasi ");
                     loadingMessage();
                     CloseAPK();
                     System.exit(0);
