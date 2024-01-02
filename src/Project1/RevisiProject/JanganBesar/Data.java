@@ -44,6 +44,7 @@ public class Data {
     // ini buat user yaa...
     public void showMenuAdmin(ArrayList<Konser> daftarKonser) {
     ArrayList<Konser> dk = daftarKonser;
+    
 
         Jalankan.displayAdminMenu();
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
@@ -86,11 +87,11 @@ public class Data {
                             // System.out.println();
                             System.out.print(dk.get(i). getDaftarTiket().get(j).getJenis() + " Jumlah Tiket: "+  +dk.get(i).getDaftarTiket().get(j).getJumlah());
                             System.out.println();
-                            System.out.println("==========================");
+                            System.out.println();
                         }
                     }
                     break;
-
+                    
                 case 4:
                 loop = false;
                     // System.out.print("Sedang keluar...");
@@ -109,7 +110,6 @@ public class Data {
                     // System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
                     break;
                     case 0 :
-                    System.out.println("0. Menutup Apliksai\n");
                     System.out.print("sedang menutup aplikasi ");
                     loadingMessage();
                     CloseAPK();
@@ -141,7 +141,7 @@ public class Data {
             // Simulate loading by printing dots with a delay
             for (int i = 0; i < 3; i++) {
                 System.out.print(".");
-                Thread.sleep(1000); // Sleep for 1 second
+                Thread.sleep(500); // Sleep for 1 second
             }
             System.out.println();
         } catch (InterruptedException e) {

@@ -199,7 +199,7 @@ public class Jalankan {
              if (!loginBerhasil) {
                 percobaanLogin++;
                 System.out.println("\n[ Login gagal ]\n");
-                System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
+                System.out.println("Username atau password salah, Mohon Masukkan dengan benar. Percobaan: " + percobaanLogin + "\n");
 
                 if (percobaanLogin < 3) {
                     System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
@@ -213,7 +213,7 @@ public class Jalankan {
                         // Implementasi loading sebelum keluar
                         for (int i = 0; i < 5; i++) {
                             try {
-                                Thread.sleep(1000); // Menunggu 0.5 detik
+                                Thread.sleep(500); // Menunggu 0.5 detik
                                 System.out.print(".");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -227,7 +227,8 @@ public class Jalankan {
                         System.exit(0);
                     }
                 } else {
-                    System.out.println("Terlalu banyak percobaan login. Keluar...");
+                    System.out.println("[ MAAF ]");
+                    System.out.println("Terlalu banyak percobaan login. Keluar...\n");
                     System.exit(0);
                 }
                 }
@@ -246,11 +247,11 @@ public class Jalankan {
             System.out.println();
             for (int i = 0; i < riwayatTiket.size(); i++) {
                 Tiket tiket = riwayatTiket.get(i);
-                System.out.println("Konser: " + tiket.getNamaKonser());
-                System.out.println("Jenis Tiket: " + tiket.getJenis());
-                System.out.println("Harga Tiket: Rp " + tiket.getHarga());
-                System.out.println("Jumlah Tiket: " + tiket.getJumlah());
-                System.out.println("Total Harga: Rp " + (tiket.getHarga() * tiket.getJumlah()));
+                System.out.println("Konser       : " + tiket.getNamaKonser());
+                System.out.println("Jenis Tiket  : " + tiket.getJenis());
+                System.out.println("Harga Tiket  : Rp " + tiket.getHarga());
+                System.out.println("Jumlah Tiket : " + tiket.getJumlah());
+                System.out.println("Total Harga  : Rp " + (tiket.getHarga() * tiket.getJumlah()));
                 System.out.println("------------------------------");
 
             }
@@ -262,7 +263,7 @@ public class Jalankan {
         Scanner input = new Scanner(System.in);
 
         do {
-            System.out.println("Beli Tiket Konser:");
+            System.out.println(" Menu Beli Tiket Konser : \n");
             for (int i = 0; i < daftarKonser.size(); i++) {
                 System.out.println(daftarKonser.get(i).getNamaKonser());
             }
@@ -272,7 +273,7 @@ public class Jalankan {
             int pilihanKonser = input.nextInt();
 
             if (pilihanKonser == 0) {
-                System.out.println("Terima kasih. Selamat tinggal!");
+                System.out.println("\nTerima kasih. Selamat tinggal! \n");
                 break; // Keluar dari loop jika pilihan 0
             }
 
@@ -389,7 +390,7 @@ public class Jalankan {
         boolean yakin = true;
         String pilihanUser;
 
-        System.out.println("---o0 Selamat datang di menu admin 0o--- ");
+        System.out.println("---o0 Selamat datang di menu user 0o--- ");
 
         while (pilihan) {
             System.out.println("\nMenu customer : ");
@@ -567,7 +568,7 @@ public class Jalankan {
             return;
         }
 
-        System.out.println("\n| No |\t     Nama Konser                 |\tTempat        |\t     Waktu       ");
+        System.out.println("\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |\t     Waktu       ");
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
 
