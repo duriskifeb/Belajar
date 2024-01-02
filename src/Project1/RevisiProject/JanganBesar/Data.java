@@ -1,6 +1,7 @@
 package Project1.RevisiProject.JanganBesar;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -41,11 +42,13 @@ class Concert {
 public class Data {
 
     // ini buat user yaa...
-    public static void showMenuAdmin() {
+    public void showMenuAdmin(ArrayList<Konser> daftarKonser) {
+    ArrayList<Konser> dk = daftarKonser;
+
         Jalankan.displayAdminMenu();
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
 
-        Concert concert = new Concert(50); // Jumlah Tiket Awal
+        Concert concert = new Concert(0); // Jumlah Tiket Awal
         
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -77,6 +80,15 @@ public class Data {
 
                 case 3:
                     System.out.println("\nTiket Yang Tersedia : " + concert.getAvailableTickets());
+                    for(int i = 0; i<dk.size();i++){
+                        System.out.println(dk.get(i).getNamaKonser());
+                        for(int j = 0; j < dk.get(i).getDaftarTiket().size(); j++){
+                            // System.out.println();
+                            System.out.print(dk.get(i). getDaftarTiket().get(j).getJenis() + " Jumlah Tiket: "+  +dk.get(i).getDaftarTiket().get(j).getJumlah());
+                            System.out.println();
+                            System.out.println("==========================");
+                        }
+                    }
                     break;
 
                 case 4:
