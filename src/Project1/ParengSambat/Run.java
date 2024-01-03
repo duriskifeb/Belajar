@@ -103,16 +103,15 @@ class Konser {
 }
 
 public class Run {
-    ArrayList<User> userDatabase = new ArrayList<>();
-    ArrayList<Konser> daftarKonser = new ArrayList<>();
+    ArrayList<User> userDatabase = new ArrayList<>(); //untuk menyimpan data Admin dan Customer
+    ArrayList<Konser> daftarKonser = new ArrayList<>();// untuk menyimp
     
     public static void main(String[] args) throws IOException {
         Run run = new Run();
-        run.addUser();
-        run.addKonser();
-        // ArrayList<Konser> daftarKonser = run.getDaftarKonser();
-        // ArrayList<Tiket> riwayatTiket = run.getDaftar();
+        run.addUser(); //memanggil username dan password di database
+        run.addKonser();// memanggil semua menu konser 
 
+        //untuk looping nya login ketika dia gagal memasukkan.!
         while (true) {
             run.login();
         }
@@ -122,10 +121,7 @@ public class Run {
         return daftarKonser;
     }
 
-    // public static ArrayList<Tiket> getDaftar() {// sesuaikan nama
-    //     return riwayatTiket;
-    // }
-
+    //menu konser beserta pembelian
     public void addKonser() {
         Konser Tulus_Album_Manusia = new Konser("1. Tulus - Album Manusia");
         Tulus_Album_Manusia.tambahTiket("1.Reguler", 50000, 50);
@@ -158,6 +154,7 @@ public class Run {
         daftarKonser.add(Habib_Syech);
     }
 
+    //buat login = admin dan Customer
     public void addUser() {
         userDatabase.add(new User("2", "2", "customer"));
         userDatabase.add(new User("1", "1", "admin"));
@@ -166,11 +163,6 @@ public class Run {
     public void login() throws IOException {
         Scanner input = new Scanner(System.in);
         
-        // Inisialisasi ArrayList untuk menyimpan data user
-        // ArrayList<User> userDatabase = new ArrayList<>();
-        // userDatabase.add(new User("2", "2", "customer"));
-        // userDatabase.add(new User("1", "1", "admin"));
-        
         boolean loginBerhasil = false;
         int percobaanLogin = 0;
         while (!loginBerhasil) {
@@ -178,7 +170,7 @@ public class Run {
             System.out.println("\t---------------------------------------------------------");
             System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
             System.out.println("\t---------------------------------------------------------");
-            Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt");
+            Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt"); //buat manggil Muqodimah.txt 
 
             // Loop untuk meminta ulang input username dan password jika login gagal
             System.out.print("Masukkan username: ");
@@ -242,7 +234,7 @@ public class Run {
         
     }
     
-    ArrayList<Tiket> sudahTiket = new ArrayList<>();
+    ArrayList<Tiket> sudahTiket = new ArrayList<>(); //untuk database nya riwayat 
     public void riwayat() {
         if (sudahTiket.isEmpty()) {
             System.out.println("Riwayat pembelian tiket kosong.");
@@ -262,7 +254,7 @@ public class Run {
         }
     }
 
-    public void viewKonser(ArrayList<Konser> daftarKonser) {
+    public void viewKonser(ArrayList<Konser> daftarKonser) { //untuk nampilin nama-nama konser di admin
         System.out.println("Daftar Konser:");
 
         for (Konser konser : daftarKonser) {
@@ -280,16 +272,12 @@ public class Run {
 
     public void konseran() {
         // Inisialisasi data konser
-
-        // Opsi "0" sebagai keluar dari
-
-        // opsi untuk keluar
         daftarKonser.add(new Konser("0. Keluar"));
-        // Tambahkan konser lain jika diperlukan
 
         // Input pilihan konser
         Scanner input = new Scanner(System.in);
 
+        //Proses pembelian tiket konser
         do {
             System.out.println("Beli Tiket Konser:");
             for (int i = 0; i < daftarKonser.size(); i++) {
@@ -314,20 +302,7 @@ public class Run {
                     Tiket tiket = riwayatTiket.get(i);
                     System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
                             + tiket.getJumlah() + ")");
-
-                    // int tiketTambah = tiket.getJumlah();
-
-                    // int coba = tiketTambah + 10;
-
-                    // System.out.println(coba);
-
-                    // tiket.setJumah(coba);
                 }
-
-                // System.out.println();
-                // System.out.print("Pilih jenis tiket (0-" + daftarTiketKonser.size() + ") :
-                // ");
-                // System.out.println();
 
                 System.out.println("0. Tidak beli tiket");
                 System.out.println();
@@ -335,10 +310,12 @@ public class Run {
                 int pilihanTiket = input.nextInt();
                 System.out.println();
 
-                if (pilihanTiket == 0) {
-                    System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                    break; // Keluar dari loop jika pilihan 0
-                }
+                // if (pilihanTiket == 0) {
+                //     System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                //     break; // Keluar dari loop jika pilihan 0
+                // }
+
+                //ini ke doble hapus aja . . . 
 
                 if (pilihanTiket >= 1 && pilihanTiket <= riwayatTiket.size()) {
                     Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
@@ -376,7 +353,7 @@ public class Run {
                             System.out.println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - "
                                     + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
 
-                            System.out.print("\nApakah Anda ingin membeli tiket konser lain? (ya/tidak) : ");
+                            System.out.print("\nApakah Anda ingin membeli tiket konser lain? (ya/tidak) : "); //loop untuk beli tiket 
                             String lanjutBeli = input.next().toLowerCase();
                             System.out.println();
 
@@ -419,17 +396,17 @@ public class Run {
         displayCustomerMenu();
     }
 
+    //untuk customer nya.
     public void displayCustomerMenu() {
         Scanner input = new Scanner(System.in);
-        // int pilihan = 0;
         boolean pilihan = true;
         boolean yakin = true;
         String pilihanUser;
 
-        System.out.println("---o0 Selamat datang di menu admin 0o--- ");
+        System.out.println("---o0 Selamat datang di menu Customer 0o--- ");
 
         while (pilihan) {
-            System.out.println("\nMenu customer : ");
+            System.out.println("\nMenu customer : \n");
             System.out.println("1. Lihat jadwal event Konser");
             System.out.println("2. beli Tiket Konser");
             System.out.println("3. Lihat riwayat pembelian Tiket Konser");
@@ -460,13 +437,6 @@ public class Run {
                     break;
                 case "4":
                     pilihan = false;
-                    // System.out.println("0. Menutup Aplikasi");
-                    // System.out.println();
-                    // System.out.print("Menutup aplikasi");
-                    // loadingMessage();
-                    // lihatRiwayatPembelian();
-                    // CloseAPK();
-                    // System.exit(0);
                     break;
                 case "0":
                     System.out.println("0. Menutup Apliksai\n");
@@ -479,17 +449,13 @@ public class Run {
                     System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2] : ");
                     break;
             }
-
-            // yakin = getYesorNo("Apakah anda ingin melanjutkan.?");
-            // if (!yakin) {
-            // System.out.println("\nTerimakasih atas Kunjungan anda. :) \n");
-            // System.out.print("Menutup aplikasi");
-            // loadingMessage();
-            // pilihan = false;
-            // }
         }
-
     }
+
+
+
+    // DI BAWAH INI UNTUK FITUR - FITUR DALAM APLIKASI . !!!
+
 
     private void loadingMessage() {
         try {
@@ -596,7 +562,7 @@ public class Run {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt");
+            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt"); // untuk menampilkan jadwal konser tiket di Info_konser.txt
             bufferInput = new BufferedReader(fileInput);
         } catch (Exception e) {
             System.err.println("Database Tidak ditemukan");
@@ -629,7 +595,7 @@ public class Run {
                 "----------------------------------------------------------------------------------------------------------");
     }
 
-    public static void tampilkanIsiFile(String filePath) throws IOException {
+    public static void tampilkanIsiFile(String filePath) throws IOException { //untuk menampilkan isi dari file txt.
         // Gunakan Paths.get() untuk membuat objek Path dari path file
         Path path = Paths.get(filePath);
 

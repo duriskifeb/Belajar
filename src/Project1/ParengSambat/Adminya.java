@@ -86,25 +86,10 @@ public class Adminya {
                 case 3:
                     Run cuy = new Run();
                     cuy.viewKonser(dataKonser);
-                    
                     break;
 
                 case 4:
                     loop = false;
-                    // System.out.print("Sedang keluar...");
-
-                    // // Implementasi loading sebelum keluar
-                    // for (int i = 0; i < 5; i++) {
-                    // try {
-                    // Thread.sleep(1000); // Menunggu 0.5 detik
-                    // System.out.print(".");
-                    // } catch (InterruptedException e) {
-                    // e.printStackTrace();
-                    // }
-                    // }
-
-                    // // Menampilkan pesan selesai keluar
-                    // System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :)
                     // ");
                     break;
                 case 0:
@@ -121,14 +106,13 @@ public class Adminya {
         }
     }
 
+    // ini untuk menambahkan tiket customer
     public void tambahTiket() {
-        Run run = new Run();
+        Run run = new Run(); //untuk memanggil customer dengan nama file Run
         ArrayList<Konser> daftarKonser = dataKonser;
         ArrayList<Tiket> riwayatTiket = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
-
-        // Your existing code here...
 
         // Ambil pilihan konser dari pengguna
         System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
@@ -202,6 +186,8 @@ public class Adminya {
         }
     }
 
+
+    //ini untuk mengurangi tiket customer
     public void kurangTiket() {
         Run ing = new Run();
         ArrayList<Konser> daftarKonser = dataKonser;
@@ -209,7 +195,6 @@ public class Adminya {
 
         Scanner input = new Scanner(System.in);
 
-        // Your existing code here...
 
         // Ambil pilihan konser dari pengguna
         System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
@@ -283,10 +268,7 @@ public class Adminya {
         }
     }
 
-    public static void showMenuCustomer() {
-
-    }
-
+    //untuk menutup Aplikasi
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -296,6 +278,8 @@ public class Adminya {
         }
     }
 
+
+    //implementasi loading ketika aplikasi keluar
     public static void loadingMessage() {
         try {
             // Simulate loading by printing dots with a delay
