@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import Project1.RevisiProject.JanganBesar.Pembuka;
+import Project1.ParengSambat.Pembuka;
 
 class User {
     private String username;

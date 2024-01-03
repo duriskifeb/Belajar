@@ -1,6 +1,5 @@
-package Project1.RevisiProject.JanganBesar;
+package Project1.ParengSambat;
 
-package JanganBesar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+import Project1.RevisiProject.JanganBesar.*;
+
+import Sekedar.login;
 
 class User {
     private String username;
@@ -52,10 +55,6 @@ class Tiket {
         this.jumlah = jumlah;
     }
 
-    public void setJumah(int jumlah) {
-        this.jumlah = jumlah;
-    }
-
     public String getJenis() {
         return jenis;
     }
@@ -70,6 +69,10 @@ class Tiket {
 
     public int getJumlah() {
         return jumlah;
+    }
+
+    public void setStok(int StokBaru){
+        this.jumlah = StokBaru;
     }
 
     public void kurangiJumlah(int jumlah) {
@@ -103,33 +106,24 @@ class Konser {
         return daftarTiket;
     }
 }
-//ajdkyflo 
-public class Dito {
-    ArrayList<User> userDatabase = new ArrayList<>();
-    static ArrayList<Konser> daftarKonser = new ArrayList<>();
-    
+
+public class Run {
+          // Inisialisasi data konser
+    ArrayList<Konser> daftarKonser = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        Dito run = new Dito();
-        run.addUser();
-        run.addKonser();
-        ArrayList<Konser> daftarKonser = run.getDaftarKonser();
-        ArrayList<Tiket> riwayatTiket = run.getDaftar();
-
+  
+        
+        Run run = new Run();
         while (true) {
             run.login();
         }
+
     }
 
-    public static ArrayList<Konser> getDaftarKonser() {
-        return daftarKonser;
-    }
-
-    public static ArrayList<Tiket> getDaftar() {// sesuaikan nama
-        return riwayatTiket;
-    }
-
-    public void addKonser() {
+    public void login() throws IOException {
+        
+// Opsi "0" sebagai keluar dari
         Konser Tulus_Album_Manusia = new Konser("1. Tulus - Album Manusia");
         Tulus_Album_Manusia.tambahTiket("1.Reguler", 50000, 50);
         Tulus_Album_Manusia.tambahTiket("2.VIP", 100000, 30);
@@ -159,31 +153,29 @@ public class Dito {
         Habib_Syech.tambahTiket("2.VIP", 100000, 30);
         Habib_Syech.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Habib_Syech);
-    }
 
-    public void addUser() {
-        userDatabase.add(new User("2", "2", "customer"));
-        userDatabase.add(new User("1", "1", "admin"));
-    }
+        // opsi untuk keluar
+        daftarKonser.add(new Konser("0. Keluar"));
+        // Tambahkan konser lain jika diperlukan
 
-    public void login() throws IOException {
+
         Scanner input = new Scanner(System.in);
 
         // Inisialisasi ArrayList untuk menyimpan data user
-        // ArrayList<User> userDatabase = new ArrayList<>();
-        // userDatabase.add(new User("2", "2", "customer"));
-        // userDatabase.add(new User("1", "1", "admin"));
-
+        ArrayList<User> userDatabase = new ArrayList<>();
+        userDatabase.add(new User("user1", "USR1", "customer"));
+        userDatabase.add(new User("admin1", "cok", "admin"));
+        
         boolean loginBerhasil = false;
         int percobaanLogin = 0;
         while (!loginBerhasil) {
-            clearScreen();
-            System.out.println("\t---------------------------------------------------------");
-            System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
-            System.out.println("\t---------------------------------------------------------");
-            // Pembuka.tampilkanIsiFile("src\\Project1\\RevisiProject\\JanganBesar\\Muqodimah.txt");
+        clearScreen();
+        System.out.println("\t---------------------------------------------------------");
+        System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
+        System.out.println("\t---------------------------------------------------------");
+        Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt");
 
-            // Loop untuk meminta ulang input username dan password jika login gagal
+        // Loop untuk meminta ulang input username dan password jika login gagal
             System.out.print("Masukkan username: ");
             String inputUsername = input.nextLine();
 
@@ -195,7 +187,8 @@ public class Dito {
                 if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
                     System.out.println("\n[ Login berhasil ]\n");
                     if (user.getRole().equals("admin")) {
-                        adminData.showMenuAdmin();
+                        Adminya admin = new Adminya();
+                        admin.showMenuAdmin(daftarKonser);
                     } else if (user.getRole().equals("customer")) {
                         displayCustomerMenu();
                     }
@@ -203,11 +196,11 @@ public class Dito {
                     loginBerhasil = true;
                 }
             }
-
-            if (!loginBerhasil) {
+                    
+             if (!loginBerhasil) {
                 percobaanLogin++;
                 System.out.println("\n[ Login gagal ]\n");
-                System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
+                System.out.println("Username atau password salah, Mohon Masukkan dengan benar. Percobaan: " + percobaanLogin + "\n");
 
                 if (percobaanLogin < 3) {
                     System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
@@ -221,7 +214,7 @@ public class Dito {
                         // Implementasi loading sebelum keluar
                         for (int i = 0; i < 5; i++) {
                             try {
-                                Thread.sleep(1000); // Menunggu 0.5 detik
+                                Thread.sleep(500); // Menunggu 0.5 detik
                                 System.out.print(".");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -235,13 +228,17 @@ public class Dito {
                         System.exit(0);
                     }
                 } else {
-                    System.out.println("Terlalu banyak percobaan login. Keluar...");
+                    System.out.println("[ MAAF ]");
+                    System.out.println("Terlalu banyak percobaan login. Keluar...\n");
                     System.exit(0);
                 }
+                }
             }
-        }
 
-    }
+        }
+    
+
+    ArrayList<Tiket> riwayatTiket = new ArrayList<>();
 
     public void riwayat() {
         if (riwayatTiket.isEmpty()) {
@@ -251,47 +248,23 @@ public class Dito {
             System.out.println();
             for (int i = 0; i < riwayatTiket.size(); i++) {
                 Tiket tiket = riwayatTiket.get(i);
-                System.out.println("Konser: " + tiket.getNamaKonser());
-                System.out.println("Jenis Tiket: " + tiket.getJenis());
-                System.out.println("Harga Tiket: Rp " + tiket.getHarga());
-                System.out.println("Jumlah Tiket: " + tiket.getJumlah());
-                System.out.println("Total Harga: Rp " + (tiket.getHarga() * tiket.getJumlah()));
+                System.out.println("Konser       : " + tiket.getNamaKonser());
+                System.out.println("Jenis Tiket  : " + tiket.getJenis());
+                System.out.println("Harga Tiket  : Rp " + tiket.getHarga());
+                System.out.println("Jumlah Tiket : " + tiket.getJumlah());
+                System.out.println("Total Harga  : Rp " + (tiket.getHarga() * tiket.getJumlah()));
                 System.out.println("------------------------------");
 
             }
         }
     }
 
-    public void viewKonser(ArrayList<Konser> daftarKonser) {
-        System.out.println("Daftar Konser:");
-
-        for (Konser konser : daftarKonser) {
-            System.out.println(konser.getNamaKonser());
-            System.out.println("Daftar Tiket:");
-            for (Tiket tiket : konser.getDaftarTiket()) {
-                System.out
-                        .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
-            }
-            System.out.println("================================");
-        }
-
-        System.out.println("0. Keluar");
-    }
-
     public void konseran() {
-        // Inisialisasi data konser
-
-        // Opsi "0" sebagai keluar dari
-
-        // opsi untuk keluar
-        daftarKonser.add(new Konser("0. Keluar"));
-        // Tambahkan konser lain jika diperlukan
-
         // Input pilihan konser
         Scanner input = new Scanner(System.in);
 
         do {
-            System.out.println("Beli Tiket Konser:");
+            System.out.println(" Menu Beli Tiket Konser : \n");
             for (int i = 0; i < daftarKonser.size(); i++) {
                 System.out.println(daftarKonser.get(i).getNamaKonser());
             }
@@ -301,27 +274,19 @@ public class Dito {
             int pilihanKonser = input.nextInt();
 
             if (pilihanKonser == 0) {
-                System.out.println("Terima kasih. Selamat tinggal!");
+                System.out.println("\nTerima kasih. Selamat tinggal! \n");
                 break; // Keluar dari loop jika pilihan 0
             }
 
             if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
                 Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
-                ArrayList<Tiket> riwayatTiket = konserPilihan.getDaftarTiket();
+                ArrayList<Tiket> daftarTiketKonser = konserPilihan.getDaftarTiket();
 
                 System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
-                for (int i = 0; i < riwayatTiket.size(); i++) {
-                    Tiket tiket = riwayatTiket.get(i);
+                for (int i = 0; i < daftarTiketKonser.size(); i++) {
+                    Tiket tiket = daftarTiketKonser.get(i);
                     System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
                             + tiket.getJumlah() + ")");
-
-                    // int tiketTambah = tiket.getJumlah();
-
-                    // int coba = tiketTambah + 10;
-
-                    // System.out.println(coba);
-
-                    // tiket.setJumah(coba);
                 }
 
                 // System.out.println();
@@ -331,7 +296,7 @@ public class Dito {
 
                 System.out.println("0. Tidak beli tiket");
                 System.out.println();
-                System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+                System.out.print("Pilih jenis tiket (1-" + daftarTiketKonser.size() + ") : ");
                 int pilihanTiket = input.nextInt();
                 System.out.println();
 
@@ -340,8 +305,8 @@ public class Dito {
                     break; // Keluar dari loop jika pilihan 0
                 }
 
-                if (pilihanTiket >= 1 && pilihanTiket <= riwayatTiket.size()) {
-                    Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
+                if (pilihanTiket >= 1 && pilihanTiket <= daftarTiketKonser.size()) {
+                    Tiket tiketPilihan = daftarTiketKonser.get(pilihanTiket - 1);
 
                     System.out.println("Stok Tiket    :" + "      o=> " + tiketPilihan.getNamaKonser() + " <=o\n"
                             + tiketPilihan.getJenis() + " tersisa : " + tiketPilihan.getJumlah());
@@ -350,8 +315,6 @@ public class Dito {
                     System.out.print("Masukkan jumlah tiket yang akan dibeli : ");
                     int jumlahBeli = input.nextInt();
                     System.out.println();
-                    int tiketpilihan = tiketPilihan.getJumlah() - jumlahBeli;
-                    tiketPilihan.setJumah(tiketpilihan);
 
                     if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
                         int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
@@ -372,6 +335,7 @@ public class Dito {
                             Tiket tiket = new Tiket(tiketPilihan.getJenis(), tiketPilihan.getNamaKonser(), totalHarga,
                                     jumlahBeli);
                             riwayatTiket.add(tiket);
+
 
                             // Tampilkan stok tiket setelah transaksi
                             System.out.println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - "
@@ -427,7 +391,7 @@ public class Dito {
         boolean yakin = true;
         String pilihanUser;
 
-        System.out.println("---o0 Selamat datang di menu admin 0o--- ");
+        System.out.println("---o0 Selamat datang di menu user 0o--- ");
 
         while (pilihan) {
             System.out.println("\nMenu customer : ");
@@ -597,7 +561,7 @@ public class Dito {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("Downloads\\RevisiProject\\Info_Konser.txt");
+            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt");
             bufferInput = new BufferedReader(fileInput);
         } catch (Exception e) {
             System.err.println("Database Tidak ditemukan");
@@ -605,7 +569,7 @@ public class Dito {
             return;
         }
 
-        System.out.println("\n| No |\t     Nama Konser                 |\tTempat        |\t     Waktu       ");
+        System.out.println("\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |\t     Waktu       ");
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
 
@@ -659,8 +623,6 @@ public class Dito {
             System.err.println("tidak bisa clear screen");
         }
     }
-
-    public static String getJumlah() {
-        return null;
-    }
 }
+
+

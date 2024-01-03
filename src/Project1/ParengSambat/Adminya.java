@@ -1,4 +1,5 @@
-package Project1.RevisiProject.JanganBesar;
+package Project1.ParengSambat;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,14 +40,14 @@ class Concert {
     }
 }
 
-public class Data {
+public class Adminya {
 
     // ini buat user yaa...
     public void showMenuAdmin(ArrayList<Konser> daftarKonser) {
     ArrayList<Konser> dk = daftarKonser;
     
 
-        Jalankan.displayAdminMenu();
+        Run.displayAdminMenu();
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
 
         Concert concert = new Concert(0); // Jumlah Tiket Awal
