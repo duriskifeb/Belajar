@@ -1,20 +1,16 @@
 package Project1.ParengSambat;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import Project1.TugasBesar.LebihBesar.Tubes;
-
-import Project1.RevisiProject.JanganBesar.*;
 
 class Concert {
     private int availableTickets;
 
-    public Concert(int initialTickets) {
-        this.availableTickets = initialTickets;
+    public Concert(int jumlah) {
+        this.availableTickets = jumlah;
     }
 
     public int getAvailableTickets() {
@@ -41,17 +37,15 @@ class Concert {
 }
 
 public class Adminya {
-
+    
+    ArrayList<Konser> dataKonser = new ArrayList<>();
     // ini buat user yaa...
     public void showMenuAdmin(ArrayList<Konser> daftarKonser) {
-    ArrayList<Konser> dk = daftarKonser;
-    
-
+        dataKonser = daftarKonser;
         Run.displayAdminMenu();
         System.out.println("\n--o0 Selamat datang di Ademin 0o--\n");
 
-        Concert concert = new Concert(0); // Jumlah Tiket Awal
-        
+        Concert concert = new Concert(50); // Jumlah Tiket Awal
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
 
@@ -67,50 +61,54 @@ public class Adminya {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket : ");
-                    int addTickets = scanner.nextInt();
-                    System.out.println();
-                    concert.increaseTickets(addTickets);
-                    System.out.println();
+                    // System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket : ");
+                    // int addTickets = scanner.nextInt();
+                    // System.out.println();
+                    // concert.increaseTickets(addTickets);
+                    // System.out.println();
+                    Run run = new Run();
+                    run.viewKonser(dataKonser);
+                    tambahTiket();
+
                     break;
 
                 case 2:
-                    System.out.print("Masukkan Nomor Untuk Mengurangi Jumlah Tiket: ");
-                    int removeTickets = scanner.nextInt();
-                    concert.decreaseTickets(removeTickets);
+                    // System.out.print("Masukkan Nomor Untuk Mengurangi Jumlah Tiket: ");
+                    // int removeTickets = scanner.nextInt();
+                    // concert.decreaseTickets(removeTickets);
+                    Run ing = new Run();
+                    ing.viewKonser(dataKonser);
+                    kurangTiket();
+                    // Jumlah Tiket Awal
+
                     break;
 
                 case 3:
-                    System.out.println("\nTiket Yang Tersedia : " + concert.getAvailableTickets());
-                    for(int i = 0; i<dk.size();i++){
-                        System.out.println(dk.get(i).getNamaKonser());
-                        for(int j = 0; j < dk.get(i).getDaftarTiket().size(); j++){
-                            // System.out.println();
-                            System.out.print(dk.get(i). getDaftarTiket().get(j).getJenis() + " Jumlah Tiket: "+  +dk.get(i).getDaftarTiket().get(j).getJumlah());
-                            System.out.println();
-                            System.out.println();
-                        }
-                    }
-                    break;
+                    Run cuy = new Run();
+                    cuy.viewKonser(dataKonser);
                     
+                    break;
+
                 case 4:
-                loop = false;
+                    loop = false;
                     // System.out.print("Sedang keluar...");
 
                     // // Implementasi loading sebelum keluar
                     // for (int i = 0; i < 5; i++) {
-                    //     try {
-                    //         Thread.sleep(1000); // Menunggu 0.5 detik
-                    //         System.out.print(".");
-                    //     } catch (InterruptedException e) {
-                    //         e.printStackTrace();
-                    //     }
+                    // try {
+                    // Thread.sleep(1000); // Menunggu 0.5 detik
+                    // System.out.print(".");
+                    // } catch (InterruptedException e) {
+                    // e.printStackTrace();
+                    // }
                     // }
 
                     // // Menampilkan pesan selesai keluar
-                    // System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
+                    // System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :)
+                    // ");
                     break;
-                    case 0 :
+                case 0:
+                    System.out.println("0. Menutup Apliksai\n");
                     System.out.print("sedang menutup aplikasi ");
                     loadingMessage();
                     CloseAPK();
@@ -123,10 +121,172 @@ public class Adminya {
         }
     }
 
-    public static void showMenuCustomer() {
-        
+    public void tambahTiket() {
+        Run run = new Run();
+        ArrayList<Konser> daftarKonser = dataKonser;
+        ArrayList<Tiket> riwayatTiket = new ArrayList<>();
+
+        Scanner input = new Scanner(System.in);
+
+        // Your existing code here...
+
+        // Ambil pilihan konser dari pengguna
+        System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
+        int pilihanKonser = input.nextInt();
+
+        if (pilihanKonser == 0) {
+            System.out.println("Terima kasih. Selamat tinggal!");
+            return; // Keluar dari metode jika pilihan 0
+        }
+
+        if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
+            Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
+            riwayatTiket = konserPilihan.getDaftarTiket();
+
+            System.out.println("\nDaftar Tiket untuk => " + konserPilihan.getNamaKonser() + " :\n");
+
+            // Menampilkan dan memperbarui stok tiket
+            for (int i = 0; i < riwayatTiket.size(); i++) {
+                Tiket tiket = riwayatTiket.get(i);
+                System.out
+                        .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
+
+                // Tambah stok tiket
+                int tambahanStok = 10;
+                int stokBaru = tiket.getJumlah() + tambahanStok;
+                tiket.setJumah(stokBaru);
+            }
+
+            // Pilih jenis tiket
+            System.out.println("0. Tidak beli tiket");
+            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+            int pilihanTiket = input.nextInt();
+
+            if (pilihanTiket == 0) {
+                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                return; // Keluar dari metode jika pilihan 0
+            }
+
+            if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
+                konserPilihan = daftarKonser.get(pilihanKonser - 1);
+                riwayatTiket = konserPilihan.getDaftarTiket();
+
+                System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
+                for (int i = 0; i < riwayatTiket.size(); i++) {
+                    Tiket tiket = riwayatTiket.get(i);
+                    System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
+                            + tiket.getJumlah() + ")");
+
+                    int tiketTambah = tiket.getJumlah();
+
+                    int coba = tiketTambah + 10;
+
+                    System.out.println(coba);
+
+                    tiket.setJumah(coba);
+                }
+            }
+
+            System.out.println("0. Tidak beli tiket");
+            System.out.println();
+            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+            pilihanTiket = input.nextInt();
+            System.out.println();
+
+            if (pilihanTiket == 0) {
+                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                return; // Keluar dari loop jika pilihan 0
+            }
+        } else {
+            System.out.println("Pilihan konser tidak valid.");
+        }
     }
-    
+
+    public void kurangTiket() {
+        Run ing = new Run();
+        ArrayList<Konser> daftarKonser = dataKonser;
+        ArrayList<Tiket> riwayatTiket = new ArrayList<>();
+
+        Scanner input = new Scanner(System.in);
+
+        // Your existing code here...
+
+        // Ambil pilihan konser dari pengguna
+        System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
+        int pilihanKonser = input.nextInt();
+
+        if (pilihanKonser == 0) {
+            System.out.println("Terima kasih. Selamat tinggal!");
+            return; // Keluar dari metode jika pilihan 0
+        }
+
+        if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
+            Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
+            riwayatTiket = konserPilihan.getDaftarTiket();
+
+            System.out.println("\nDaftar Tiket untuk => " + konserPilihan.getNamaKonser() + " :\n");
+
+            // Menampilkan dan memperbarui stok tiket
+            for (int i = 0; i < riwayatTiket.size(); i++) {
+                Tiket tiket = riwayatTiket.get(i);
+                System.out
+                        .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
+
+                // Tambah stok tiket
+                int tambahanStok = 10;
+                int stokBaru = tiket.getJumlah() + tambahanStok;
+                tiket.setJumah(stokBaru);
+            }
+
+            // Pilih jenis tiket
+            System.out.println("0. Tidak beli tiket");
+            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+            int pilihanTiket = input.nextInt();
+
+            if (pilihanTiket == 0) {
+                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                return; // Keluar dari metode jika pilihan 0
+            }
+
+            if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
+                konserPilihan = daftarKonser.get(pilihanKonser - 1);
+                riwayatTiket = konserPilihan.getDaftarTiket();
+
+                System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
+                for (int i = 0; i < riwayatTiket.size(); i++) {
+                    Tiket tiket = riwayatTiket.get(i);
+                    System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
+                            + tiket.getJumlah() + ")");
+
+                    int tiketTambah = tiket.getJumlah();
+
+                    int coba = tiketTambah - 10;
+
+                    System.out.println(coba);
+
+                    tiket.setJumah(coba);
+                }
+            }
+
+            System.out.println("0. Tidak beli tiket");
+            System.out.println();
+            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+            pilihanTiket = input.nextInt();
+            System.out.println();
+
+            if (pilihanTiket == 0) {
+                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                return; // Keluar dari loop jika pilihan 0
+            }
+        } else {
+            System.out.println("Pilihan konser tidak valid.");
+        }
+    }
+
+    public static void showMenuCustomer() {
+
+    }
+
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -134,7 +294,6 @@ public class Adminya {
         } catch (Exception e) {
             System.err.println("Terjadi kesalahan: " + e);
         }
-
     }
 
     public static void loadingMessage() {
@@ -149,5 +308,5 @@ public class Adminya {
             e.printStackTrace();
         }
     }
-    
+
 }
