@@ -310,13 +310,6 @@ public class Run {
                 int pilihanTiket = input.nextInt();
                 System.out.println();
 
-                // if (pilihanTiket == 0) {
-                //     System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                //     break; // Keluar dari loop jika pilihan 0
-                // }
-
-                //ini ke doble hapus aja . . . 
-
                 if (pilihanTiket >= 1 && pilihanTiket <= riwayatTiket.size()) {
                     Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
 

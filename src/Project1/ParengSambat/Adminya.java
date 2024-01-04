@@ -61,15 +61,9 @@ public class Adminya {
 
             switch (choice) {
                 case 1:
-                    // System.out.print("Masukkan Nomor Untuk Menambah Jumlah Tiket : ");
-                    // int addTickets = scanner.nextInt();
-                    // System.out.println();
-                    // concert.increaseTickets(addTickets);
-                    // System.out.println();
                     Run run = new Run();
                     run.viewKonser(dataKonser);
                     tambahTiket();
-
                     break;
 
                 case 2:
@@ -228,10 +222,11 @@ public class Adminya {
             System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
             int pilihanTiket = input.nextInt();
 
-            if (pilihanTiket == 0) {
-                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                return; // Keluar dari metode jika pilihan 0
-            }
+            // if (pilihanTiket == 0) {
+            //     System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+            //     return; // Keluar dari metode jika pilihan 0
+            // }
+            // sek bentar.!
 
             if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
                 konserPilihan = daftarKonser.get(pilihanKonser - 1);
