@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Pembuka {
     public static void main(String[] args) {
-        // Tentukan path ke file TXT Anda
-        String filePath = "src\\Project1\\TugasBesar\\JanganBesar\\Muqodimah.txt";
+        // Untuk memanggil file Muqodimah.txt
+        String filePath = "D:\\My Repo\\Belajar\\src\\Project1\\ParengSambat\\Muqodimah.txt";
 
         // Panggil metode untuk membaca dan menampilkan kontennya
         try {
@@ -36,3 +36,35 @@ public class Pembuka {
     }
 }
 
+//penjelasan dari kode di atas.?
+
+//ketika di Main berjalan.?
+
+// Path path = Paths.get(filePath);:                         Membuat objek Path dari alamat file yang diberikan (filePath).
+// List<String> baris = Files.readAllLines(path);:           Membaca semua baris dari file ke dalam objek List<String>.
+// for (String line : baris) { System.out.println(line); }:  Menampilkan setiap baris dari objek List<String> ke konsol.
+
+// package Project1.ParengSambat;: Mendefinisikan package tempat kelas (Pembuka) berada.
+// import java.io.BufferedReader;: Mengimpor kelas BufferedReader dari paket java.io, yang digunakan untuk membaca teks dari suatu input stream.
+// import java.io.FileReader;:     Mengimpor kelas FileReader dari paket java.io, yang digunakan untuk membaca karakter dari suatu file.
+// import java.io.IOException;:    Mengimpor kelas IOException dari paket java.io, yang merupakan exception yang dilempar saat terjadi kesalahan input/output.
+// import java.nio.file.Files;:    Mengimpor kelas Files dari paket java.nio.file, yang menyediakan metode untuk operasi pada file dan direktori.
+// import java.nio.file.Path;:     Mengimpor kelas Path dari paket java.nio.file, yang digunakan untuk merepresentasikan path (alamat) dalam sistem berkas.
+// import java.nio.file.Paths;:    Mengimpor kelas Paths dari paket java.nio.file, yang menyediakan metode-fabrik untuk objek Path.
+// import java.util.List;:         Mengimpor kelas List dari paket java.util, yang merupakan antarmuka untuk daftar (list) yang diimplementasikan oleh kelas ArrayList, LinkedList, dll.
+
+//disaat ketika di jalankan :
+
+//public class Pembuka { ... }: Mendefinisikan kelas Pembuka.
+// public static void main(String[] args) { ... }: Metode main, yang merupakan titik masuk untuk eksekusi program. 
+// Saat program dijalankan, metode ini akan dijalankan terlebih dahulu.
+
+// public static void tampilkanIsiFile(String filePath) throws IOException { ... }: Metode tampilkanIsiFile yang digunakan untuk membaca dan menampilkan isi file. 
+// Metode ini mendeklarasikan bahwa ia dapat melempar exception IOException.
+
+
+//isi dari method tampilkanIsiFile : 
+
+// Path path = Paths.get(filePath);:                        Membuat objek Path dari alamat file yang diberikan (filePath).
+// List<String> baris = Files.readAllLines(path);:          Membaca semua baris dari file ke dalam objek List<String>.
+// for (String line : baris) { System.out.println(line); }: Menampilkan setiap baris dari objek List<String> ke konsol.

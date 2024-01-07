@@ -112,6 +112,7 @@ public class Run {
         run.addKonser();// memanggil semua menu konser 
 
         //untuk looping nya login ketika dia gagal memasukkan.!
+        // awal masuk program aplikasi.?
         while (true) {
             run.login();
         }
@@ -182,7 +183,7 @@ public class Run {
             // Proses login
             for (User user : userDatabase) {
                 if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
-                    System.out.println("\n[ Login berhasil ]\n");
+                    System.out.println("\n\t[ Login berhasil ]\n");
                     if (user.getRole().equals("admin")) {
                         Adminya ad = new Adminya();
                         ad.showMenuAdmin(daftarKonser);
@@ -197,7 +198,7 @@ public class Run {
 
             if (!loginBerhasil) {
                 percobaanLogin++;
-                System.out.println("\n[ Login gagal ]\n");
+                System.out.println("\n\t[ Login gagal ]\n");
                 System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
                 
                 if (percobaanLogin < 3) {
@@ -380,7 +381,8 @@ public class Run {
                         }
                     }
                 } else {
-                    System.out.println("Pilihan tiket tidak valid.");
+                    System.out.println("\n\t[ Maaf ]");
+                    System.out.println("Pilihan tiket tidak valid.\n");
                 }
             } else {
                 System.out.println("Pilihan konser tidak valid.");

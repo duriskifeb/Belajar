@@ -25,3 +25,6 @@ Primitive | - Non Primitive|
 - char        - Character
 - int         - Integer 
 - double      - Double 
+
+
+gambaran :
