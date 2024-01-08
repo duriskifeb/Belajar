@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.Files; //buat menginput dari luar file txt nya
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -77,6 +77,23 @@ class Tiket {
             System.out.println("Stok tidak mencukupi.");
         }
     }
+
+    public void tambahJumlah(int tambahan) {
+        if (tambahan > 0) {
+            jumlah += tambahan;
+            System.out.println(tambahan + " tiket " + jenis + " ditambahkan. Total stok sekarang: " + jumlah);
+        } else {
+            System.out.println("Jumlah tambahan tiket tidak valid.");
+        }
+    }
+
+    public void kurangJumlah(int amount) {
+        if (amount > 0 && amount <= jumlah) {
+            jumlah -= amount;
+        } else {
+            System.out.println("Jumlah tiket yang akan dikurangi tidak valid atau tidak mencukupi.");
+        }
+    }
 }
 
 class Konser {
@@ -96,33 +113,34 @@ class Konser {
     public String getNamaKonser() {
         return namaKonser;
     }
-    
+
     public ArrayList<Tiket> getDaftarTiket() {
         return daftarTiket;
     }
 }
 
 public class Run {
-    ArrayList<User> userDatabase = new ArrayList<>(); //untuk menyimpan data Admin dan Customer
+    ArrayList<User> userDatabase = new ArrayList<>(); // untuk menyimpan data Admin dan Customer
     ArrayList<Konser> daftarKonser = new ArrayList<>();// untuk menyimp
-    
+
     public static void main(String[] args) throws IOException {
         Run run = new Run();
-        run.addUser(); //memanggil username dan password di database
-        run.addKonser();// memanggil semua menu konser 
+        run.addUser(); // memanggil username dan password di database
+        run.addKonser();// memanggil semua menu konser
 
-        //untuk looping nya login ketika dia gagal memasukkan.!
+        // untuk looping nya login ketika dia gagal memasukkan.!
         // awal masuk program aplikasi.?
         while (true) {
             run.login();
         }
     }
-    
+
+    // humm.? untuk apa ya
     public ArrayList<Konser> getDaftarKonser() {
         return daftarKonser;
     }
 
-    //menu konser beserta pembelian
+    // menu konser beserta pembelian
     public void addKonser() {
         Konser Tulus_Album_Manusia = new Konser("1. Tulus - Album Manusia");
         Tulus_Album_Manusia.tambahTiket("1.Reguler", 50000, 50);
@@ -135,7 +153,7 @@ public class Run {
         Coldplay_Tour_Indonesia.tambahTiket("2.VIP", 100000, 30);
         Coldplay_Tour_Indonesia.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Coldplay_Tour_Indonesia);
-        
+
         Konser JKT_48_12_Tahun_Aniversary = new Konser("3. JKT 48 - 12 Tahun Aniveersary");
         JKT_48_12_Tahun_Aniversary.tambahTiket("1.Reguler", 50000, 50);
         JKT_48_12_Tahun_Aniversary.tambahTiket("2.VIP", 100000, 30);
@@ -147,7 +165,7 @@ public class Run {
         Opick.tambahTiket("2.VIP", 100000, 30);
         Opick.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Opick);
-        
+
         Konser Habib_Syech = new Konser("5. Habib Syech - berkah sholawat tahun baru cerah");
         Habib_Syech.tambahTiket("1.Reguler", 50000, 50);
         Habib_Syech.tambahTiket("2.VIP", 100000, 30);
@@ -155,15 +173,16 @@ public class Run {
         daftarKonser.add(Habib_Syech);
     }
 
-    //buat login = admin dan Customer
+    // buat login = admin dan Customer
     public void addUser() {
-        userDatabase.add(new User("2", "2", "customer"));
-        userDatabase.add(new User("1", "1", "admin"));
+        userDatabase.add(new User("user", "123", "customer"));
+        userDatabase.add(new User("admin", "123", "admin"));
     }
-    
+
+    // ketika aplikasi dijalankan
     public void login() throws IOException {
         Scanner input = new Scanner(System.in);
-        
+
         boolean loginBerhasil = false;
         int percobaanLogin = 0;
         while (!loginBerhasil) {
@@ -171,23 +190,22 @@ public class Run {
             System.out.println("\t---------------------------------------------------------");
             System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
             System.out.println("\t---------------------------------------------------------");
-            Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt"); //buat manggil Muqodimah.txt 
+            Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt"); // buat manggil Muqodimah.txt
 
-            // Loop untuk meminta ulang input username dan password jika login gagal
             System.out.print("Masukkan username: ");
             String inputUsername = input.nextLine();
 
             System.out.print("Masukkan password: ");
             String inputPassword = input.nextLine();
 
-            // Proses login
+            // Proses login di awal aplikasi berjalan
             for (User user : userDatabase) {
                 if (inputUsername.equals(user.getUsername()) && inputPassword.equals(user.getPassword())) {
                     System.out.println("\n\t[ Login berhasil ]\n");
                     if (user.getRole().equals("admin")) {
                         Adminya ad = new Adminya();
                         ad.showMenuAdmin(daftarKonser);
-                        
+
                     } else if (user.getRole().equals("customer")) {
                         displayCustomerMenu();
                     }
@@ -196,20 +214,21 @@ public class Run {
                 }
             }
 
+            // ketika login gagal maka dia akan melooping.? minta penjelasan.
             if (!loginBerhasil) {
                 percobaanLogin++;
                 System.out.println("\n\t[ Login gagal ]\n");
                 System.out.println("Username atau password salah. Percobaan: " + percobaanLogin);
-                
+
                 if (percobaanLogin < 3) {
                     System.out.print("Apakah Anda ingin mencoba login lagi? (ya/tidak): ");
                     String cobaLagi = input.nextLine().toLowerCase();
                     System.out.println();
-                    
+
                     if (!cobaLagi.equals("ya")) {
                         System.out.println("Terima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
                         System.out.print("Sedang keluar...");
-                        
+
                         // Implementasi loading sebelum keluar
                         for (int i = 0; i < 5; i++) {
                             try {
@@ -219,7 +238,7 @@ public class Run {
                                 e.printStackTrace();
                             }
                         }
-                        
+
                         // Menampilkan pesan selesai keluar
                         System.out.println("\nTerima kasih. Selamat tinggal - Sampai jumpa kembali :) ");
                         lihatRiwayatPembelian();
@@ -232,10 +251,11 @@ public class Run {
                 }
             }
         }
-        
+
     }
-    
-    ArrayList<Tiket> sudahTiket = new ArrayList<>(); //untuk database nya riwayat 
+
+    ArrayList<Tiket> sudahTiket = new ArrayList<>(); // untuk database nya riwayat
+
     public void riwayat() {
         if (sudahTiket.isEmpty()) {
             System.out.println("Riwayat pembelian tiket kosong.");
@@ -255,12 +275,14 @@ public class Run {
         }
     }
 
-    public void viewKonser(ArrayList<Konser> daftarKonser) { //untuk nampilin nama-nama konser di admin
-        System.out.println("Daftar Konser:");
+    public void viewKonser(ArrayList<Konser> daftarKonser) { // untuk nampilin nama-nama konser di admin
+        System.out.println("Daftar Konser : ");
+        System.out.println();
 
         for (Konser konser : daftarKonser) {
             System.out.println(konser.getNamaKonser());
-            System.out.println("Daftar Tiket:");
+            System.out.println("Daftar Tiket : ");
+            System.out.println();
             for (Tiket tiket : konser.getDaftarTiket()) {
                 System.out
                         .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
@@ -268,17 +290,18 @@ public class Run {
             System.out.println("================================");
         }
 
-        System.out.println("0. Keluar");
+        // System.out.println("0. Keluar"); ini ga perlu ga sih, ganggu soale.
     }
 
+    // Transaksi ketika tiket di beli oleh user
     public void konseran() {
         // Inisialisasi data konser
         daftarKonser.add(new Konser("0. Keluar"));
 
         // Input pilihan konser
         Scanner input = new Scanner(System.in);
-
-        //Proses pembelian tiket konser
+        int ulangi = 0;
+        // Proses pembelian tiket konser
         do {
             System.out.println("Beli Tiket Konser:");
             for (int i = 0; i < daftarKonser.size(); i++) {
@@ -286,13 +309,8 @@ public class Run {
             }
 
             System.out.println();
-            System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
+            System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + ") : ");
             int pilihanKonser = input.nextInt();
-
-            if (pilihanKonser == 0) {
-                System.out.println("Terima kasih. Selamat tinggal!");
-                break; // Keluar dari loop jika pilihan 0
-            }
 
             if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
                 Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
@@ -312,8 +330,8 @@ public class Run {
                 System.out.println();
 
                 if (pilihanTiket >= 1 && pilihanTiket <= riwayatTiket.size()) {
-                    Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
 
+                    Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
                     System.out.println("Stok Tiket    :" + "      o=> " + tiketPilihan.getNamaKonser() + " <=o\n"
                             + tiketPilihan.getJenis() + " tersisa : " + tiketPilihan.getJumlah());
 
@@ -347,7 +365,10 @@ public class Run {
                             System.out.println("Stok Tiket " + tiketPilihan.getNamaKonser() + " - "
                                     + tiketPilihan.getJenis() + " tersisa: " + tiketPilihan.getJumlah());
 
-                            System.out.print("\nApakah Anda ingin membeli tiket konser lain? (ya/tidak) : "); //loop untuk beli tiket 
+                            System.out.print("\nApakah Anda ingin membeli tiket konser lain? (ya/tidak) : "); // loop
+                                                                                                              // untuk
+                                                                                                              // beli
+                                                                                                              // tiket
                             String lanjutBeli = input.next().toLowerCase();
                             System.out.println();
 
@@ -355,14 +376,15 @@ public class Run {
                                 continue;
                             } else {
                                 System.out.println("\nTerima kasih, Sampai jumpa kembali.\n");
-                                displayCustomerMenu(); // Tambahkan ini untuk kembali ke menu customer
+                                System.out.println("\nTerimakasih anda telah beli tiket\n");
+                                clearScreen();
+                                displayCustomerMenu(); // Tampilkan ini untuk kembali ke menu customer
                                 break; // Tambahkan ini agar keluar dari loop setelah kembali ke menu customer
                             }
 
                         } else {
-                            System.out.println("Pembayaran tidak mencukupi.");
+                            System.out.println("Pembayaran tidak mencukupi.\n");
                         }
-                        System.out.println("\nTerimakasih anda telah beli tiket\n");
                     } else {
                         System.out.println("Jumlah tiket yang dibeli tidak valid.");
                         System.out.println();
@@ -380,27 +402,29 @@ public class Run {
                             break;
                         }
                     }
-                } else {
-                    System.out.println("\n\t[ Maaf ]");
-                    System.out.println("Pilihan tiket tidak valid.\n");
                 }
+                // } else {
+                //     // System.out.println("\n\t[ Maaf ]");
+                //     // System.out.println("Pilihan tiket tidak valid.\n");
+                // }
             } else {
-                System.out.println("Pilihan konser tidak valid.");
+                System.out.println("Terimakasih atas kunjungan anda :') .\n");
+                break;
             }
         } while (true);
         displayCustomerMenu();
     }
 
-    //untuk customer nya.
+    // untuk customer nya.
     public void displayCustomerMenu() {
         Scanner input = new Scanner(System.in);
-        boolean pilihan = true;
+        int pilihan = 0;
         boolean yakin = true;
         String pilihanUser;
 
         System.out.println("---o0 Selamat datang di menu Customer 0o--- ");
 
-        while (pilihan) {
+        do {
             System.out.println("\nMenu customer : \n");
             System.out.println("1. Lihat jadwal event Konser");
             System.out.println("2. beli Tiket Konser");
@@ -431,7 +455,11 @@ public class Run {
                     riwayat();
                     break;
                 case "4":
-                    pilihan = false;
+                    try {
+                        login();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "0":
                     System.out.println("0. Menutup Apliksai\n");
@@ -441,16 +469,17 @@ public class Run {
                     System.exit(0);
 
                 default:
-                    System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 2] : ");
+                    System.err.println("Maaf... Pilihan anda tidak ada pilih [1 - 4] : ");
                     break;
             }
-        }
+        } while (pilihan != 4);
     }
 
-
+    public static void displayAdminMenu() {
+        // ga ono.?
+    }
 
     // DI BAWAH INI UNTUK FITUR - FITUR DALAM APLIKASI . !!!
-
 
     private void loadingMessage() {
         try {
@@ -464,6 +493,31 @@ public class Run {
             e.printStackTrace();
         }
     }
+
+    // penjelasanya :
+    // for(
+    // int i = 0;i<3;i++):
+    // Ini adalah
+    // loop yang
+    // berjalan tiga kali,
+    // yang akan
+    // mencetak titik-
+    // titik sebanyak
+    // tiga kali.
+    // System.out.print("."):
+    // Setiap iterasi
+    // loop mencetak
+    // satu titik
+    // tanpa membuat
+    // baris baru.
+    // Fungsi print() digunakan agar semua titik dicetak dalam satu baris.
+    // Thread.sleep(500): Ini adalah perintah untuk "menghentikan" atau "mendiamkan"
+    // proses selama 500 milidetik (0.5 detik). Dengan kata lain, setiap kali satu
+    // titik dicetak, program akan menunggu selama 0.5 detik sebelum melanjutkan ke
+    // titik berikutnya.
+    // System.out.println(): Setelah loop selesai, perintah ini digunakan untuk
+    // mencetak baris baru. Ini memberikan efek bahwa titik-titik yang telah dicetak
+    // sebelumnya adalah bagian dari satu "baris loading".
 
     private static boolean getYesorNo(String messeage) {
 
@@ -519,16 +573,6 @@ public class Run {
         }
     }
 
-    public static void CloseAPK() {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-        } catch (Exception e) {
-            System.err.println("Terjadi kesalahan: " + e);
-        }
-
-    }
-
     private static boolean pilihYesatauNO(String pertanyaan) {
         Scanner input = new Scanner(System.in);
 
@@ -546,6 +590,154 @@ public class Run {
         }
     }
 
+    // Penjelasanya :
+
+    // Scanner terminalInput = new Scanner(System.in);:
+    // Membuat objek
+    // Scanner untuk
+    // membaca input
+    // dari terminal
+    // atau pengguna.
+
+    // System.out.print("\n"+messeage+" [y/n] : ");:
+    // Menampilkan pesan
+    // kepada pengguna
+    // yang berisi
+    // pertanyaan atau
+    // informasi yang
+    // dimasukkan melalui
+    // parameter messeage.
+    // Pengguna diminta
+    // untuk memilih antara"ya"atau"tidak"
+    // dengan menuliskan"y"atau"n".
+
+    // String pilihanUser = terminalInput.next();:
+    // Membaca input
+    // yang diberikan
+    // oleh pengguna.
+
+    // while(!pilihanUser.equalsIgnoreCase("y")&&!pilihanUser.equalsIgnoreCase("n"))
+    // { ... }:
+    // Melakukan loop
+    // selama input
+    // pengguna tidak
+    // sama dengan"y"
+    // dan tidak
+    // sama dengan"n".
+    // Jika input
+
+    // tidak valid (bukan "y" atau "n"), program akan menampilkan pesan kesalahan
+    // dan meminta input ulang.
+
+    // System.err.println("Maaf pilihan ana bukan y dan n");: Menampilkan pesan
+    // kesalahan jika input tidak valid.
+
+    // pilihanUser = terminalInput.next();: Meminta pengguna untuk memasukkan input
+    // yang benar setelah pesan kesalahan ditampilkan.
+
+    // return pilihanUser.equalsIgnoreCase("y");: Mengembalikan nilai true jika
+    // pengguna memilih "ya" (input "y") dan false jika memilih "tidak" (input "n").
+    // Metode ini akan mengulang proses meminta input hingga mendapatkan input yang
+    // valid.
+
+    public static void CloseAPK() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+        } catch (Exception e) {
+            System.err.println("Terjadi kesalahan: " + e);
+        }
+    }
+
+    // penjelasanya :
+
+    // new ProcessBuilder("cmd","/c","cls"):
+    // Membuat objek
+    // ProcessBuilder untuk
+    // menjalankan perintah
+    // di terminal
+    // atau command
+    // prompt.Perintah yang
+    // ingin dijalankan
+    // adalah cls, yang
+    // berfungsi untuk
+    // membersihkan atau
+    // menghapus tampilan konsol.
+
+    // inheritIO():
+    // Menetapkan bahwa input/output dari
+    // proses yang
+    // dijalankan akan
+    // diwariskan atau
+    // dihubungkan dengan input/output dari
+    // proses induk.
+    // Ini memungkinkan
+    // output dari
+    // perintah yang
+
+    // dijalankan (cls) ditampilkan di terminal saat aplikasi berjalan.
+
+    // start(): Memulai eksekusi perintah yang ditetapkan sebelumnya.
+
+    // waitFor(): Membuat thread utama menunggu hingga proses yang dijalankan
+    // selesai. Dalam konteks ini, menunggu hingga perintah cls selesai dijalankan.
+
+    // catch (Exception e) { System.err.println("Terjadi kesalahan: " + e); }:
+    // Menangkap dan menangani exception yang mungkin terjadi selama eksekusi
+    // perintah. Jika terdapat kesalahan, pesan kesalahan akan dicetak ke System.err
+    // (output error).
+
+    public static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (Exception ex) {
+            System.err.println("tidak bisa clear screen");
+        }
+    }
+
+    // penjelasanya :
+
+    // System.getProperty("os.name").contains("Windows"):
+    // Mengecek sistem
+    // operasi yang
+    // sedang dijalankan.
+    // Jika sistem
+    // operasi yang
+    // digunakan adalah Windows,
+    // kondisi ini
+    // akan bernilai true.
+    // new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor():
+    // Jika sistem
+    // operasi adalah Windows,
+    // maka proses
+    // ini akan
+    // mencoba membersihkan
+    // layar dengan
+    // menggunakan perintah
+    // cls pada
+    // command prompt (cmd). Proses tersebut kemudian dijalankan dan menunggu hingga
+    // selesai. Proses ini memiliki efek yang sama dengan membersihkan layar pada
+    // terminal Windows.
+    // else { System.out.print("\033\143"); }: Jika sistem operasi bukan Windows
+    // (misalnya, sistem operasi berbasis Unix/Linux seperti macOS atau Linux), maka
+    // akan mencetak karakter khusus ("\033\143") ke konsol. Karakter tersebut
+    // memiliki efek membersihkan layar pada terminal yang mendukung ANSI escape
+    // codes. Dalam konteks ini, "\033" merupakan karakter escape dan "\143" adalah
+    // kode ASCII untuk karakter huruf 'P'.
+    // catch (Exception ex) { System.err.println("tidak bisa clear screen"); }:
+    // Menangkap dan menangani exception yang mungkin terjadi selama eksekusi. Jika
+    // terjadi kesalahan dalam membersihkan layar, pesan kesalahan akan dicetak ke
+    // System.err (output error).
+
+    // DI BAWAH INI UNTUK FITUR - FITUR DALAM APLIKASI . !!!
+    // --o0 End 0o--
+
+    // per Method -an .?
+
     private static void lihatRiwayatPembelian() {
         // Logika untuk melihat riwayat pembelian
         System.out.println("Menampilkan riwayat pembelian...");
@@ -557,7 +749,9 @@ public class Run {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt"); // untuk menampilkan jadwal konser tiket di Info_konser.txt
+            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt"); // untuk menampilkan jadwal
+                                                                                        // konser tiket di
+                                                                                        // Info_konser.txt
             bufferInput = new BufferedReader(fileInput);
         } catch (Exception e) {
             System.err.println("Database Tidak ditemukan");
@@ -565,9 +759,10 @@ public class Run {
             return;
         }
 
-        System.out.println("\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |\t     Waktu       ");
         System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
+                "\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |  Tanggal    |     Waktu       ");
+        System.out.println(
+                "------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         String data = bufferInput.readLine();
         int nomorData = 0;
@@ -581,16 +776,17 @@ public class Run {
             System.out.printf("|\t%3s  ", stringToken.nextToken());
             System.out.printf("|\t%3s   ", stringToken.nextToken());
             System.out.printf("|\t%3s    ", stringToken.nextToken());
+            System.out.printf("|\t%3s    ", stringToken.nextToken());
             System.out.print("\n");
 
             data = bufferInput.readLine();
         }
 
         System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
+                "-------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
-    public static void tampilkanIsiFile(String filePath) throws IOException { //untuk menampilkan isi dari file txt.
+    public static void tampilkanIsiFile(String filePath) throws IOException { // untuk menampilkan isi dari file txt.
         // Gunakan Paths.get() untuk membuat objek Path dari path file
         Path path = Paths.get(filePath);
 
@@ -601,22 +797,6 @@ public class Run {
         // Tampilkan setiap baris di konsol
         for (String line : baris) {
             System.out.println(line);
-        }
-    }
-
-    public static void displayAdminMenu() {
-        // ga ono.?
-    }
-
-    public static void clearScreen() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033\143");
-            }
-        } catch (Exception ex) {
-            System.err.println("tidak bisa clear screen");
         }
     }
 

@@ -102,78 +102,49 @@ public class Adminya {
 
     // ini untuk menambahkan tiket customer
     public void tambahTiket() {
-        Run run = new Run(); //untuk memanggil customer dengan nama file Run
-        ArrayList<Konser> daftarKonser = dataKonser;
-        ArrayList<Tiket> riwayatTiket = new ArrayList<>();
+        Run run = new Run();
+        run.viewKonser(dataKonser);
 
         Scanner input = new Scanner(System.in);
 
-        // Ambil pilihan konser dari pengguna
-        System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
+        System.out.print("Pilih konser (0-" + (dataKonser.size() - 1) + "): ");
         int pilihanKonser = input.nextInt();
 
         if (pilihanKonser == 0) {
             System.out.println("Terima kasih. Selamat tinggal!");
-            return; // Keluar dari metode jika pilihan 0
+            return;
         }
 
-        if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
-            Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
-            riwayatTiket = konserPilihan.getDaftarTiket();
+        if (pilihanKonser >= 1 && pilihanKonser <= dataKonser.size()) {
+            Konser konserPilihan = dataKonser.get(pilihanKonser - 1);
+            ArrayList<Tiket> daftarTiket = konserPilihan.getDaftarTiket();
 
-            System.out.println("\nDaftar Tiket untuk => " + konserPilihan.getNamaKonser() + " :\n");
-
-            // Menampilkan dan memperbarui stok tiket
-            for (int i = 0; i < riwayatTiket.size(); i++) {
-                Tiket tiket = riwayatTiket.get(i);
-                System.out
-                        .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
-
-                // Tambah stok tiket
-                int tambahanStok = 10;
-                int stokBaru = tiket.getJumlah() + tambahanStok;
-                tiket.setJumah(stokBaru);
+            if (daftarTiket.isEmpty()) {
+                System.out.println("Tidak ada jenis tiket yang tersedia.");
+                return;
             }
 
-            // Pilih jenis tiket
-            System.out.println("0. Tidak beli tiket");
-            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
+            System.out.println("\nDaftar Jenis Tiket untuk " + konserPilihan.getNamaKonser() + ":\n");
+
+            for (int i = 0; i < daftarTiket.size(); i++) {
+                Tiket tiket = daftarTiket.get(i);
+                System.out.println(i + 1 + ". " + tiket.getJenis() + " - Stok: " + tiket.getJumlah());
+            }
+
+            System.out.print("Pilih jenis tiket yang akan ditambahkan (1-" + daftarTiket.size() + "): ");
             int pilihanTiket = input.nextInt();
 
-            if (pilihanTiket == 0) {
-                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                return; // Keluar dari metode jika pilihan 0
-            }
+            if (pilihanTiket >= 1 && pilihanTiket <= daftarTiket.size()) {
+                Tiket tiketPilihan = daftarTiket.get(pilihanTiket - 1);
 
-            if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
-                konserPilihan = daftarKonser.get(pilihanKonser - 1);
-                riwayatTiket = konserPilihan.getDaftarTiket();
+                System.out.print("\nMasukkan jumlah tiket yang akan ditambahkan: ");
+                int jumlahTambah = input.nextInt();
 
-                System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
-                for (int i = 0; i < riwayatTiket.size(); i++) {
-                    Tiket tiket = riwayatTiket.get(i);
-                    System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
-                            + tiket.getJumlah() + ")");
+                tiketPilihan.tambahJumlah(jumlahTambah);
 
-                    int tiketTambah = tiket.getJumlah();
-
-                    int coba = tiketTambah + 10;
-
-                    System.out.println(coba);
-
-                    tiket.setJumah(coba);
-                }
-            }
-
-            System.out.println("0. Tidak beli tiket");
-            System.out.println();
-            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
-            pilihanTiket = input.nextInt();
-            System.out.println();
-
-            if (pilihanTiket == 0) {
-                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                return; // Keluar dari loop jika pilihan 0
+                System.out.println(jumlahTambah + " tiket " + tiketPilihan.getJenis() + " ditambahkan.\n");
+            } else {
+                System.out.println("Pilihan jenis tiket tidak valid.");
             }
         } else {
             System.out.println("Pilihan konser tidak valid.");
@@ -185,10 +156,8 @@ public class Adminya {
     public void kurangTiket() {
         Run ing = new Run();
         ArrayList<Konser> daftarKonser = dataKonser;
-        ArrayList<Tiket> riwayatTiket = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
-
 
         // Ambil pilihan konser dari pengguna
         System.out.print("Pilih konser (0-" + (daftarKonser.size() - 1) + "): ");
@@ -201,7 +170,12 @@ public class Adminya {
 
         if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
             Konser konserPilihan = daftarKonser.get(pilihanKonser - 1);
-            riwayatTiket = konserPilihan.getDaftarTiket();
+            ArrayList<Tiket> riwayatTiket = konserPilihan.getDaftarTiket();
+
+            if (riwayatTiket.isEmpty()) {
+                System.out.println("Tidak ada jenis tiket yang tersedia.");
+                return;
+            }
 
             System.out.println("\nDaftar Tiket untuk => " + konserPilihan.getNamaKonser() + " :\n");
 
@@ -210,54 +184,40 @@ public class Adminya {
                 Tiket tiket = riwayatTiket.get(i);
                 System.out
                         .println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: " + tiket.getJumlah() + ")");
-
-                // Tambah stok tiket
-                int tambahanStok = 10;
-                int stokBaru = tiket.getJumlah() + tambahanStok;
-                tiket.setJumah(stokBaru);
             }
 
             // Pilih jenis tiket
             System.out.println("0. Tidak beli tiket");
-            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
-            int pilihanTiket = input.nextInt();
 
-            // if (pilihanTiket == 0) {
-            //     System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-            //     return; // Keluar dari metode jika pilihan 0
-            // }
-            // sek bentar.!
+            int pilihanTiket;
+            do {
+                System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") atau 9 untuk selesai mengurangi : ");
+                pilihanTiket = input.nextInt();
+                System.out.println();
 
-            if (pilihanKonser >= 1 && pilihanKonser <= daftarKonser.size()) {
-                konserPilihan = daftarKonser.get(pilihanKonser - 1);
-                riwayatTiket = konserPilihan.getDaftarTiket();
-
-                System.out.println("\nDaftar Tiket untuk o=> " + konserPilihan.getNamaKonser() + " :\n");
-                for (int i = 0; i < riwayatTiket.size(); i++) {
-                    Tiket tiket = riwayatTiket.get(i);
-                    System.out.println(tiket.getJenis() + " - Rp " + tiket.getHarga() + " (Stok: "
-                            + tiket.getJumlah() + ")");
-
-                    int tiketTambah = tiket.getJumlah();
-
-                    int coba = tiketTambah - 10;
-
-                    System.out.println(coba);
-
-                    tiket.setJumah(coba);
+                if (pilihanTiket == 0) {
+                    System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
+                    return; // Keluar dari metode jika pilihan 0
                 }
-            }
 
-            System.out.println("0. Tidak beli tiket");
-            System.out.println();
-            System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") : ");
-            pilihanTiket = input.nextInt();
-            System.out.println();
+                if (pilihanTiket == 9) {
+                    System.out.println("Keluar dari pengurangan tiket dan kembali ke Menu Admin.");
+                    return;
+                }
 
-            if (pilihanTiket == 0) {
-                System.out.println("Anda memilih untuk tidak membeli tiket. Terima kasih!");
-                return; // Keluar dari loop jika pilihan 0
-            }
+                if (pilihanTiket >= 1 && pilihanTiket <= riwayatTiket.size()) {
+                    Tiket tiketPilihan = riwayatTiket.get(pilihanTiket - 1);
+
+                    System.out.print("\nMasukkan jumlah tiket yang akan dikurangi: ");
+                    int jumlahKurang = input.nextInt();
+
+                    tiketPilihan.kurangJumlah(jumlahKurang);
+
+                    System.out.println(jumlahKurang + " tiket " + tiketPilihan.getJenis() + " dikurangi.\n");
+                } else {
+                    System.out.println("Pilihan jenis tiket tidak valid.");
+                }
+            } while (pilihanTiket != 0 && pilihanTiket != 9);
         } else {
             System.out.println("Pilihan konser tidak valid.");
         }
@@ -288,4 +248,6 @@ public class Adminya {
         }
     }
 
+
+    
 }
