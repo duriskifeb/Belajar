@@ -2,7 +2,7 @@ package Project1.praTugasBesar;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Project1.SuksesDeh.Tiket;
+import Project1.RevisiDone.Tiket;
 
 class Tiket {
     private String jenis;

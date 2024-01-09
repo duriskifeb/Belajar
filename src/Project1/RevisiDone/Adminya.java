@@ -1,4 +1,4 @@
-package Project1.SuksesDeh;
+package Project1.RevisiDone;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,7 +88,6 @@ public class Adminya {
                     break;
 
                 case 5:
-                    removeTickets();
                     break;
                 case 6:
                     tambahKonser();

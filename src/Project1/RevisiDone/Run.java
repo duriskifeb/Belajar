@@ -1,4 +1,4 @@
-package Project1.SuksesDeh;
+package Project1.RevisiDone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -202,7 +202,7 @@ public class Run {
             System.out.println("\t---------------------------------------------------------");
             System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
             System.out.println("\t---------------------------------------------------------");
-            Pembuka.tampilkanIsiFile("D:\\My Repo\\Belajar\\src\\Project1\\SuksesDeh\\Muqodimah.txt"); // buat manggil Muqodimah.txt
+            Pembuka.tampilkanIsiFile("src\\Project1\\RevisiDone\\Muqodimah.txt"); // buat manggil Muqodimah.txt
 
             System.out.print("Masukkan username: ");
             String inputUsername = input.nextLine();
@@ -281,9 +281,9 @@ public class Run {
                 System.out.println("Harga Tiket: Rp " + tiket.getHarga());
                 System.out.println("Jumlah Tiket: " + tiket.getJumlah());
                 System.out.print("Nomor Seri : ");
-                for(int j = 0; j <= tiket.nomorSeri[i].length()-1; j++){
-                    System.out.print(tiket.getNomorSeri(j) + ", ");
-                }
+                // for(int j = 0; j <= sudahTiket.getNomorSeri.length()-1; j++){
+                //     System.out.print(tiket.getNomorSeri(j) + ", ");
+                // }
                 System.out.println();
                 System.out.println("Total Harga: Rp " + (tiket.getHarga() * tiket.getJumlah()));
                 System.out.println("------------------------------");
@@ -772,7 +772,7 @@ public class Run {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("src\\Project1\\SuksesDeh\\Info_Konser.txt"); // untuk menampilkan jadwal
+            fileInput = new FileReader("src\\Project1\\RevisiDone\\Info_Konser.txt"); // untuk menampilkan jadwal
                                                                                         // konser tiket di
                                                                                         // Info_konser.txt
             bufferInput = new BufferedReader(fileInput);

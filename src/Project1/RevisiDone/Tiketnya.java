@@ -1,4 +1,4 @@
-package Project1.SuksesDeh;
+package Project1.RevisiDone;
 
 import java.util.ArrayList;
 import java.util.Scanner;
