@@ -171,6 +171,8 @@ public class Run {
         Habib_Syech.tambahTiket("2.VIP", 100000, 30);
         Habib_Syech.tambahTiket("3.VVIP", 150000, 20);
         daftarKonser.add(Habib_Syech);
+
+         daftarKonser.add(new Konser("0. Keluar"));
     }
 
     // buat login = admin dan Customer
@@ -296,7 +298,7 @@ public class Run {
     // Transaksi ketika tiket di beli oleh user
     public void konseran() {
         // Inisialisasi data konser
-        daftarKonser.add(new Konser("0. Keluar"));
+       
 
         // Input pilihan konser
         Scanner input = new Scanner(System.in);
@@ -399,9 +401,12 @@ public class Run {
                             // Exit the loop and return to the customer menu
                             System.out.println("\nTerima kasih, Sampai jumpa kembali.\n");
                             displayCustomerMenu();
-                            break;
+                            // break;
                         }
                     }
+                }else if (pilihanKonser == 0) {
+                    System.out.println("alhamdulillah sihh..");
+                    break;
                 }
                 // } else {
                 //     // System.out.println("\n\t[ Maaf ]");
