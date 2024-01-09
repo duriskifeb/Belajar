@@ -1,10 +1,9 @@
-package Project1.ParengSambat;
+package Project1.SuksesDeh;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 
 class Concert {
     private int availableTickets;
@@ -37,8 +36,9 @@ class Concert {
 }
 
 public class Adminya {
-    
+
     ArrayList<Konser> dataKonser = new ArrayList<>();
+
     // ini buat user yaa...
     public void showMenuAdmin(ArrayList<Konser> daftarKonser) {
         dataKonser = daftarKonser;
@@ -86,6 +86,13 @@ public class Adminya {
                     loop = false;
                     // ");
                     break;
+
+                case 5:
+                    removeTickets();
+                    break;
+                case 6:
+                    tambahKonser();
+                    break;
                 case 0:
                     System.out.println("0. Menutup Apliksai\n");
                     System.out.print("sedang menutup aplikasi ");
@@ -98,6 +105,18 @@ public class Adminya {
                     scanner.close();
             }
         }
+    }
+
+    public void tambahKonser() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Nama Konser");
+        String namaKonser = scanner.nextLine();
+    }
+
+    public ArrayList<Konser> updateArray() {
+        return dataKonser;
     }
 
     // ini untuk menambahkan tiket customer
@@ -151,8 +170,7 @@ public class Adminya {
         }
     }
 
-
-    //ini untuk mengurangi tiket customer
+    // ini untuk mengurangi tiket customer
     public void kurangTiket() {
         Run ing = new Run();
         ArrayList<Konser> daftarKonser = dataKonser;
@@ -191,7 +209,8 @@ public class Adminya {
 
             int pilihanTiket;
             do {
-                System.out.print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") atau 9 untuk selesai mengurangi : ");
+                System.out
+                        .print("Pilih jenis tiket (1-" + riwayatTiket.size() + ") atau 9 untuk selesai mengurangi : ");
                 pilihanTiket = input.nextInt();
                 System.out.println();
 
@@ -223,7 +242,7 @@ public class Adminya {
         }
     }
 
-    //untuk menutup Aplikasi
+    // untuk menutup Aplikasi
     public static void CloseAPK() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -233,8 +252,7 @@ public class Adminya {
         }
     }
 
-
-    //implementasi loading ketika aplikasi keluar
+    // implementasi loading ketika aplikasi keluar
     public static void loadingMessage() {
         try {
             // Simulate loading by printing dots with a delay
@@ -248,6 +266,4 @@ public class Adminya {
         }
     }
 
-
-    
 }

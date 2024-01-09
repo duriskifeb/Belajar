@@ -1,4 +1,4 @@
-package Project1.ParengSambat;
+package Project1.SuksesDeh;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +12,7 @@ import java.util.List;
 public class Pembuka {
     public static void main(String[] args) {
         // Untuk memanggil file Muqodimah.txt
-        String filePath = "D:\\My Repo\\Belajar\\src\\Project1\\ParengSambat\\Muqodimah.txt";
+        String filePath = "src\\Project1\\SuksesDeh\\Muqodimah.txt";
 
         // Panggil metode untuk membaca dan menampilkan kontennya
         try {

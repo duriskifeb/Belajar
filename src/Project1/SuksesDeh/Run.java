@@ -1,4 +1,4 @@
-package Project1.ParengSambat;
+package Project1.SuksesDeh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,8 @@ class User {
 }
 
 class Tiket {
+    private static int counter = 1; // Nomor seri tiket akan dimulai dari 1 dan terus bertambah setiap tiket dibeli
+    public String[] nomorSeri = new String[3];
     private String jenis;
     private String namaKonser;
     private int harga;
@@ -48,6 +50,14 @@ class Tiket {
         this.namaKonser = namaKonser;
         this.harga = harga;
         this.jumlah = jumlah;
+    }
+
+    public String getNomorSeri(int i) {
+        return nomorSeri[i];
+    }
+    
+    public void setNomorSeri(int i) {
+        this.nomorSeri[nomorSeri.length-(nomorSeri.length-i)] = "" + (counter++);
     }
 
     public void setJumah(int jumlah) {
@@ -192,7 +202,7 @@ public class Run {
             System.out.println("\t---------------------------------------------------------");
             System.out.println("\t >---> SELAMAT DATANG DI APLIKASI KONSER kELOMPOK 4 <---<");
             System.out.println("\t---------------------------------------------------------");
-            Pembuka.tampilkanIsiFile("src\\Project1\\ParengSambat\\Muqodimah.txt"); // buat manggil Muqodimah.txt
+            Pembuka.tampilkanIsiFile("D:\\My Repo\\Belajar\\src\\Project1\\SuksesDeh\\Muqodimah.txt"); // buat manggil Muqodimah.txt
 
             System.out.print("Masukkan username: ");
             String inputUsername = input.nextLine();
@@ -207,7 +217,7 @@ public class Run {
                     if (user.getRole().equals("admin")) {
                         Adminya ad = new Adminya();
                         ad.showMenuAdmin(daftarKonser);
-
+                        daftarKonser = ad.updateArray();
                     } else if (user.getRole().equals("customer")) {
                         displayCustomerMenu();
                     }
@@ -270,6 +280,11 @@ public class Run {
                 System.out.println("Jenis Tiket: " + tiket.getJenis());
                 System.out.println("Harga Tiket: Rp " + tiket.getHarga());
                 System.out.println("Jumlah Tiket: " + tiket.getJumlah());
+                System.out.print("Nomor Seri : ");
+                for(int j = 0; j <= tiket.nomorSeri[i].length()-1; j++){
+                    System.out.print(tiket.getNomorSeri(j) + ", ");
+                }
+                System.out.println();
                 System.out.println("Total Harga: Rp " + (tiket.getHarga() * tiket.getJumlah()));
                 System.out.println("------------------------------");
 
@@ -298,8 +313,6 @@ public class Run {
     // Transaksi ketika tiket di beli oleh user
     public void konseran() {
         // Inisialisasi data konser
-       
-
         // Input pilihan konser
         Scanner input = new Scanner(System.in);
         int ulangi = 0;
@@ -343,7 +356,7 @@ public class Run {
 
                     System.out.println();
 
-                    if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah()) {
+                    if (jumlahBeli > 0 && jumlahBeli <= tiketPilihan.getJumlah() && jumlahBeli < 4) {
                         int totalHarga = tiketPilihan.getHarga() * jumlahBeli;
                         System.out.println("Total Harga untuk " + jumlahBeli + " tiket : \n"
                                 + tiketPilihan.getJenis() + ": Rp " + totalHarga);
@@ -357,6 +370,11 @@ public class Run {
                             tiketPilihan.kurangiJumlah(jumlahBeli);
 
                             System.out.println("Kembalian: Rp " + kembalian);
+                            System.out.print("Nomor Seri Tiket: " );
+                            for(int i = 0; i < jumlahBeli; i++){
+                                tiketPilihan.setNomorSeri(i);
+                                System.out.print((tiketPilihan.getNomorSeri(i)) + ", ");
+                            }
                             System.out.println("\n[ Transaksi Berhasil ]\n");
                             System.out.println("Terimakasih atas kunjungannya.");
                             Tiket tiket = new Tiket(tiketPilihan.getJenis(), tiketPilihan.getNamaKonser(), totalHarga,
@@ -754,7 +772,7 @@ public class Run {
         BufferedReader bufferInput;
 
         try {
-            fileInput = new FileReader("src\\Project1\\ParengSambat\\Info_Konser.txt"); // untuk menampilkan jadwal
+            fileInput = new FileReader("src\\Project1\\SuksesDeh\\Info_Konser.txt"); // untuk menampilkan jadwal
                                                                                         // konser tiket di
                                                                                         // Info_konser.txt
             bufferInput = new BufferedReader(fileInput);

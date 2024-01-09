@@ -1,4 +1,4 @@
-package Project1.ParengSambat;
+package Project1.SuksesDeh;
 
 import java.util.ArrayList;
 import java.util.Scanner;
