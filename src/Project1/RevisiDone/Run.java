@@ -139,12 +139,12 @@ public class Run {
         run.addKonser();// memanggil semua menu konser
 
         // untuk looping nya login ketika dia gagal memasukkan.!
-        // awal masuk program aplikasi.?
+        // awal masuk program aplikasi.?    
         while (true) {
             run.login();
         }
     }
-
+    
     // humm.? untuk apa ya
     public ArrayList<Konser> getDaftarKonser() {
         return daftarKonser;
@@ -783,9 +783,9 @@ public class Run {
         }
 
         System.out.println(
-                "\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |      Tanggal       |        Waktu       ");
+                "\n| No |\t     Nama Konser\t\t\t                       |\tTempat        |  Tanggal    |     Waktu       ");
         System.out.println(
-                "------------------------------------------------------------------------------------------------------------------------------------------");
+                "------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         String data = bufferInput.readLine();
         int nomorData = 0;
@@ -806,7 +806,7 @@ public class Run {
         }
 
         System.out.println(
-                "-----------------------------------------------------------------------------------------------------------------------------------------");
+                "-------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
     public static void tampilkanIsiFile(String filePath) throws IOException { // untuk menampilkan isi dari file txt.
