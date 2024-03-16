@@ -1,6 +1,6 @@
-## Getting Started :)
+<H1> Hello, every onee.. :))
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Hello, this is my repository on the learning process in courses while on campus
 
 <p>Nama      : Muhammad Rizky Febriyanto<br>
 Nim       : 1201230037 <br>
