@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Project Java Repository
 
 Welcome to this Java project repository! Below is all the essential information to help you get started and understand the purpose of this repository.
+=======
+<H1> Hello, every onee.. :))
+
+Hello, this is my repository on the learning process in courses while on campus
+>>>>>>> e020f15fe407517634d05a65ea376ff19ce76900
 
 ---
 
