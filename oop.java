@@ -1,4 +1,3 @@
-package Belajar.yongunu;
 import java.util.Scanner;
 
 public class oop {
